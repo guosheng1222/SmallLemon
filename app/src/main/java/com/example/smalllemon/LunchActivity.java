@@ -11,9 +11,13 @@ public class LunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lunch);
     }
-    private void jump(Class activity)
-    {
-        Intent in=new Intent(LunchActivity.this,activity);
+
+
+    /**
+     * 跳转登陆界面
+     */
+    private void jump() {
+        Intent in = new Intent(LunchActivity.this, LoginActivity.class);
         startActivity(in);
     }
 }
