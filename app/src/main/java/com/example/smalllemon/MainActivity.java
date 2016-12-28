@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 
 import com.example.base.BaseActivity;
 import com.example.fragment.CommunityFragment;
@@ -17,7 +19,12 @@ import com.example.view.NoScrollViewPager;
 
 import java.util.ArrayList;
 
+import java.util.ArrayList;
+
 public class MainActivity extends BaseActivity {
+
+    private ViewPager vp;
+    private ArrayList<Fragment> list;
 
     private NoScrollViewPager main_vp;
     private RadioGroup main_rg;
@@ -35,6 +42,7 @@ public class MainActivity extends BaseActivity {
         grayColor = CommonUtils.getResourseColor(R.color.colorGrayText);
 
         setContentView(R.layout.activity_main);
+        vp = (ViewPager) findViewById(R.id.main_vp);
         //初始化控件
         initView();
         //对main_vp的操作

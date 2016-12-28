@@ -4,4 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     //普通文本字体的大小
     <dimen name="textSize_normal">50px</dimen>
+    <dimen name="launch_marginbottom">300px</dimen>
+    <dimen name="launch_redio_bottom">190px</dimen>
+    <dimen name="radioButton_width_hight">60px</dimen>
+
 </resources>

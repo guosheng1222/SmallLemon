@@ -1,8 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_lunch"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"    >
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RadioGroup
+        android:id="@+id/launch_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/launch_redio_bottom"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButton0"
+            android:layout_width="@dimen/radioButton_width_hight"
+            android:layout_height="@dimen/radioButton_width_hight"
+            android:background="@drawable/launch_redio"
+            android:button="@null"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="@dimen/radioButton_width_hight"
+            android:layout_height="@dimen/radioButton_width_hight"
+            android:background="@drawable/launch_redio"
+            android:button="@null" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="@dimen/radioButton_width_hight"
+            android:layout_height="@dimen/radioButton_width_hight"
+            android:background="@drawable/launch_redio"
+            android:button="@null" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="@dimen/radioButton_width_hight"
+            android:layout_height="@dimen/radioButton_width_hight"
+            android:background="@drawable/launch_redio"
+            android:button="@null" />
+
+    </RadioGroup>
+</com.zhy.autolayout.AutoRelativeLayout>
