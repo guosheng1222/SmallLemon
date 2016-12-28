@@ -14,7 +14,7 @@ public class LunchActivity extends BaseActivity {
     private int[] pages = {R.mipmap.launch_page1, R.mipmap.launch_page2, R.mipmap.launch_page3, R.mipmap.launch_page4};
     private SharedPreferences sharedPreferences;
     private ViewPager viewPager;
-    private boolean isfirst=false;
+    private boolean isFirst = false;
     private RadioGroup launch_radioGroup;
 
     @Override
@@ -24,10 +24,10 @@ public class LunchActivity extends BaseActivity {
         viewPager = (ViewPager) findViewById(R.id.lunch_vp);
         launch_radioGroup = (RadioGroup) findViewById(R.id.lunch_radioGroup);
         sharedPreferences = getSharedPreferences("page", MODE_PRIVATE);
-        isfirst = sharedPreferences.getBoolean("Isfirst", true);
-        if (isfirst) {
+        isFirst = sharedPreferences.getBoolean("IsFirst", true);
+        if (isFirst) {
             SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putBoolean("Isfirst", false);
+            edit.putBoolean("IsFirst", false);
             edit.commit();
             viewPager.setAdapter(new LunchPageAdapter(pages, this));
             setRadioButton();
@@ -56,6 +56,7 @@ public class LunchActivity extends BaseActivity {
                     }
                 }
             }
+
             @Override
             public void onPageScrollStateChanged(int state) {
             }
@@ -63,19 +64,21 @@ public class LunchActivity extends BaseActivity {
         launch_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                for (int j = 0; j <radioGroup.getChildCount() ; j++) {
-                    if (i==radioGroup.getChildAt(j).getId()){
+                for (int j = 0; j < radioGroup.getChildCount(); j++) {
+                    if (i == radioGroup.getChildAt(j).getId()) {
                         viewPager.setCurrentItem(j);
                     }
                 }
             }
         });
     }
+
     /**
      * 跳转登陆界面
      */
     private void jump() {
         Intent in = new Intent(LunchActivity.this, MainActivity.class);
         startActivity(in);
+        finish();
     }
 }

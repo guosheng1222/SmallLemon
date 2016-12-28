@@ -1,10 +1,11 @@
 package com.example.smalllemon;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 
-public class LoginActivity extends AppCompatActivity {
+import com.example.base.BaseActivity;
+
+public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
