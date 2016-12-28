@@ -1,6 +1,10 @@
-<resources >
-    <style name="transparentTheme" parent="AppTheme">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">true</item>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="transParentTheme" parent="AppTheme">
+        <item name="android:statusBarColor">@color/transparent</item>
+       <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
+
 </resources>
