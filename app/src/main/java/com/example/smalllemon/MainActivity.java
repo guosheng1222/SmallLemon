@@ -5,10 +5,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 
 import com.example.base.BaseActivity;
 import com.example.fragment.CommunityFragment;
@@ -16,8 +15,6 @@ import com.example.fragment.HomePageFragment;
 import com.example.fragment.MineFragment;
 import com.example.util.CommonUtils;
 import com.example.view.NoScrollViewPager;
-
-import java.util.ArrayList;
 
 import java.util.ArrayList;
 
@@ -37,7 +34,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initSystemBar(this);
         blackColor = CommonUtils.getResourseColor(R.color.colorBlackText);
         grayColor = CommonUtils.getResourseColor(R.color.colorGrayText);
 

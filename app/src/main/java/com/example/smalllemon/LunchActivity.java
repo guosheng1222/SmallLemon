@@ -21,8 +21,8 @@ public class LunchActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lunch);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        launch_radioGroup = (RadioGroup) findViewById(R.id.launch_radioGroup);
+        viewPager = (ViewPager) findViewById(R.id.lunch_vp);
+        launch_radioGroup = (RadioGroup) findViewById(R.id.lunch_radioGroup);
         sharedPreferences = getSharedPreferences("page", MODE_PRIVATE);
         isfirst = sharedPreferences.getBoolean("Isfirst", true);
         if (isfirst) {
