@@ -27,16 +27,23 @@
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/LaunchActivity">
+
+        </activity>
+        <!-- 登陆界面 -->
+        <activity android:name=".LoginActivity" />
+        <!-- 主界面 -->
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginForgetActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".UpdatePasswordActivity" />
+        <activity android:name=".InviteFriendActivity" />
+        <activity android:name=".SettingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--登陆界面-->
-        <activity android:name=".LoginActivity" />
-        <!--主界面-->
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

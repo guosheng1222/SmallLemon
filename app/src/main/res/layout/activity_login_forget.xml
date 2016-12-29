@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_forget"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:layout_marginTop="500px"
+        android:background="@color/activity_login_forget_pone" />
+    <!--输入注册手机号-->
+    <EditText
+        android:id="@+id/activity_login_forget_pone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20px"
+        android:text="@string/activity_login_forget_pone"
+        android:textColor="@color/activity_login_forget_pone" />
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@color/activity_login_forget_pone" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!--输入验证码-->
+        <EditText
+            android:id="@+id/activity_login_forget_verification"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:paddingLeft="20px"
+            android:text="@string/activity_login_forget_verification"
+            android:textColor="@color/activity_login_forget_pone" />
+
+        <!--获取验证码-->
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20px"
+            app:cardBackgroundColor="@color/activity_login_forget_pone_bt"
+            app:cardCornerRadius="6px">
+
+            <Button
+                android:id="@+id/activity_login_forget_verification_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/activity_login_forget_pone_bt"
+                android:gravity="center"
+                android:text="@string/activity_login_forget_verification_tv" />
+        </android.support.v7.widget.CardView>
+    </com.zhy.autolayout.AutoLinearLayout>
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@color/activity_login_forget_pone" />
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:layout_marginTop="100px"
+        android:background="@color/activity_login_forget_pone" />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!--显示和隐藏密码-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/ic_launcher" />
+        <!--设置密码-->
+        <EditText
+            android:id="@+id/activity_login_forget_possword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="20px"
+            android:text="@string/activity_login_forget_possword"
+            android:textColor="@color/activity_login_forget_pone" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@color/activity_login_forget_pone" />
+    <!--提交-->
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20px"
+        app:cardBackgroundColor="@color/activity_login_forget_pone_bt"
+        app:cardCornerRadius="6px">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/activity_login_forget_pone_bt"
+            android:gravity="center"
+            android:text="@string/activity_login_forget_submit"
+            android:textSize="20dp" />
+    </android.support.v7.widget.CardView>
+
+</com.zhy.autolayout.AutoLinearLayout>
