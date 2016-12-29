@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.DisplayMetrics;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -17,6 +16,7 @@ import com.example.fragment.HomePageFragment;
 import com.example.fragment.MineFragment;
 import com.example.utils.CommonUtils;
 import com.example.view.NoScrollViewPager;
+import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,6 @@ public class MainActivity extends BaseActivity {
     private int grayColor;
 
     private ArrayList<Fragment> fragmentList;
-    private RadioButton[] rb;
     private Drawable[] drawables;
 
     private NoScrollViewPager main_vp;
@@ -129,24 +128,13 @@ public class MainActivity extends BaseActivity {
         //下方radioButton承载容器
         main_rg = (RadioGroup) findViewById(R.id.main_rg);
         //定义RadioButton数组用来装RadioButton，改变drawableTop大小
-        rb = new RadioButton[3];
-        rb[0] = (RadioButton) findViewById(R.id.rb_home_page);
-        rb[1] = (RadioButton) findViewById(R.id.rb_community);
-        rb[2] = (RadioButton) findViewById(R.id.rb_mine);
-
-        for (RadioButton childRb : rb) {
-            //挨着给每个RadioButton加入drawable限制边距以控制显示大小
-            drawables = childRb.getCompoundDrawables();
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getRealMetrics(displayMetrics);
-            //通过屏幕密度设置图片大小
-//            int density = (int) displayMetrics.density;
-            int density = 1;
-            //获取drawables
-            Rect r = new Rect(0, 0, drawables[1].getMinimumWidth() * density / 6, drawables[1].getMinimumHeight() * density / 6);
+        for (int i = 0; i < main_rg.getChildCount(); i++) {
+            AutoUtils.auto(main_rg.getChildAt(i));
+            drawables = ((RadioButton) main_rg.getChildAt(i)).getCompoundDrawables();
+            Rect r = new Rect(0, 0, drawables[1].getMinimumWidth() / 2, drawables[1].getMinimumHeight() / 2);
             //定义一个Rect边界
             drawables[1].setBounds(r);
-            childRb.setCompoundDrawables(null, drawables[1], null, null);
+            ((RadioButton) main_rg.getChildAt(i)).setCompoundDrawables(null, drawables[1], null, null);
         }
 
     }
