@@ -19,8 +19,6 @@ public class MyApplication extends Application {
     private static Handler handler;
     private static int mainThreadId;
 
-
-
     @Override
     public void onCreate() {
         super.onCreate();

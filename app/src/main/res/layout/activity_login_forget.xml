@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login_forget"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,6 +29,7 @@
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10px"
         android:orientation="horizontal">
         <!--输入验证码-->
         <EditText
@@ -46,9 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="20px"
+            android:padding="10px"
             app:cardBackgroundColor="@color/activity_login_forget_pone_bt"
             app:cardCornerRadius="6px">
-
             <Button
                 android:id="@+id/activity_login_forget_verification_tv"
                 android:layout_width="wrap_content"
@@ -72,23 +72,25 @@
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="140px"
         android:orientation="horizontal">
         <!--显示和隐藏密码-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/watch_password_selector" />
         <!--设置密码-->
         <EditText
             android:id="@+id/activity_login_forget_possword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:paddingLeft="20px"
             android:text="@string/activity_login_forget_possword"
-            android:textColor="@color/activity_login_forget_pone" />
+            android:textColor="@color/activity_login_forget_pone"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
     </com.zhy.autolayout.AutoRelativeLayout>
     <!--分割线-->
     <View
@@ -99,7 +101,9 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20px"
+        android:layout_marginTop="160px"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
         app:cardBackgroundColor="@color/activity_login_forget_pone_bt"
         app:cardCornerRadius="6px">
 
