@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.base.BaseActivity;
+import com.example.base.BaseData;
 import com.example.fragment.CommunityFragment;
 import com.example.fragment.HomePageFragment;
 import com.example.fragment.MineFragment;
@@ -46,7 +47,15 @@ public class MainActivity extends BaseActivity {
         initMainRg();
         //请求权限测试
 //        requestPerssion();
-
+        //获取数据测试
+        //有网网络获取成功
+        //无网网络获取    --提示跳转wifi设置界面
+        new BaseData() {
+            @Override
+            public void onSuccessData(String data) {
+                System.out.println(data);
+            }
+        }.getDataForGet(this, "http://www.baidu.com", BaseData.NO_TIME);
     }
 
     private void requestPerssion() {
