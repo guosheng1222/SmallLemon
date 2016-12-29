@@ -13,6 +13,7 @@
     </style>
 
 
+
     <!--圆形imageView需要的-->
     <declare-styleable name="CircleImageView">
         <attr name="civ_border_width" format="dimension" />

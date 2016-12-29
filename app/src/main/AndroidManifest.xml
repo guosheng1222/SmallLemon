@@ -32,10 +32,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--登陆界面-->
+        <!-- 登陆界面 -->
         <activity android:name=".LoginActivity" />
-        <!--主界面-->
+        <!-- 主界面 -->
         <activity android:name=".MainActivity" />
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>
