@@ -12,26 +12,56 @@ import org.xutils.db.annotation.Table;
 
 @Table(name = "netData")      //为表创建NAME
 public class NetData {
-    @Column(            //id
-            name = "ID",
-            isId = true
-    )
-    private int id;
     /**
+     * 主键
      * 请求路径
      */
-    @Column(name = "URL", property = "NOT NULL")
+    @Column(name = "URL", isId = true, property = "NOT NULL")
     private String url;
+    /**
+     * 请求的数据
+     */
+    @Column(name = "CONTENT", property = "NOT NULL")
+    private String content;
     /**
      * 过期时间
      */
     @Column(name = "EXPIRATION_TIME", property = "NOT NULL")
-    private String expirationTime;
+    private long expirationTime;
     /**
      * 请求时间
      */
     @Column(name = "REQUEST_TIME", property = "NOT NULL")
-    private String requestTime;
+    private long requestTime;
 
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public NetData() {
+    }
+
+    public NetData(String url, String content, long expirationTime) {
+        this.url = url;
+        this.content = content;
+        this.requestTime = System.currentTimeMillis();
+        if (expirationTime == Integer.MAX_VALUE) {
+            this.expirationTime = Integer.MAX_VALUE;
+        } else {
+            this.expirationTime = requestTime + expirationTime;
+        }
+    }
 }

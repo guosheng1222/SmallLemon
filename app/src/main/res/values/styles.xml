@@ -1,14 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="TransParentTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- AppCompatEditText默认状态状态设置底线颜色 -->
+        <item name="colorControlNormal">#000</item>
+        <!-- AppCompatEditText选择的底线颜色 -->
+        <item name="colorControlActivated">#009688</item>
+
+    </style>
+    <!--专供启动界面-->
+    <style name="LaunchActivity" parent="TransParentTheme">
+        <item name="android:windowBackground">@drawable/startup_xhdpi</item>
     </style>
 
-    <style name="TransParentTheme" parent="AppTheme"></style>
 
 
     <!--圆形imageView需要的-->
@@ -18,5 +27,6 @@
         <attr name="civ_border_overlay" format="boolean" />
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
+
 
 </resources>
