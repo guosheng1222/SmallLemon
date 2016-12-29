@@ -69,5 +69,4 @@
             android:textSize="35px" />
     </RadioGroup>
 
-
 </com.zhy.autolayout.AutoLinearLayout>

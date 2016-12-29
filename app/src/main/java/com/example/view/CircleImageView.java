@@ -180,32 +180,10 @@ public class CircleImageView extends ImageView {
         setBorderColor(getContext().getResources().getColor(borderColorRes));
     }
 
-    /**
-     * Return the color drawn behind the circle-shaped drawable.
-     *
-     * @return The color drawn behind the drawable
-<<<<<<< HEAD
-     *
-=======
->>>>>>> origin/master
-     * @deprecated Fill color support is going to be removed in the future
-     */
     @Deprecated
     public int getFillColor() {
         return mFillColor;
     }
-
-    /**
-     * Set a color to be drawn behind the circle-shaped drawable. Note that
-     * this has no effect if the drawable is opaque or no drawable is set.
-     *
-     * @param fillColor The color to be drawn behind the drawable
-<<<<<<< HEAD
-     *
-=======
->>>>>>> origin/master
-     * @deprecated Fill color support is going to be removed in the future
-     */
     @Deprecated
     public void setFillColor(@ColorInt int fillColor) {
         if (fillColor == mFillColor) {
@@ -217,18 +195,6 @@ public class CircleImageView extends ImageView {
         invalidate();
     }
 
-    /**
-     * Set a color to be drawn behind the circle-shaped drawable. Note that
-     * this has no effect if the drawable is opaque or no drawable is set.
-     *
-     * @param fillColorRes The color resource to be resolved to a color and
-     *                     drawn behind the drawable
-<<<<<<< HEAD
-     *
-=======
->>>>>>> origin/master
-     * @deprecated Fill color support is going to be removed in the future
-     */
     @Deprecated
     public void setFillColorResource(@ColorRes int fillColorRes) {
         setFillColor(getContext().getResources().getColor(fillColorRes));
@@ -296,10 +262,6 @@ public class CircleImageView extends ImageView {
         super.setImageURI(uri);
         initializeBitmap();
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
     @Override
     public void setColorFilter(ColorFilter cf) {
         if (cf == mColorFilter) {
@@ -406,11 +368,8 @@ public class CircleImageView extends ImageView {
     }
 
     private RectF calculateBounds() {
-<<<<<<< HEAD
+
         int availableWidth  = getWidth() - getPaddingLeft() - getPaddingRight();
-=======
-        int availableWidth = getWidth() - getPaddingLeft() - getPaddingRight();
->>>>>>> origin/master
         int availableHeight = getHeight() - getPaddingTop() - getPaddingBottom();
 
         int sideLength = Math.min(availableWidth, availableHeight);
@@ -441,8 +400,4 @@ public class CircleImageView extends ImageView {
 
         mBitmapShader.setLocalMatrix(mShaderMatrix);
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 }
