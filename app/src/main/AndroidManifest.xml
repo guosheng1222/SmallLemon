@@ -26,6 +26,11 @@
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/LaunchActivity">
+        <activity
+            android:name=".LaunchActivity"
+            android:theme="@style/LaunchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
         </activity>
         <!-- 登陆界面 -->
@@ -42,6 +47,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginForgetActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>

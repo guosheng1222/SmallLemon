@@ -17,6 +17,10 @@
     <style name="LaunchActivity" parent="TransParentTheme">
         <item name="android:windowBackground">@drawable/startup_xhdpi</item>
     </style>
+    <!--专供启动界面-->
+    <style name="LaunchActivity" parent="TransParentTheme">
+        <item name="android:windowBackground">@drawable/startup_xhdpi</item>
+    </style>
 
 
 
