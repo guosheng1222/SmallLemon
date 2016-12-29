@@ -8,9 +8,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class UpdatePasswordActivity extends AppCompatActivity implements View.OnClickListener {
+import com.example.base.BaseActivity;
 
-    private TextView hide;
+public class UpdatePasswordActivity extends BaseActivity implements View.OnClickListener {
+
+    private TextView hide,title_name;
     private ImageView return_back;
     private EditText old_password,new_password;
 
@@ -22,6 +24,8 @@ public class UpdatePasswordActivity extends AppCompatActivity implements View.On
 
         //显示完成文字并点击进行更改
         hide = (TextView) findViewById(R.id.hide);
+        title_name = (TextView) findViewById(R.id.title_name);
+        title_name.setText("修改密码");
         hide.setVisibility(View.VISIBLE);
         hide.setText("完成");
         //返回
