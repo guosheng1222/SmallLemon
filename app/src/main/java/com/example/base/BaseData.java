@@ -101,7 +101,7 @@ public abstract class BaseData {
             case NET_WORK_TYPE_2G:
             case NET_WORK_TYPE_3G:
             case NET_WORK_TYPE_WIFI:
-                afreshGetData();
+                getDataFromNet();
                 break;
             default:
                 break;
@@ -114,6 +114,7 @@ public abstract class BaseData {
      */
     protected void jumpSettingNet() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setCancelable(false);
         builder.setTitle("当前无网络，是否去进行设置").setPositiveButton("去设置", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -134,7 +135,8 @@ public abstract class BaseData {
      */
     private void afreshGetData() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setPositiveButton("刷新", new DialogInterface.OnClickListener() {
+        builder.setCancelable(false);
+        builder.setTitle("网络出错，请刷新重试").setPositiveButton("刷新", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //重新获取

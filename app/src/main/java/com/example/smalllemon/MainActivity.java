@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.text.TextUtils;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends BaseActivity {
 
     private int blackColor;
+    private String data;
     private int grayColor;
 
     private ArrayList<Fragment> fragmentList;
@@ -50,12 +52,25 @@ public class MainActivity extends BaseActivity {
         //获取数据测试
         //有网网络获取成功
         //无网网络获取    --提示跳转wifi设置界面
+        initData();
+    }
+
+    private void initData() {
         new BaseData() {
             @Override
             public void onSuccessData(String data) {
-                System.out.println(data);
+                MainActivity.this.data = data;
             }
         }.getDataForGet(this, "http://www.baidu.com", BaseData.NO_TIME);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (TextUtils.isEmpty(data)) {
+            initData();
+        }
     }
 
     private void requestPerssion() {

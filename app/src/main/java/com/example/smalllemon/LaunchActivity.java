@@ -60,14 +60,7 @@ public class LaunchActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                for (int i = 0; i < launch_radioGroup.getChildCount(); i++) {
-                    RadioButton childAt = (RadioButton) launch_radioGroup.getChildAt(i);
-                    if (i == position) {
-                        childAt.setChecked(true);
-                    } else {
-                        childAt.setChecked(false);
-                    }
-                }
+                ((RadioButton) launch_radioGroup.getChildAt(position)).setChecked(true);
             }
 
             @Override
@@ -76,10 +69,10 @@ public class LaunchActivity extends BaseActivity {
         });
         launch_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                for (int j = 0; j < radioGroup.getChildCount(); j++) {
-                    if (i == radioGroup.getChildAt(j).getId()) {
-                        viewPager.setCurrentItem(j);
+            public void onCheckedChanged(RadioGroup radioGroup, int id) {
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    if (id == radioGroup.getChildAt(i).getId()) {
+                        viewPager.setCurrentItem(i);
                     }
                 }
             }
@@ -120,18 +113,17 @@ public class LaunchActivity extends BaseActivity {
             View inflate = View.inflate(LaunchActivity.this, R.layout.launch_item, null);
             ImageView launch_iv = (ImageView) inflate.findViewById(R.id.launch_iv);
             ImageView launch_iv2 = (ImageView) inflate.findViewById(R.id.launch_iv2);
-            Glide.with(LaunchActivity.this).load(pages[position]).into(launch_iv);
-            for (int i = 0; i < pages.length; i++) {
-                if (position == pages.length - 1) {
-                    launch_iv2.setVisibility(View.VISIBLE);
-                    launch_iv2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            setNotFirstUse();
-                            jump();
-                        }
-                    });
-                }
+            launch_iv.setImageResource(pages[position]);
+//            Glide.with(LaunchActivity.this).load(pages[position]).into(launch_iv);
+            if (position == pages.length - 1) {
+                launch_iv2.setVisibility(View.VISIBLE);
+                launch_iv2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setNotFirstUse();
+                        jump();
+                    }
+                });
             }
             container.addView(inflate);
             return inflate;
