@@ -1,14 +1,10 @@
 package com.example.smalllemon;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -44,6 +40,7 @@ public class LunchActivity extends BaseActivity {
      */
     private void initViewPage() {
         viewPager = (ViewPager) findViewById(R.id.lunch_vp);
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(new LunchPageAdapter());
     }
 
