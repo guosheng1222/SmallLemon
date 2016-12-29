@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!--专供启动界面-->
+    <style name="LaunchActivity" parent="TransParentTheme">
         <item name="android:windowBackground">@drawable/startup_xhdpi</item>
     </style>
 

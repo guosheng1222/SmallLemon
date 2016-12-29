@@ -5,8 +5,13 @@
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowBackground">@drawable/startup_xhdpi</item>
           <!-- <item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+
+
+    <!--专供启动界面-->
+    <style name="LaunchActivity" parent="TransParentTheme">
+        <item name="android:windowBackground">@drawable/startup_xhdpi</item>
     </style>
 
 </resources>
