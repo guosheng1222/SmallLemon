@@ -11,7 +11,7 @@
     <com.example.view.NoScrollViewPager
         android:id="@+id/main_vp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="0px"
         android:layout_weight="1"
         android:fitsSystemWindows="true" />
 
@@ -25,49 +25,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
-        android:orientation="horizontal"
-        android:paddingBottom="20px"
-        android:paddingTop="30px">
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/rb_home_page"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
             android:checked="true"
             android:drawableTop="@drawable/selector_home_page"
-            android:gravity="center_horizontal"
+            android:gravity="center"
+            android:padding="10px"
             android:text="首页"
             android:textColor="@color/colorBlackText"
             android:textSize="35px" />
 
         <RadioButton
             android:id="@+id/rb_community"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="false"
             android:drawableTop="@drawable/selector_community"
-            android:gravity="center_horizontal"
+            android:gravity="center"
+            android:padding="10px"
             android:text="社区"
             android:textColor="@color/colorGrayText"
             android:textSize="35px" />
 
         <RadioButton
             android:id="@+id/rb_mine"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="false"
             android:drawableTop="@drawable/selector_mine"
-            android:gravity="center_horizontal"
+            android:gravity="center"
+            android:padding="10px"
             android:text="我的"
             android:textColor="@color/colorGrayText"
             android:textSize="35px" />
     </RadioGroup>
-
 
 </com.zhy.autolayout.AutoLinearLayout>
