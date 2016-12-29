@@ -14,7 +14,7 @@
         android:layout_marginTop="150px"
         android:src="@mipmap/logo_header" />
 
-    <!--分割线-->
+    <!--华丽丽的分割线-->
     <View
         android:layout_width="match_parent"
         android:layout_height="3px"
@@ -85,7 +85,8 @@
             android:layout_width="120px"
             android:layout_height="120px"
             android:layout_marginLeft="30px"
-            android:src="@mipmap/login_password" />
+            android:src="@mipmap/login_password"
+            android:id="@+id/imageView" />
 
         <android.support.v7.widget.AppCompatEditText
             android:background="@null"
