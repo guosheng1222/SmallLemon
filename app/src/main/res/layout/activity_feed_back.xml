@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_feed_back"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F1F1"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_title" />
+
+    <EditText
+        android:id="@+id/edit_complaints"
+        android:layout_width="match_parent"
+        android:layout_height="400px"
+        android:layout_marginLeft="100px"
+        android:layout_marginRight="100px"
+        android:layout_marginTop="50px"
+        android:padding="15px"
+        android:background="@drawable/edit_text_background"
+        android:gravity="top"
+        android:hint="大家来吐槽" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="15px"
+        android:text="问题分类" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/requestion_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20px"
+        >
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/select_one"
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_with_shadow">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="1.程序有问题，告诉程序哥哥"
+                android:textColor="@color/colorBlackText"
+                android:textSize="50px" />
+
+            <ImageView
+                android:id="@+id/first_img"
+                android:layout_width="100px"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingRight="50px"
+                android:src="@drawable/selected" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/select_two"
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_with_shadow">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="2.产品有问题，告诉产品妹妹"
+                android:textColor="@color/colorBlackText"
+                android:textSize="50px" />
+
+            <ImageView
+                android:id="@+id/second_img"
+                android:layout_width="100px"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingRight="50px"
+                android:src="@drawable/selected"
+                android:visibility="invisible" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/select_three"
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_with_shadow">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="3.界面不够美，告诉设计妹妹"
+                android:textColor="@color/colorBlackText"
+                android:textSize="50px" />
+
+            <ImageView
+                android:id="@+id/third_img"
+                android:layout_width="100px"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingRight="50px"
+                android:src="@drawable/selected"
+                android:visibility="invisible" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/select_four"
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_with_shadow">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="4.内容吸引力不够，告诉主编姐姐"
+                android:textColor="@color/colorBlackText"
+                android:textSize="50px" />
+
+            <ImageView
+                android:id="@+id/fourth_img"
+                android:layout_width="100px"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingRight="50px"
+                android:src="@drawable/selected"
+                android:visibility="invisible" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/select_five"
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_with_shadow">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="5.点赞/吐槽/idea/告诉boss大大"
+                android:textColor="@color/colorBlackText"
+                android:textSize="50px" />
+
+            <ImageView
+                android:id="@+id/fifth_img"
+                android:layout_width="100px"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingRight="50px"
+                android:src="@drawable/selected"
+                android:visibility="invisible" />
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25px"
+        android:layout_marginTop="15px"
+        android:text="欢迎添加客服微信:yulin1588888 实时在线答疑" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginTop="40px"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:layout_centerVertical="true"
+        android:background="@drawable/background_with_shadow">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30px"
+            android:gravity="center_vertical"
+            android:text="联系方式："
+            android:textColor="@color/colorBlackText"
+            android:textSize="50px" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="请输入手机号/QQ号/微信号"
+            android:id="@+id/edit_text_contact"
+            android:background="@null"
+            />
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -13,23 +13,26 @@ public class NetUtils {
     /**
      * 没有网络
      */
-    public static final int NETWORKTYPE_INVALID = 0;
+    public static final int NET_WORK_TYPE_INVALID = 0;
     /**
      * wap网络
      */
-    public static final int NETWORKTYPE_WAP = 1;
+    public static final int NET_WORK_TYPE_WAP = 1;
     /**
      * 2G网络
      */
-    public static final int NETWORKTYPE_2G = 2;
+    public static final int NET_WORK_TYPE_2G = 2;
     /**
      * 3G和3G以上网络，或统称为快速网络
      */
-    public static final int NETWORKTYPE_3G = 3;
+    public static final int NET_WORK_TYPE_3G = 3;
     /**
      * wifi网络
      */
-    public static final int NETWORKTYPE_WIFI = 4;
+    public static final int NET_WORK_TYPE_WIFI = 4;
+    /**
+     * 当前状态
+     */
     private static int mNetWorkType;
 
     /**
@@ -37,10 +40,10 @@ public class NetUtils {
      * 获取网络状态，wifi,wap,2g,3g.
      *
      * @param context 上下文
-     * @return int 网络状态 {@link #NETWORKTYPE_2G},{@link #NETWORKTYPE_3G}, *
-     * {@link #NETWORKTYPE_INVALID},{@link #NETWORKTYPE_WAP}*
+     * @return int 网络状态 {@link #NET_WORK_TYPE_2G},{@link #NET_WORK_TYPE_3G}, *
+     * {@link #NET_WORK_TYPE_INVALID},{@link #NET_WORK_TYPE_WAP}*
      * <p>
-     * {@link #NETWORKTYPE_WIFI}
+     * {@link #NET_WORK_TYPE_WIFI}
      */
     public static boolean isFastMobileNetwork(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context
@@ -93,15 +96,15 @@ public class NetUtils {
             String type = networkInfo.getTypeName();
 
             if (type.equalsIgnoreCase("WIFI")) {
-                mNetWorkType = NETWORKTYPE_WIFI;
+                mNetWorkType = NET_WORK_TYPE_WIFI;
             } else if (type.equalsIgnoreCase("MOBILE")) {
                 String proxyHost = android.net.Proxy.getDefaultHost();
-                mNetWorkType = TextUtils.isEmpty(proxyHost) ? (isFastMobileNetwork(context) ? NETWORKTYPE_3G
-                        : NETWORKTYPE_2G)
-                        : NETWORKTYPE_WAP;
+                mNetWorkType = TextUtils.isEmpty(proxyHost) ? (isFastMobileNetwork(context) ? NET_WORK_TYPE_3G
+                        : NET_WORK_TYPE_2G)
+                        : NET_WORK_TYPE_WAP;
             }
         } else {
-            mNetWorkType = NETWORKTYPE_INVALID;
+            mNetWorkType = NET_WORK_TYPE_INVALID;
         }
         return mNetWorkType;
     }

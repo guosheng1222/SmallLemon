@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="135px"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/background_with_shadow"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@mipmap/return_back"
+        android:layout_centerVertical="true"
+        android:id="@+id/return_back"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="设置"
+        android:textSize="50px"
+        android:textColor="@color/colorBlackText"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/title_name"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="完成"
+        android:textSize="50px"
+        android:textColor="@color/colorBlackText"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40px"
+        android:id="@+id/hide"
+        android:visibility="invisible"
+        />
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

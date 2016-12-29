@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_about_us"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:orientation="vertical"
+    android:background="@drawable/about_us"
+    android:fitsSystemWindows="true"
+    >
+    <include layout="@layout/activity_title"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/welcome_page"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:background="@drawable/background_with_shadow"
+        android:layout_centerVertical="true"
+        >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30px"
+        android:gravity="center_vertical"
+        android:text="欢迎页"
+        android:layout_weight="1"
+        android:textColor="@color/colorBlackText"
+        android:textSize="50px" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingRight="50px"
+        android:src="@mipmap/next_indicator" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</RelativeLayout>
