@@ -16,7 +16,7 @@
             android:name="design_height"
             android:value="1920" />
 
-        <!--启动界面-->
+        <!-- 启动界面 -->
         <activity android:name=".LunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,10 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--登陆界面-->
+        <!-- 登陆界面 -->
         <activity android:name=".LoginActivity" />
-        <!--主界面-->
+        <!-- 主界面 -->
         <activity android:name=".MainActivity" />
+        <activity android:name=".LoginForgetActivity"></activity>
     </application>
 
 </manifest>

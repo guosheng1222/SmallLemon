@@ -7,4 +7,6 @@
     <color name="colorGrayText">#44000000</color>
     <color name="colorWhite">#ffffff</color>
     <color name="transparent">#00000000</color>
+    <color name="activity_login_forget_pone">#A4A4A4</color>
+    <color name="activity_login_forget_pone_bt">#FFDA44</color>
 </resources>
