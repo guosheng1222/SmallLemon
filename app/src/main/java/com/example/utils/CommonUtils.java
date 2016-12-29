@@ -127,4 +127,17 @@ public class CommonUtils {
     }
 
 
+    /**
+     * 获取Color中的属性
+     *
+     * @param colorId
+     * @return
+     */
+
+    public static int getResourseColor(int colorId) {
+        int color = MyApplication.getContext().getResources().getColor(colorId);
+        return color;
+    }
+
+
 }

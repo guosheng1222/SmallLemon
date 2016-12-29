@@ -73,6 +73,7 @@ public class BaseActivity extends AutoLayoutActivity {
                 String[] strings = prepareRequestPermission.toArray(new String[prepareRequestPermission.size()]);
                 //申请权限
                 ActivityCompat.requestPermissions(mContext, strings, permissionCode);
+                permissionMap.put(permissionCode,runnable);
             }
         } else {
             //无需授权，执行动作

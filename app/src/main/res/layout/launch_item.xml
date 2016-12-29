@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
- <ImageView
-     android:id="@+id/launch_iv"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:scaleType="centerCrop"
-     />
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
+
     <ImageView
-        android:visibility="gone"
-        android:layout_marginBottom="@dimen/launch_marginbottom"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/launch_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/launch_iv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/launch_margin_bottom"
         android:src="@mipmap/launch_page5"
-        android:id="@+id/launch_iv2"
-        />
+        android:visibility="gone" />
 </com.zhy.autolayout.AutoRelativeLayout>
