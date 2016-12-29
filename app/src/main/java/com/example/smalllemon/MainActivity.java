@@ -1,20 +1,21 @@
 package com.example.smalllemon;
 
+import android.Manifest;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.base.BaseActivity;
 import com.example.fragment.CommunityFragment;
 import com.example.fragment.HomePageFragment;
 import com.example.fragment.MineFragment;
-import com.example.util.CommonUtils;
+import com.example.utils.CommonUtils;
 import com.example.view.NoScrollViewPager;
 
 import java.util.ArrayList;
@@ -44,7 +45,19 @@ public class MainActivity extends BaseActivity {
         initMainVp();
         //对main_rg的操作
         initMainRg();
+        //请求权限测试
+//        requestPerssion();
 
+    }
+
+    private void requestPerssion() {
+        requestPermission(0, new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.CAMERA}, new Runnable() {
+            //将要执行的逻辑
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, "权限被同意了", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
@@ -127,7 +140,8 @@ public class MainActivity extends BaseActivity {
             DisplayMetrics displayMetrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getRealMetrics(displayMetrics);
             //通过屏幕密度设置图片大小
-            int density = (int) displayMetrics.density;
+//            int density = (int) displayMetrics.density;
+            int density = 1;
             //获取drawables
             Rect r = new Rect(0, 0, drawables[1].getMinimumWidth() * density / 6, drawables[1].getMinimumHeight() * density / 6);
             //定义一个Rect边界

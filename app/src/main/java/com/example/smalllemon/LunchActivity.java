@@ -3,9 +3,12 @@ package com.example.smalllemon;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,6 +17,7 @@ import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.base.BaseActivity;
+import com.zhy.autolayout.utils.AutoUtils;
 
 public class LunchActivity extends BaseActivity {
     private final String isFirst = "isFirst";
@@ -49,6 +53,9 @@ public class LunchActivity extends BaseActivity {
      */
     private void setRadioButton() {
         launch_radioGroup = (RadioGroup) findViewById(R.id.lunch_radioGroup);
+        for (int i = 0; i < launch_radioGroup.getChildCount(); i++) {
+            AutoUtils.auto(launch_radioGroup.getChildAt(i));
+        }
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -80,6 +87,8 @@ public class LunchActivity extends BaseActivity {
                 }
             }
         });
+
+
     }
 
     /**

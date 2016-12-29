@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/launch_marginbottom"
+        android:layout_marginBottom="@dimen/launch_margin_bottom"
         android:src="@mipmap/launch_page5"
         android:visibility="gone" />
 </com.zhy.autolayout.AutoRelativeLayout>
