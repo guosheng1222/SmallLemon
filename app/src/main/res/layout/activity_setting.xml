@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true"
+    android:orientation="vertical"
+    android:background="#F1F1F1"
+    >
+
+    <include layout="@layout/activity_title"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="#F1F1F1"
+        />
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170px"
+        android:orientation="vertical"
+        android:id="@+id/update_password"
+        android:background="@drawable/background_with_shadow"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="修改密码"
+            android:textSize="55px"
+            android:gravity="center"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/colorBlackText"
+            android:layout_centerVertical="true"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/next_indicator"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15px"
+            android:layout_centerVertical="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="#F1F1F1"
+        />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170px"
+        android:orientation="vertical"
+        android:id="@+id/invite_friend"
+        android:background="@drawable/background_with_shadow"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="邀请好友"
+            android:textSize="55px"
+            android:gravity="center"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/colorBlackText"
+            android:layout_centerVertical="true"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/next_indicator"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15px"
+            android:layout_centerVertical="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170px"
+        android:orientation="vertical"
+        android:id="@+id/about_us"
+        android:background="@drawable/background_with_shadow"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="关于我们"
+            android:gravity="center"
+            android:textSize="55px"
+            android:layout_marginLeft="50px"
+
+            android:textColor="@color/colorBlackText"
+            android:layout_centerVertical="true"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/next_indicator"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15px"
+            android:layout_centerVertical="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170px"
+        android:orientation="vertical"
+        android:id="@+id/version_update"
+        android:background="@drawable/background_with_shadow"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="版本更新"
+            android:gravity="center"
+            android:textSize="55px"
+            android:layout_marginLeft="50px"
+            android:textColor="@color/colorBlackText"
+            android:layout_centerVertical="true"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/next_indicator"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15px"
+            android:layout_centerVertical="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+     <Button
+         android:layout_width="1000px"
+         android:layout_height="wrap_content"
+         android:text="退出登录"
+         android:textColor="@color/colorWhite"
+         android:textSize="48px"
+         android:id="@+id/button_exist"
+         android:background="@drawable/exist_background"
+         android:layout_marginTop="60px"
+         android:layout_gravity="center"
+         />
+
+
+</com.zhy.autolayout.AutoLinearLayout>
