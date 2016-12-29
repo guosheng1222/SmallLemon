@@ -25,14 +25,10 @@ import com.example.smalllemon.R;
 
 
 /**
- * 圆形的imageView
- *
- * @author :   郗琛
- * @date :   2016/11/29
+ * Created by PC on 2016/11/30.
  */
-
-
 public class CircleImageView extends ImageView {
+
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
@@ -184,24 +180,10 @@ public class CircleImageView extends ImageView {
         setBorderColor(getContext().getResources().getColor(borderColorRes));
     }
 
-    /**
-     * Return the color drawn behind the circle-shaped drawable.
-     *
-     * @return The color drawn behind the drawable
-     * @deprecated Fill color support is going to be removed in the future
-     */
     @Deprecated
     public int getFillColor() {
         return mFillColor;
     }
-
-    /**
-     * Set a color to be drawn behind the circle-shaped drawable. Note that
-     * this has no effect if the drawable is opaque or no drawable is set.
-     *
-     * @param fillColor The color to be drawn behind the drawable
-     * @deprecated Fill color support is going to be removed in the future
-     */
     @Deprecated
     public void setFillColor(@ColorInt int fillColor) {
         if (fillColor == mFillColor) {
@@ -213,14 +195,6 @@ public class CircleImageView extends ImageView {
         invalidate();
     }
 
-    /**
-     * Set a color to be drawn behind the circle-shaped drawable. Note that
-     * this has no effect if the drawable is opaque or no drawable is set.
-     *
-     * @param fillColorRes The color resource to be resolved to a color and
-     *                     drawn behind the drawable
-     * @deprecated Fill color support is going to be removed in the future
-     */
     @Deprecated
     public void setFillColorResource(@ColorRes int fillColorRes) {
         setFillColor(getContext().getResources().getColor(fillColorRes));
@@ -288,7 +262,6 @@ public class CircleImageView extends ImageView {
         super.setImageURI(uri);
         initializeBitmap();
     }
-
     @Override
     public void setColorFilter(ColorFilter cf) {
         if (cf == mColorFilter) {
@@ -395,7 +368,8 @@ public class CircleImageView extends ImageView {
     }
 
     private RectF calculateBounds() {
-        int availableWidth = getWidth() - getPaddingLeft() - getPaddingRight();
+
+        int availableWidth  = getWidth() - getPaddingLeft() - getPaddingRight();
         int availableHeight = getHeight() - getPaddingTop() - getPaddingBottom();
 
         int sideLength = Math.min(availableWidth, availableHeight);

@@ -17,36 +17,36 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/launch_redio_bottom"
+        android:layout_marginBottom="@dimen/launch_radio_bottom"
         android:gravity="center"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radioButton0"
-            android:layout_width="@dimen/radioButton_width_hight"
-            android:layout_height="@dimen/radioButton_width_hight"
+            android:layout_width="@dimen/radioButton_width_height"
+            android:layout_height="@dimen/radioButton_width_height"
             android:background="@drawable/launch_radio"
             android:button="@null"
             android:checked="true" />
 
         <RadioButton
             android:id="@+id/radioButton1"
-            android:layout_width="@dimen/radioButton_width_hight"
-            android:layout_height="@dimen/radioButton_width_hight"
+            android:layout_width="60px"
+            android:layout_height="60px"
             android:background="@drawable/launch_radio"
             android:button="@null" />
 
         <RadioButton
             android:id="@+id/radioButton2"
-            android:layout_width="@dimen/radioButton_width_hight"
-            android:layout_height="@dimen/radioButton_width_hight"
+            android:layout_width="60px"
+            android:layout_height="60px"
             android:background="@drawable/launch_radio"
             android:button="@null" />
 
         <RadioButton
             android:id="@+id/radioButton3"
-            android:layout_width="@dimen/radioButton_width_hight"
-            android:layout_height="@dimen/radioButton_width_hight"
+            android:layout_width="60px"
+            android:layout_height="60px"
             android:background="@drawable/launch_radio"
             android:button="@null" />
 

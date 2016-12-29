@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smalllemon">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name="com.example.app.MyApplication"
         android:allowBackup="true"
@@ -16,8 +22,10 @@
             android:name="design_height"
             android:value="1920" />
 
-        <!-- 启动界面 -->
-        <activity android:name=".LunchActivity">
+        <!--启动界面-->
+        <activity
+            android:name=".LaunchActivity"
+            android:theme="@style/LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +37,7 @@
         <!-- 主界面 -->
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginForgetActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>
