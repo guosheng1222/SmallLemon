@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,13 +23,13 @@
         android:background="#22000000" />
     <!--手机号-->
     <com.zhy.autolayout.AutoLinearLayout
-        android:padding="15px"
         android:id="@+id/auto_layout_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_logo"
         android:background="#fff"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="15px">
 
 
         <ImageView
@@ -45,8 +46,9 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="手机号"
-            android:paddingLeft="15px" />
-
+            android:maxLength="11"
+            android:inputType="phone"
+            android:paddingLeft="15px"/>
     </com.zhy.autolayout.AutoLinearLayout>
 
     <!--分割线-->
@@ -56,16 +58,16 @@
         android:background="#22000000" />
 
     <TextView
-        android:visibility="invisible"
-        android:padding="15px"
-        android:background="@null"
         android:id="@+id/tv_phone_null"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/auto_layout_phone"
+        android:background="@null"
+        android:padding="15px"
         android:text="*手机号码不能为空"
         android:textColor="#f00"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:visibility="invisible" />
     <!--分割线-->
     <View
         android:layout_width="match_parent"
@@ -73,13 +75,13 @@
         android:background="#22000000" />
     <!--密码-->
     <com.zhy.autolayout.AutoLinearLayout
-        android:padding="15px"
         android:id="@+id/auto_layout_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_phone_null"
         android:background="#fff"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="15px">
 
         <ImageView
             android:layout_width="120px"
@@ -89,21 +91,25 @@
             android:id="@+id/imageView" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:background="@null"
-            android:layout_gravity="center_vertical"
+            android:id="@+id/login_et_password"
+            android:maxLines="1"
+            android:maxLength="18"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
+            android:background="@null"
             android:hint="密码"
             android:paddingLeft="15px" />
-
+        <!--查看密码-->
         <CheckBox
-            android:button="@null"
+            android:id="@+id/look_password"
             android:layout_width="120px"
             android:layout_height="120px"
             android:layout_marginRight="30px"
             android:background="@drawable/watch_password_selector"
-            android:id="@+id/imageButton" />
+            android:button="@null" />
 
     </com.zhy.autolayout.AutoLinearLayout>
     <!--分割线-->
@@ -111,31 +117,138 @@
         android:layout_width="match_parent"
         android:layout_height="3px"
         android:background="#22000000" />
+    <!--密码为空与密码忘记-->
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="15px"
-        >
+        android:padding="15px">
+
         <TextView
-            android:visibility="invisible"
             android:id="@+id/tv_password_null"
             android:layout_width="0px"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="*密码不能为空"
             android:textColor="#f00"
             android:textSize="12sp"
+            android:visibility="invisible"
 
             />
+        <!--忘记密码-->
         <TextView
-            android:text="忘记密码?"
-            android:layout_marginRight="30px"
+            android:id="@+id/tv_forget_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_forget_password"
-            android:textSize="12sp"
-            />
+            android:layout_marginRight="30px"
+            android:text="忘记密码?"
+            android:textSize="12sp" />
     </com.zhy.autolayout.AutoLinearLayout>
+   <com.andexert.library.RippleView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       rv_centered="true"
+       app:rv_type="rectangle"
+       >
+       <android.support.v7.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="30px"
+           app:cardBackgroundColor="#FFD200"
+           app:cardCornerRadius="20px"
+           >
+           <!--登录-->
+           <TextView
+               android:id="@+id/user_login"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:gravity="center"
+               android:padding="25px"
+               android:text="登录" />
+       </android.support.v7.widget.CardView>
 
+   </com.andexert.library.RippleView>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:gravity="center">
+
+        <View
+            android:layout_width="0px"
+            android:layout_height="2px"
+            android:layout_weight="1"
+            android:background="#22000000" />
+
+        <TextView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="使用其他社交账号登录"
+            android:textColor="#77000000" />
+
+        <View
+            android:layout_width="0px"
+            android:layout_height="2px"
+            android:layout_weight="1"
+            android:background="#22000000" />
+    </com.zhy.autolayout.AutoLinearLayout>
+    <!--微信-->
+    <com.andexert.library.RippleView
+        android:layout_marginTop="50px"
+        android:layout_gravity="center"
+        rv_centered="true"
+        app:rv_type="doubleRipple"
+        app:rv_color="#2CB144"
+        app:rv_alpha="@android:integer/config_mediumAnimTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/weiXin_iv"
+            android:layout_width="160px"
+            android:layout_height="160px"
+            android:src="@mipmap/login_wechat_btn2" />
+    </com.andexert.library.RippleView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10px"
+        android:text="微信" />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100px"
+            android:gravity="center"
+            android:text="还没有账号,立即去"
+            android:textSize="12sp"
+
+            />
+
+        <!--注册-->
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/text"
+            android:layout_toRightOf="@+id/text"
+            android:gravity="center"
+            android:text="注册"
+            android:textColor="#FFD200"
+            android:textSize="15sp" />
+    </com.zhy.autolayout.AutoRelativeLayout>
 </com.zhy.autolayout.AutoLinearLayout>
