@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.bumptech.glide.Glide;
 import com.example.base.BaseActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -60,7 +59,7 @@ public class LaunchActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                ((RadioButton) launch_radioGroup.getChildAt(position)).setChecked(true);
+                setCurrentPosition(position);
             }
 
             @Override
@@ -72,13 +71,18 @@ public class LaunchActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
                 for (int i = 0; i < radioGroup.getChildCount(); i++) {
                     if (id == radioGroup.getChildAt(i).getId()) {
-                        viewPager.setCurrentItem(i);
+                        setCurrentPosition(i);
                     }
                 }
             }
         });
 
 
+    }
+
+    private void setCurrentPosition(int position) {
+        ((RadioButton) launch_radioGroup.getChildAt(position)).setChecked(true);
+        viewPager.setCurrentItem(position);
     }
 
     /**
@@ -112,10 +116,10 @@ public class LaunchActivity extends BaseActivity {
         public Object instantiateItem(ViewGroup container, int position) {
             View inflate = View.inflate(LaunchActivity.this, R.layout.launch_item, null);
             ImageView launch_iv = (ImageView) inflate.findViewById(R.id.launch_iv);
-            ImageView launch_iv2 = (ImageView) inflate.findViewById(R.id.launch_iv2);
             launch_iv.setImageResource(pages[position]);
 //            Glide.with(LaunchActivity.this).load(pages[position]).into(launch_iv);
             if (position == pages.length - 1) {
+                ImageView launch_iv2 = (ImageView) inflate.findViewById(R.id.launch_iv2);
                 launch_iv2.setVisibility(View.VISIBLE);
                 launch_iv2.setOnClickListener(new View.OnClickListener() {
                     @Override

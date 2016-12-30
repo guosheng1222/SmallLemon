@@ -24,9 +24,7 @@
             android:value="1920" />
 
         <!-- 启动界面 -->
-        <activity
-            android:name=".LaunchActivity"
-            android:theme="@style/LaunchActivity">
+        <activity android:name=".LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,17 +44,6 @@
         <activity android:name=".FeedBackActivity"></activity>
 
 
-        <!--网络状态监听-->
-        <receiver
-            android:name="com.example.receivers.NetReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <receiver android:name=".MyReceiver">
-                <intent-filter>
-                    <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                </intent-filter>
-            </receiver>
-        </receiver>
     </application>
 
 </manifest>

@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity {
         //获取数据测试
         //有网网络获取成功
         //无网网络获取    --提示跳转wifi设置界面
-        initData();
+//        initData();
     }
 
     private void initData() {
@@ -60,8 +60,9 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onSuccessData(String data) {
                 MainActivity.this.data = data;
+                Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
             }
-        }.getDataForGet(this, "http://www.baidu.com", BaseData.NO_TIME);
+        }.getDataForGet(this, "https://www.baidu.com", BaseData.NO_TIME);
     }
 
 
@@ -148,9 +149,14 @@ public class MainActivity extends BaseActivity {
         main_vp = (NoScrollViewPager) findViewById(R.id.main_vp);
         //全部加载出来。避免多次创建
         main_vp.setOffscreenPageLimit(2);
-
-        //下方radioButton承载容器
+        //查找下方导航
         main_rg = (RadioGroup) findViewById(R.id.main_rg);
+        //手动适配
+        for (int i = 0; i < main_rg.getChildCount(); i++) {
+            AutoUtils.auto(main_rg.getChildAt(i));
+        }
+
+        /*//下方radioButton承载容器
         //定义RadioButton数组用来装RadioButton，改变drawableTop大小
         for (int i = 0; i < main_rg.getChildCount(); i++) {
             AutoUtils.auto(main_rg.getChildAt(i));
@@ -159,7 +165,7 @@ public class MainActivity extends BaseActivity {
             //定义一个Rect边界
             drawables[1].setBounds(r);
             ((RadioButton) main_rg.getChildAt(i)).setCompoundDrawables(null, drawables[1], null, null);
-        }
+        }*/
 
     }
 
