@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="150px"
-        android:src="@mipmap/logo_header" />
+        android:src="@drawable/logo_header" />
 
     <!--华丽丽的分割线-->
     <View
@@ -35,7 +35,7 @@
             android:layout_width="120px"
             android:layout_height="120px"
             android:layout_marginLeft="30px"
-            android:src="@mipmap/login_user" />
+            android:src="@drawable/login_user" />
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/login_et_phone"
@@ -85,7 +85,7 @@
             android:layout_width="120px"
             android:layout_height="120px"
             android:layout_marginLeft="30px"
-            android:src="@mipmap/login_password"
+            android:src="@drawable/login_password"
             android:id="@+id/imageView" />
 
         <android.support.v7.widget.AppCompatEditText

@@ -16,7 +16,7 @@
             android:layout_width="300px"
             android:layout_height="300px"
             android:layout_centerInParent="true"
-            android:src="@mipmap/logo_header" />
+            android:src="@drawable/logo_header" />
     </RelativeLayout>
 
     <com.zhy.autolayout.AutoLinearLayout
@@ -31,7 +31,7 @@
             android:background="@color/activity_login_forget_pone" />
         <!--输入注册手机号-->
         <EditText
-            android:id="@+id/activity_rigster_forget_pone"
+            android:id="@+id/activity_rigster_phone"
             android:layout_width="match_parent"
             android:layout_height="136px"
             android:paddingLeft="30px"
@@ -67,7 +67,7 @@
             app:cardCornerRadius="6px">
 
             <Button
-                android:id="@+id/activity_login_forget_verification_tv"
+                android:id="@+id/activity_rigister_verification_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@color/activity_login_forget_pone_bt"
@@ -99,7 +99,7 @@
             android:src="@drawable/watch_password_selector" />
         <!--设置密码-->
         <EditText
-            android:id="@+id/activity_login_forget_possword"
+            android:id="@+id/activity_rigister_possword"
             android:layout_width="match_parent"
             android:layout_height="138px"
             android:paddingLeft="30px"
