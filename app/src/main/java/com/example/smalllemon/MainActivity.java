@@ -1,7 +1,6 @@
 package com.example.smalllemon;
 
 import android.Manifest;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -70,7 +69,7 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         if (TextUtils.isEmpty(data)) {
-            initData();
+         /*   initData();*/
         }
     }
 

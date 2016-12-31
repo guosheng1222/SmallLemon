@@ -7,5 +7,5 @@
     <dimen name="launch_margin_bottom">280px</dimen>
     <dimen name="launch_radio_bottom">190px</dimen>
     <dimen name="radioButton_width_height">60px</dimen>
-
+    <dimen name="activity_margin">30px</dimen>
 </resources>

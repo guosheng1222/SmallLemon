@@ -38,8 +38,13 @@
             </intent-filter>
         </activity>
         <!-- 主界面 -->
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LoginForgetActivity" />
+        <activity android:name=".MainActivity" >
+
+
+        </activity>
+        <activity android:name=".LoginForgetActivity" >
+
+        </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".InviteFriendActivity" />
