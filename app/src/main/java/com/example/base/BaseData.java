@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bean.NetData;
+import com.example.utils.CommonUtils;
 import com.example.utils.DBUtils;
 import com.example.utils.NetUtils;
 
@@ -40,6 +41,7 @@ public abstract class BaseData {
      * 网络状态改变监听
      */
     private BroadcastReceiver netReceiver;
+    private AlertDialog.Builder builder;
 
 
     /**
@@ -50,7 +52,7 @@ public abstract class BaseData {
         this.mContext = context;
         this.mUrl = url;
         this.mValidTime = validTime;
-        startReceiver();
+//        startReceiver();
         if (getIsNoNet()) {         //有网络
             //先判断有效时间
             if (validTime == NO_TIME) {
@@ -58,17 +60,23 @@ public abstract class BaseData {
                 getDataFromNet();
             } else {
                 //从本地获取
-                String data = getDataFromLocal(url);
+                final String data = getDataFromLocal(url);
                 if (TextUtils.isEmpty(data)) {
                     //如果为空，请求网络
                     getDataFromNet();
                 } else {
                     //拿到了数据，返回数据
-                    onSuccessData(data);
+                    CommonUtils.runOnMainThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            onSuccessData(data);
+                        }
+                    });
                 }
             }
         } else {            //没有网络
-            jumpSettingNet();
+//            jumpSettingNet();
+            afreshGetData();
         }
 
     }
@@ -105,11 +113,11 @@ public abstract class BaseData {
      * 失败的操作
      */
     public void onFailData(Exception data) {
-        if (getIsNoNet()) {
-            getDataFromNet();
-        } else {
-            jumpSettingNet();
-        }
+//        if (getIsNoNet()) {
+        afreshGetData();
+//        } else {
+//            jumpSettingNet();
+//        }
     }
 
 
@@ -148,15 +156,18 @@ public abstract class BaseData {
      * 再次获取
      */
     private void afreshGetData() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setCancelable(false);
-        builder.setTitle("网络出错，请刷新重试").setPositiveButton("刷新", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //重新获取
-                getDataFromNet();
-            }
-        }).show();
+        if (builder == null) {
+            builder = new AlertDialog.Builder(mContext);
+            builder.setCancelable(false);
+            builder.setTitle("网络出错，请刷新重试").setPositiveButton("刷新", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //重新获取
+                    builder = null;
+                    getDataFromNet();
+                }
+            }).show();
+        }
     }
 
     /**
@@ -189,14 +200,20 @@ public abstract class BaseData {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(final String response) {
-                        onSuccessData(response);
+                        //拿到了数据，返回数据
+                        CommonUtils.runOnMainThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                onSuccessData(response);
+                            }
+                        });
                         if (mValidTime != NO_TIME)
                             writeDataToLocal(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                if (error.networkResponse.statusCode >= 400) {
+                if (null == error || null == error.networkResponse || error.networkResponse.statusCode >= 400) {
                     onFailData(error);
                 }
             }
@@ -221,5 +238,5 @@ public abstract class BaseData {
             e.printStackTrace();
         }
     }
-    
+
 }

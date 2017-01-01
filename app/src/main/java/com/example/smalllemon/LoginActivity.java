@@ -10,9 +10,11 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.base.BaseActivity;
+import com.zhy.autolayout.utils.AutoUtils;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -23,6 +25,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private TextView tv_phone_null;
     private TextView tv_password_null;
     private CheckBox look_password;
+    private ImageView weiXin_iv;
 
 
     @Override
@@ -38,16 +41,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
      * 初始化控件
      */
     private void initView() {
-        findViewById(R.id.user_login).setOnClickListener(this);
         login_et_phone = (AppCompatEditText) findViewById(R.id.login_et_phone);
         login_et_phone.addTextChangedListener(new Watcher(login_et_phone));
         tv_phone_null = (TextView) findViewById(R.id.tv_phone_null);
+        weiXin_iv = (ImageView) findViewById(R.id.weiXin_iv);
         login_et_password = (AppCompatEditText) findViewById(R.id.login_et_password);
         login_et_password.addTextChangedListener(new Watcher(login_et_password));
         tv_password_null = (TextView) findViewById(R.id.tv_password_null);
         look_password = (CheckBox) findViewById(R.id.look_password);
         look_password.setOnClickListener(this);
+        AutoUtils.auto(findViewById(R.id.auto_1));
+        AutoUtils.auto(weiXin_iv);
 
+        findViewById(R.id.user_login).setOnClickListener(this);
         findViewById(R.id.tv_forget_password).setOnClickListener(this);
         findViewById(R.id.weiXin_iv).setOnClickListener(this);
         findViewById(R.id.tv_register).setOnClickListener(this);
@@ -107,6 +113,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             tv_password_null.setVisibility(View.VISIBLE);
             return;
         } else {
+            intentActivity(MainActivity.class);
           /*  BaseData baseData = new BaseData() {
                 @Override
                 public void onSuccessData(String data) {

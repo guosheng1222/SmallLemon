@@ -28,20 +28,21 @@
             android:name=".LaunchActivity"
             android:theme="@style/LaunchActivity">
 
+
         </activity>
         <!-- 登陆界面 -->
         <activity android:name=".LoginActivity" >
+
+
+        </activity>
+        <!-- 主界面 -->
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- 主界面 -->
-        <activity android:name=".MainActivity" >
-
-
-        </activity>
+             </activity>
         <activity android:name=".LoginForgetActivity" >
 
         </activity>
