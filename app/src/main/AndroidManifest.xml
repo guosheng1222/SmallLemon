@@ -30,7 +30,9 @@
 
         </activity>
         <!-- 登陆界面 -->
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".LoginActivity"
+            android:launchMode="singleTask"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

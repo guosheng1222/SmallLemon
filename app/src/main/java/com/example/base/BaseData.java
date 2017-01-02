@@ -50,7 +50,7 @@ public abstract class BaseData {
         this.mContext = context;
         this.mUrl = url;
         this.mValidTime = validTime;
-        startReceiver();
+//        startReceiver();
         if (getIsNoNet()) {         //有网络
             //先判断有效时间
             if (validTime == NO_TIME) {
