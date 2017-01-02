@@ -71,12 +71,17 @@
             android:paddingLeft="@dimen/activity_margin" />
 
         <!--获取验证码-->
+
+
+
+
         <com.andexert.library.RippleView
             rv_centered="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:rv_type="rectangle">
             <android.support.v7.widget.CardView
+                android:id="@+id/auto_2"
                 android:id="@+id/cardView_Code"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -111,6 +116,7 @@
         android:layout_marginTop="100px" />
 
     <!--密码-->
+
 
 
     <com.zhy.autolayout.AutoLinearLayout
@@ -200,7 +206,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30px"
+            android:id="@+id/auto_1"
             app:cardBackgroundColor="#FFD200"
             app:cardCornerRadius="20px">
 
@@ -212,7 +218,6 @@
                 android:layout_height="match_parent"
                 android:background="#00000000"
                 android:gravity="center"
-                android:padding="25px"
                 android:text="注册" />
 
         </android.support.v7.widget.CardView>
@@ -238,7 +243,7 @@
             android:layout_height="wrap_content"
             android:text="@string/activity_register_login"
             android:textColor="@color/colorBlackText"
-            android:textSize="@dimen/textSize_normal" />
+            android:textSize="15sp" />
 
     </LinearLayout>
 

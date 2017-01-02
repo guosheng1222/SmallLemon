@@ -2,6 +2,24 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="@dimen/pad_top">
+
+    <!--优惠活动-->
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="530px"
+        android:clipChildren="false">
+
+        <com.example.view.InfoView
+            android:id="@+id/home_vp"
+            android:layout_width="match_parent"
+            android:layout_height="520px"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="140px"
+            android:layout_marginRight="140px" />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
 
 </com.zhy.autolayout.AutoLinearLayout>

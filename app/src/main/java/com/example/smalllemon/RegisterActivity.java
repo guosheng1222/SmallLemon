@@ -15,6 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
+import android.view.View;
+import android.widget.TextView;
+
+import com.zhy.autolayout.utils.AutoUtils;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -71,6 +75,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     };
     private CardView cardView_code;
+
+    private TextView jumpLoginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,5 +265,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     public void toastMessage(String data) {
         Toast.makeText(RegisterActivity.this, data, Toast.LENGTH_SHORT).show();
+        initView();
+    }
+
+    private void initView() {
+        jumpLoginActivity = (TextView) findViewById(R.id.jumpLoginActivity);
+        jumpLoginActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        autoView();
+    }
+
+
+    private void autoView() {
+        AutoUtils.auto(findViewById(R.id.auto_1));
+        AutoUtils.auto(findViewById(R.id.auto_2));
     }
 }

@@ -1,18 +1,14 @@
 package com.example.smalllemon;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
-import android.text.InputType;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.Toast;
 
+import com.zhy.autolayout.utils.AutoUtils;
+
+import static android.R.attr.id;
+
+public class LoginForgetActivity extends AppCompatActivity {
 import com.example.base.BaseData;
 import com.example.bean.RegisterMessage;
 import com.example.bean.VerificationCode;
@@ -59,6 +55,15 @@ public class LoginForgetActivity extends AppCompatActivity implements View.OnCli
      * 初始化控件
      */
     private void initView() {
+        activity_rigster_phone = (AppCompatEditText) findViewById(R.id.activity_rigster_phone);
+        activity_rigister_verification = (AppCompatEditText) findViewById(R.id.activity_rigister_verification);
+
+        autoView();
+    }
+
+    private void autoView() {
+        AutoUtils.auto(findViewById(R.id.auto_1));
+        AutoUtils.auto(findViewById(R.id.auto_2));
         userPhone = (AppCompatEditText) findViewById(R.id.activity_rigster_phone);
         userVerification = (AppCompatEditText) findViewById(R.id.et_rigister_verification);
         login_et_password = (AppCompatEditText) findViewById(R.id.login_et_password);
