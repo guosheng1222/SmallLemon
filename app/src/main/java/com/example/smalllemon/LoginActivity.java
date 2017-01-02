@@ -116,15 +116,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else {
             //核实用户信息
             new BaseData() {
-            intentActivity(MainActivity.class);
-          /*  BaseData baseData = new BaseData() {
                 @Override
                 public void onSuccessData(String data) {
                     RegisterMessage registerMessage = new Gson().fromJson(data, RegisterMessage.class);
                     switch (registerMessage.getStatus()) {
                         //成功
                         case "ok":
-                            Toast.makeText(LoginActivity.this, registerMessage.getData().toString(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(LoginActivity.this, registerMessage.getData().toString(), Toast.LENGTH_SHORT).show();
+                            intentActivity(MainActivity.class);
                             break;
                         //失败
                         case "error":
@@ -164,6 +163,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 }
             }
         }
+
         @Override
         public void afterTextChanged(Editable editable) {
 

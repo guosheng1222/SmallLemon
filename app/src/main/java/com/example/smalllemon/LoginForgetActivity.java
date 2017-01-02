@@ -1,20 +1,25 @@
 package com.example.smalllemon;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
+import android.text.InputType;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
 
-import com.zhy.autolayout.utils.AutoUtils;
-
-import static android.R.attr.id;
-
-public class LoginForgetActivity extends AppCompatActivity {
 import com.example.base.BaseData;
 import com.example.bean.RegisterMessage;
 import com.example.bean.VerificationCode;
 import com.example.utils.IsPhoneLegal;
 import com.example.utils.UrlUtils;
 import com.google.gson.Gson;
+import com.zhy.autolayout.utils.AutoUtils;
 
 import static com.example.base.BaseData.NO_TIME;
 import static com.example.smalllemon.R.id.activity_rigister_verification_bt;
@@ -43,6 +48,7 @@ public class LoginForgetActivity extends AppCompatActivity implements View.OnCli
             }
         }
     };
+    private View commit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,24 +61,30 @@ public class LoginForgetActivity extends AppCompatActivity implements View.OnCli
      * 初始化控件
      */
     private void initView() {
-        activity_rigster_phone = (AppCompatEditText) findViewById(R.id.activity_rigster_phone);
-        activity_rigister_verification = (AppCompatEditText) findViewById(R.id.activity_rigister_verification);
+        //手机号
+        userPhone = (AppCompatEditText) findViewById(R.id.activity_rigster_phone);
+        //输入的验证码
+        userVerification = (AppCompatEditText) findViewById(R.id.activity_rigister_verification);
+        //输入密码
+        login_et_password = (AppCompatEditText) findViewById(R.id.login_et_password);
+        //确认密码
+        btCode = (Button) findViewById(activity_rigister_verification_bt);
+        //查看密码
+        look_password = (CheckBox) findViewById(R.id.look_password);
+        //提交登录
+        commit = findViewById(R.id.user_commit);
 
         autoView();
+        btCode.setOnClickListener(this);
+        look_password.setOnClickListener(this);
     }
 
+    /**
+     * 适配控件
+     */
     private void autoView() {
-        AutoUtils.auto(findViewById(R.id.auto_1));
-        AutoUtils.auto(findViewById(R.id.auto_2));
-        userPhone = (AppCompatEditText) findViewById(R.id.activity_rigster_phone);
-        userVerification = (AppCompatEditText) findViewById(R.id.et_rigister_verification);
-        login_et_password = (AppCompatEditText) findViewById(R.id.login_et_password);
-        btCode = (Button) findViewById(R.id.activity_rigister_verification_bt);
-        btCode.setOnClickListener(this);
-        look_password = (CheckBox) findViewById(R.id.look_password);
-        look_password.setOnClickListener(this);
-        findViewById(user_commit).setOnClickListener(this);
-
+        AutoUtils.auto(btCode);
+        AutoUtils.auto(commit);
     }
 
     @Override

@@ -14,11 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Toast;
-import android.view.View;
 import android.widget.TextView;
-
-import com.zhy.autolayout.utils.AutoUtils;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,6 +28,7 @@ import com.example.bean.VerificationCode;
 import com.example.utils.IsPhoneLegal;
 import com.example.utils.UrlUtils;
 import com.google.gson.Gson;
+import com.zhy.autolayout.utils.AutoUtils;
 
 import static com.example.base.BaseData.NO_TIME;
 import static com.example.smalllemon.R.id.activity_rigister_verification;
@@ -101,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         cbAgreement.setOnClickListener(this);
         findViewById(R.id.user_login_register).setOnClickListener(this);
         findViewById(R.id.jump_login).setOnClickListener(this);
+        autoView();
     }
 
     /**
@@ -265,24 +264,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     public void toastMessage(String data) {
         Toast.makeText(RegisterActivity.this, data, Toast.LENGTH_SHORT).show();
-        initView();
     }
-
-    private void initView() {
-        jumpLoginActivity = (TextView) findViewById(R.id.jumpLoginActivity);
-        jumpLoginActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        autoView();
-    }
-
 
     private void autoView() {
-        AutoUtils.auto(findViewById(R.id.auto_1));
-        AutoUtils.auto(findViewById(R.id.auto_2));
+        AutoUtils.auto(findViewById(R.id.cardView_Code));
+        AutoUtils.auto(findViewById(R.id.user_login_register));
     }
 }
