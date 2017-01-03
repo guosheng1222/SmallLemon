@@ -46,9 +46,9 @@
         <activity android:name=".InviteFriendActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".AboutUsActivity" />
-        <activity android:name=".FeedBackActivity"></activity>
+        <activity android:name=".FeedBackActivity"/>
         <!--注册界面-->
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity"/>
     </application>
 
 </manifest>
