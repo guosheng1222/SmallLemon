@@ -177,7 +177,7 @@
                     android:padding="20px"
                     android:background="@color/colorWhite"
                     android:layout_width="match_parent"
-                    android:layout_height="80px">
+                    android:layout_height="120px">
                     <LinearLayout
                         android:layout_gravity="center_vertical"
                         android:background="@mipmap/navpoint_selected2x"
