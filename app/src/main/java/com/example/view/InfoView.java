@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -44,8 +45,14 @@ public class InfoView extends ViewPager {
             public void onPageScrollStateChanged(int state) {
             }
         });
-        this.getParent().requestDisallowInterceptTouchEvent(true);
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return super.onTouchEvent(ev);
+    }
+
     @Override
     public void addOnPageChangeListener(OnPageChangeListener listener) {
         this.listener = listener;
