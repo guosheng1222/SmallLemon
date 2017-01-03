@@ -30,13 +30,22 @@ public class HomePageFragment extends Fragment {
     int[] dotArray=new int[]{R.mipmap.navpoint_selected2x,R.mipmap.navpoint_unselected2x};
     ArrayList<ImageView> dotList=new ArrayList<>();
     private LinearLayout main_dot_lin;
+    private ViewPager home_community_vp;
+    private LinearLayout home_community_dot_lin;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = View.inflate(getActivity(), R.layout.fragment_home_page, null);
-        main_dot_lin = (LinearLayout) view.findViewById(R.id.main_dot_lin);
+        View view = initView();
         initInfoView(view);
+        return view;
+    }
+    private View initView()
+    {
+        View view=View.inflate(getActivity(), R.layout.fragment_home_page, null);
+        main_dot_lin = (LinearLayout) view.findViewById(R.id.main_dot_lin);
+        home_community_vp = (ViewPager) view.findViewById(R.id.home_community_vp);
+        home_community_dot_lin = (LinearLayout) view.findViewById(R.id.home_community_dot_lin);
         return view;
     }
     //初始化小点

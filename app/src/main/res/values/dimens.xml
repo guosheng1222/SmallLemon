@@ -9,4 +9,5 @@
     <dimen name="radioButton_width_height">60px</dimen>
     <dimen name="activity_margin">30px</dimen>
     <dimen name="pad_top">0px</dimen>
+    <dimen name="home_community_text">50px</dimen>
 </resources>

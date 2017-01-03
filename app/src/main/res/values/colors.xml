@@ -11,4 +11,5 @@
     <color name="activity_login_forget_pone">#A4A4A4</color>
     <color name="activity_login_forget_pone_bt">#FFDA44</color>
     <color name="activity_register_bt">#F2F0F2</color>
+    <color name="btn_yellow">#F9C268</color>
 </resources>
