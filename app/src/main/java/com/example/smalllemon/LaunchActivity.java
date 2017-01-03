@@ -89,7 +89,7 @@ public class LaunchActivity extends BaseActivity {
      * 跳转登陆界面
      */
     private void jump() {
-        Intent in = new Intent(LaunchActivity.this, MainActivity.class);
+        Intent in = new Intent(LaunchActivity.this, LoginActivity.class);
         startActivity(in);
         finish();
     }

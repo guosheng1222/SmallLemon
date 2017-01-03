@@ -7,13 +7,11 @@
     android:orientation="vertical">
 
     <!--分割线-->
-
     <View
         android:layout_width="match_parent"
         android:layout_height="3px"
         android:layout_marginTop="500px"
         android:background="@color/activity_login_forget_pone" />
-
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="140px"
@@ -41,6 +39,8 @@
     <include layout="@layout/line_layout" />
 
 
+    -
+
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="140px"
@@ -64,14 +64,13 @@
         <!--获取验证码-->
 
 
+
         <com.andexert.library.RippleView
             rv_centered="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:rv_type="rectangle">
-
             <android.support.v7.widget.CardView
-                android:id="@+id/auto_2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10px"
@@ -79,7 +78,7 @@
                 app:cardCornerRadius="6px">
 
                 <Button
-                    android:id="@+id/activity_rigister_verification_tv"
+                    android:id="@+id/activity_rigister_verification_bt"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
@@ -106,6 +105,8 @@
 
     <!--密码-->
 
+
+    -
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/auto_layout_password"

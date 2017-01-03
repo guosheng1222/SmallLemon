@@ -12,8 +12,12 @@ import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.base.BaseActivity;
+import com.example.base.BaseData;
+import com.example.bean.RegisterMessage;
+import com.google.gson.Gson;
 import com.zhy.autolayout.utils.AutoUtils;
 
 
@@ -107,32 +111,27 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         String password = login_et_password.getText().toString();
         if (TextUtils.isEmpty(phone)) {
             tv_phone_null.setVisibility(View.VISIBLE);
-            return;
-        }
-        if (TextUtils.isEmpty(password)) {
+        } else if (TextUtils.isEmpty(password)) {
             tv_password_null.setVisibility(View.VISIBLE);
-            return;
         } else {
-            intentActivity(MainActivity.class);
-          /*  BaseData baseData = new BaseData() {
+            //核实用户信息
+            new BaseData() {
                 @Override
                 public void onSuccessData(String data) {
-                    Gson gson = new Gson();
-                    LoginMessage loginMessage = gson.fromJson(data, LoginMessage.class);
-                    if (loginMessage.isSuccess()) {
-                        Toast.makeText(LoginActivity.this, "登录成功!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(LoginActivity.this, loginMessage.getMessage(), Toast.LENGTH_SHORT).show();
+                    RegisterMessage registerMessage = new Gson().fromJson(data, RegisterMessage.class);
+                    switch (registerMessage.getStatus()) {
+                        //成功
+                        case "ok":
+//                            Toast.makeText(LoginActivity.this, registerMessage.getData().toString(), Toast.LENGTH_SHORT).show();
+                            intentActivity(MainActivity.class);
+                            break;
+                        //失败
+                        case "error":
+                            Toast.makeText(LoginActivity.this, registerMessage.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            break;
                     }
                 }
-
-                @Override
-                public void onFailData(Exception data) {
-                    Toast.makeText(LoginActivity.this, data.getMessage(), Toast.LENGTH_SHORT).show();
-
-                }
-            };
-            baseData.getDataForGet(LoginActivity.this, "http://www.yulin520.com/a2a/home/login/index?", BaseData.NO_TIME);*/
+            }.getDataForGet(LoginActivity.this, "http://114.112.104.151:8203/LvScore_Service/visit/user_login.do?telNum=" + phone + "&password=" + password, BaseData.NO_TIME);
         }
     }
 
@@ -148,11 +147,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
         }
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             if (appCompatEditTextID == login_et_phone) {
                 if (!TextUtils.isEmpty(charSequence.toString())) {
                     tv_phone_null.setVisibility(View.INVISIBLE);
