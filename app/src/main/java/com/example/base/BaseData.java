@@ -43,6 +43,10 @@ public abstract class BaseData {
     private BroadcastReceiver netReceiver;
     private AlertDialog.Builder builder;
 
+    public void getDataForGet(Context context, String url) {
+        getDataForGet(context, url, 0);
+    }
+
 
     /**
      * @param url       请求地址
