@@ -27,7 +27,6 @@ public class InfoView extends ViewPager {
     public void setInfoViewData(final ArrayList<String> imageList) {
         this.imageList = imageList;
         this.setAdapter(new MyPagerAdapter());
-        this.setCurrentItem(1024);
         super.addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -45,9 +44,8 @@ public class InfoView extends ViewPager {
             public void onPageScrollStateChanged(int state) {
             }
         });
+        this.getParent().requestDisallowInterceptTouchEvent(true);
     }
-
-
     @Override
     public void addOnPageChangeListener(OnPageChangeListener listener) {
         this.listener = listener;
