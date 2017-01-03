@@ -63,6 +63,7 @@ public class CommunityFragment extends Fragment {
                 return tabArray[position];
             }
         });
+        community_viewPager.setCurrentItem(1);
     }
 
     /**

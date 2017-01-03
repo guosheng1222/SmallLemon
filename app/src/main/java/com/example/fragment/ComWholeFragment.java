@@ -5,6 +5,7 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -69,9 +70,10 @@ public class ComWholeFragment extends Fragment {
      */
     private void initView(View view) {
         refresh_sr = (SwipeRefreshLayout) view.findViewById(R.id.refresh_sr);
-        content_rv = (RecyclerView) view.findViewById(R.id.content_rv);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        content_rv = (RecyclerView) view.findViewById(R.id.content_rv);
         content_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        content_rv.setItemAnimator(new DefaultItemAnimator());
         refresh_sr.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

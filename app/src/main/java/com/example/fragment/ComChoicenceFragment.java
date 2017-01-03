@@ -5,6 +5,7 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ import com.example.utils.CommonUtils;
 import com.example.utils.UrlUtils;
 import com.google.gson.Gson;
 import com.melnykov.fab.FloatingActionButton;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -79,7 +81,7 @@ public class ComChoicenceFragment extends Fragment {
                     @Override
                     public void run() {
                         super.run();
-                        SystemClock.sleep((long) ( 3000));
+                        SystemClock.sleep((long) (3000));
                         CommonUtils.runOnMainThread(new Runnable() {
                             @Override
                             public void run() {
@@ -91,6 +93,7 @@ public class ComChoicenceFragment extends Fragment {
             }
         });
         content_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        content_rv.setItemAnimator(new DefaultItemAnimator());
         recyclerAdapter = new RecyclerAdapter<CommunityBean.DataBean>(getActivity(), dataList, R.layout.community) {
             private SimpleDateFormat formatter = new SimpleDateFormat("MM月dd日 HH:mm:ss");
 
