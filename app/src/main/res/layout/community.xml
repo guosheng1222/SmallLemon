@@ -12,7 +12,7 @@
         android:layout_height="40px"
         android:layout_marginTop="40px"
         android:background="#FF0"
-        android:lines="1"/>
+        android:lines="1" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="200px"
                 android:text="标题标题标题标题标题标题标题标题标题标题"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/content_tv"
@@ -41,7 +41,7 @@
                 android:layout_marginRight="60px"
                 android:layout_marginTop="20px"
                 android:text="简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <com.zhy.autolayout.AutoLinearLayout
                 android:id="@+id/view_group"
@@ -56,7 +56,7 @@
                 <ImageView
                     android:layout_width="220px"
                     android:layout_height="220px"
-                    android:layout_margin="20px"/>
+                    android:layout_margin="20px" />
 
                 <ImageView
                     android:layout_width="220px"

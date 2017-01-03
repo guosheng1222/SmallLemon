@@ -37,6 +37,10 @@ public class HomePageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = initView();
+        //动态设置状态栏
+        if (21 > android.os.Build.VERSION.SDK_INT) {
+            view.setPadding(0, 0, 0, 0);
+        }
         initInfoView(view);
         return view;
     }

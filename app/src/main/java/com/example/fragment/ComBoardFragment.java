@@ -14,6 +14,7 @@ import com.example.smalllemon.R;
 import com.example.utils.CommonUtils;
 import com.example.utils.UrlUtils;
 import com.google.gson.Gson;
+import com.zhy.autolayout.utils.AutoUtils;
 
 /**
  * @author :   郗琛
@@ -64,6 +65,18 @@ public class ComBoardFragment extends Fragment implements View.OnClickListener {
         third_card.setOnClickListener(this);
         four_card.setOnClickListener(this);
         five_card.setOnClickListener(this);
+        autoView();
+    }
+
+    /**
+     * 动态适配
+     */
+    private void autoView() {
+        AutoUtils.auto(first_card);
+        AutoUtils.auto(second_card);
+        AutoUtils.auto(third_card);
+        AutoUtils.auto(four_card);
+        AutoUtils.auto(five_card);
     }
 
     /**

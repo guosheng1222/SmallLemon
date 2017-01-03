@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.smalllemon.R;
-import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;
 
@@ -30,6 +29,7 @@ public class CommunityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), R.layout.fragment_community, null);
+        //动态设置状态栏
         if (21 > android.os.Build.VERSION.SDK_INT) {
             view.setPadding(0, 0, 0, 0);
         }

@@ -34,10 +34,12 @@ public class MineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = View.inflate(getActivity(), R.layout.fragment_mine, null);
-
+        //动态设置状态栏
+        if (21 > android.os.Build.VERSION.SDK_INT) {
+            view.setPadding(0, 0, 0, 0);
+        }
         //初始化控件
         initView();
-
         return view;
     }
 
