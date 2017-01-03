@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -27,7 +28,6 @@ public class InfoView extends ViewPager {
     public void setInfoViewData(final ArrayList<String> imageList) {
         this.imageList = imageList;
         this.setAdapter(new MyPagerAdapter());
-        this.setCurrentItem(1024);
         super.addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -47,6 +47,11 @@ public class InfoView extends ViewPager {
         });
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return super.onTouchEvent(ev);
+    }
 
     @Override
     public void addOnPageChangeListener(OnPageChangeListener listener) {
