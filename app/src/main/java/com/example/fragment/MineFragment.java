@@ -1,6 +1,5 @@
 package com.example.fragment;
 
-import android.content.Intent;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,11 +20,11 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.smalllemon.BasicDocumentActivity;
-import com.example.smalllemon.FeedBackActivity;
 import com.bumptech.glide.Glide;
 import com.example.app.MyApplication;
 import com.example.bean.LoginBean;
+import com.example.smalllemon.BasicDocumentActivity;
+import com.example.smalllemon.FeedBackActivity;
 import com.example.smalllemon.R;
 import com.example.smalllemon.SettingActivity;
 import com.example.utils.CommonUtils;
@@ -136,7 +135,20 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                         backgroundAlpha(10);
                     }
                 });
+                break;
+            case R.id.tv_guanzhu:
 
+                break;
+            case R.id.base_info:
+                enterActivity(BasicDocumentActivity.class);
+                break;
+            case R.id.mine_card:
+                break;
+            case R.id.suggest_back:
+                enterActivity(FeedBackActivity.class);
+                break;
+            case R.id.setting:
+                enterActivity(SettingActivity.class);
                 break;
         }
     }
@@ -241,26 +253,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_guanzhu:
-
-                break;
-            case R.id.base_info:
-                enterActivity(BasicDocumentActivity.class);
-                break;
-            case R.id.mine_card:
-                break;
-            case R.id.suggest_back:
-                enterActivity(FeedBackActivity.class);
-                break;
-            case R.id.setting:
-                enterActivity(SettingActivity.class);
-                break;
-        }
-
-    }
 
     /**
      * 跳转界面

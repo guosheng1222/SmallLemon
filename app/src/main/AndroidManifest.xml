@@ -41,12 +41,7 @@
         <!-- 注册界面 -->
         <activity android:name=".RegisterActivity" />
         <!-- 主界面 -->
-        <activity android:name=".MainActivity">
-
-        </activity>
-
-
-
+        <activity android:name=".MainActivity"/>
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".InviteFriendActivity" />
         <activity
@@ -57,13 +52,11 @@
         <activity android:name=".FeedBackActivity" />
         <activity android:name=".NoteActivity"/>
         <activity android:name=".FeedBackActivity" />
-        <activity android:name=".FeedBackActivity" />
         <activity android:name=".BasicDocumentActivity" />
         <activity android:name=".UpdateNickNameActivity" />
         <activity android:name=".JobActivity" />
         <activity android:name=".EmotionActivity" />
-        <activity android:name=".DetailsActivity">
-        </activity>
+        <activity android:name=".DetailsActivity"/>
     </application>
 
 </manifest>
