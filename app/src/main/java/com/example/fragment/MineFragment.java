@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.app.MyApplication;
+import com.example.bean.LoginBean;
 import com.example.smalllemon.R;
 import com.zhy.autolayout.AutoLinearLayout;
 
@@ -18,7 +21,7 @@ import com.zhy.autolayout.AutoLinearLayout;
  */
 
 public class MineFragment extends Fragment {
-
+    private LoginBean.DataBean current_user;
     private View view;
     private ImageView iv_user_head;
     private TextView tv_user_name;
@@ -56,6 +59,22 @@ public class MineFragment extends Fragment {
         suggest_back = (AutoLinearLayout) view.findViewById(R.id.suggest_back);
         setting = (AutoLinearLayout) view.findViewById(R.id.setting);
         mine_recyclerView = (RecyclerView) view.findViewById(R.id.mine_recyclerView);
+
+        /**
+         * 初始化界面
+         */
+        if (MyApplication.CURRENT_USER != null) {
+            current_user = MyApplication.CURRENT_USER;
+            Glide.with(getActivity()).load(current_user.getImg()).into(iv_user_head);
+            tv_user_name.setText(current_user.getUserName());
+            tv_guanzhu_count.setText(current_user.getFansCount()+"");
+            if (current_user.getGender() == 1) {
+                //设置男
+            } else {
+                //设置女
+            }
+        }
+
 
     }
 }
