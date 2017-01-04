@@ -31,6 +31,7 @@
             app:tabTextColor="#000" />
 
         <ImageView
+            android:id="@+id/note_logo"
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_gravity="center"
