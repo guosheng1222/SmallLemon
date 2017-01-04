@@ -27,6 +27,12 @@
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/LaunchActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <!--登录界面-->
         <activity
@@ -36,11 +42,7 @@
         <activity android:name=".RegisterActivity" />
         <!-- 主界面 -->
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
 
