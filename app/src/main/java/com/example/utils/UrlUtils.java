@@ -6,5 +6,5 @@ package com.example.utils;
  */
 
 public class UrlUtils {
-
+    public static final String JobUrl = "http://www.yulin520.com/a2a/occupation/menu";
 }

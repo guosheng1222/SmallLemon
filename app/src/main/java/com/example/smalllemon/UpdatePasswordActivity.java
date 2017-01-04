@@ -1,6 +1,5 @@
 package com.example.smalllemon;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -28,8 +27,6 @@ public class UpdatePasswordActivity extends BaseActivity implements View.OnClick
         title_name.setText("修改密码");
         hide.setVisibility(View.VISIBLE);
         hide.setText("完成");
-        //返回
-        return_back = (ImageView) findViewById(R.id.return_back);
         //旧密码
         old_password = (EditText) findViewById(R.id.old_password);
         //新密码
@@ -44,9 +41,6 @@ public class UpdatePasswordActivity extends BaseActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.return_back:
-                finish();
-                break;
             //完成
             case R.id.hide:
                 break;
