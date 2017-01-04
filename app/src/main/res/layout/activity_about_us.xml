@@ -12,7 +12,7 @@
 
     <com.zhy.autolayout.AutoLinearLayout
         android:clickable="true"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="@color/colorWhite"
         android:id="@+id/welcome_page"
         android:layout_width="match_parent"
         android:layout_height="150px"

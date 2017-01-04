@@ -23,7 +23,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.app.MyApplication;
 import com.example.bean.LoginBean;
+import com.example.smalllemon.BasicDocumentActivity;
+import com.example.smalllemon.FeedBackActivity;
 import com.example.smalllemon.R;
+import com.example.smalllemon.SettingActivity;
 import com.example.utils.CommonUtils;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -87,6 +90,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         gender = (ImageView) view.findViewById(R.id.gender);
         iv_user_head.setOnClickListener(this);
 
+        tv_guanzhu.setOnClickListener(this);
+        base_info.setOnClickListener(this);
+        mine_card.setOnClickListener(this);
+        suggest_back.setOnClickListener(this);
+        setting.setOnClickListener(this);
         /**
          * 初始化界面
          */
@@ -131,6 +139,20 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                         backgroundAlpha(10);
                     }
                 });
+                break;
+            case R.id.tv_guanzhu:
+
+                break;
+            case R.id.base_info:
+                enterActivity(BasicDocumentActivity.class);
+                break;
+            case R.id.mine_card:
+                break;
+            case R.id.suggest_back:
+                enterActivity(FeedBackActivity.class);
+                break;
+            case R.id.setting:
+                enterActivity(SettingActivity.class);
                 break;
         }
     }
@@ -217,4 +239,15 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
         }
     }
+
+
+
+    /**
+     * 跳转界面
+     */
+    private void enterActivity(Class c) {
+        Intent intent = new Intent(getActivity(), c);
+        getActivity().startActivity(intent);
+    }
+
 }
