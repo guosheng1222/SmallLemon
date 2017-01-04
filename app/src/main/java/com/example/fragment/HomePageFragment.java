@@ -9,10 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.base.BaseData;
+import com.example.bean.BeanHoliday;
 import com.example.bean.HomeRadioStation;
 import com.example.smalllemon.R;
+import com.example.utils.LogUtils;
 import com.example.utils.UrlUtils;
 import com.example.view.InfoView;
 import com.example.view.RotateDownPageTransformer;
@@ -27,11 +31,16 @@ import java.util.ArrayList;
 public class HomePageFragment extends Fragment {
 
     private InfoView infoView;
+    int[] dotArray1 = new int[]{R.mipmap.recipes_select_true, R.mipmap.recipes_select_false};
     int[] dotArray = new int[]{R.mipmap.navpoint_selected2x, R.mipmap.navpoint_unselected2x};
     ArrayList<ImageView> dotList = new ArrayList<>();
     private LinearLayout main_dot_lin;
     private ViewPager home_community_vp;
     private LinearLayout home_community_dot_lin;
+    private ImageView home_holiday_image;
+    private TextView home_holiday_time;
+    private TextView home_holiday_name;
+    private TextView home_holiday_date;
 
     @Nullable
     @Override
@@ -42,14 +51,50 @@ public class HomePageFragment extends Fragment {
             view.setPadding(0, 0, 0, 0);
         }
         initInfoView(view);
+        initHoliday();
+        //initCommunityVp();
         return view;
+    }
+
+
+    private void initCommunityVp() {
+
+    }
+
+    //助攻节日
+    private void initHoliday() {
+        new BaseData() {
+            @Override
+            public void onSuccessData(String data) {
+                Gson gson = new Gson();
+                BeanHoliday beanHoliday = gson.fromJson(data, BeanHoliday.class);
+                Glide.with(getActivity()).load(beanHoliday.getData().getImg()).into(home_holiday_image);
+                home_holiday_name.setText(beanHoliday.getData().getName().substring(0, 2));
+                home_holiday_date.setText(beanHoliday.getData().getName().substring(3));
+                long festivalTime = beanHoliday.getData().getFestivalTime();
+                long l = System.currentTimeMillis();
+                long l1 = festivalTime - l;
+                long l2 = l1 / 86400000L + 1;
+                if (l2 == 1) {
+                    home_holiday_time.setText("今");
+                } else {
+                    home_holiday_time.setText(l2 + "");
+                }
+                LogUtils.d("AAA", "*********" + l1 / 1000 / 60 / 60 / 24);
+            }
+        }.getDataForGet(getActivity(), UrlUtils.holiday1);
     }
 
     private View initView() {
         View view = View.inflate(getActivity(), R.layout.fragment_home_page, null);
         main_dot_lin = (LinearLayout) view.findViewById(R.id.main_dot_lin);
+        home_holiday_image = (ImageView) view.findViewById(R.id.home_holiday_image);
+        home_holiday_name = (TextView) view.findViewById(R.id.home_holiday_name);
+        home_holiday_date = (TextView) view.findViewById(R.id.home_holiday_date);
+        home_holiday_time = (TextView) view.findViewById(R.id.home_holiday_time);
         home_community_vp = (ViewPager) view.findViewById(R.id.home_community_vp);
         home_community_dot_lin = (LinearLayout) view.findViewById(R.id.home_community_dot_lin);
+
         return view;
     }
 
@@ -109,11 +154,11 @@ public class HomePageFragment extends Fragment {
 
                     @Override
                     public void onPageScrollStateChanged(int state) {
-
                     }
                 });
             }
         }.getDataForGet(getActivity(), UrlUtils.main_viewager, BaseData.NO_TIME);
 
     }
+
 }
