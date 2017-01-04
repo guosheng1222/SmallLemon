@@ -1,11 +1,11 @@
 package com.example.smalllemon;
 
 import android.Manifest;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.text.TextUtils;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class MainActivity extends BaseActivity {
 
     private int blackColor;
+    private String data;
     private int grayColor;
 
     private ArrayList<Fragment> fragmentList;
@@ -50,12 +51,26 @@ public class MainActivity extends BaseActivity {
         //获取数据测试
         //有网网络获取成功
         //无网网络获取    --提示跳转wifi设置界面
+//        initData();
+    }
+
+    private void initData() {
         new BaseData() {
             @Override
             public void onSuccessData(String data) {
-                System.out.println(data);
+                MainActivity.this.data = data;
+                Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
             }
-        }.getDataForGet(this, "http://www.baidu.com", BaseData.NO_TIME);
+        }.getDataForGet(this, "https://www.baidu.com", BaseData.NO_TIME);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (TextUtils.isEmpty(data)) {
+         /*   initData();*/
+        }
     }
 
     private void requestPerssion() {
@@ -133,9 +148,14 @@ public class MainActivity extends BaseActivity {
         main_vp = (NoScrollViewPager) findViewById(R.id.main_vp);
         //全部加载出来。避免多次创建
         main_vp.setOffscreenPageLimit(2);
-
-        //下方radioButton承载容器
+        //查找下方导航
         main_rg = (RadioGroup) findViewById(R.id.main_rg);
+        //手动适配
+        for (int i = 0; i < main_rg.getChildCount(); i++) {
+            AutoUtils.auto(main_rg.getChildAt(i));
+        }
+
+        /*//下方radioButton承载容器
         //定义RadioButton数组用来装RadioButton，改变drawableTop大小
         for (int i = 0; i < main_rg.getChildCount(); i++) {
             AutoUtils.auto(main_rg.getChildAt(i));
@@ -144,8 +164,24 @@ public class MainActivity extends BaseActivity {
             //定义一个Rect边界
             drawables[1].setBounds(r);
             ((RadioButton) main_rg.getChildAt(i)).setCompoundDrawables(null, drawables[1], null, null);
-        }
+        }*/
 
+    }
+
+    private long mPressedTime = 0;
+
+    /**
+     * 双击退出应用
+     */
+    @Override
+    public void onBackPressed() {
+        long mNowTime = System.currentTimeMillis();//获取第一次按键时间
+        if ((mNowTime - mPressedTime) > 2000) {//比较两次按键时间差
+            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            mPressedTime = mNowTime;
+        } else {//退出程序
+            this.finish();
+        }
     }
 
 }

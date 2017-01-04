@@ -2,10 +2,12 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    //普通文本字体的大小
-    <dimen name="textSize_normal">50px</dimen>
-    <dimen name="launch_margin_bottom">300px</dimen>
+    <!--普通文本字体的大小-->
+    <dimen name="textSize_normal">40px</dimen>
+    <dimen name="launch_margin_bottom">280px</dimen>
     <dimen name="launch_radio_bottom">190px</dimen>
     <dimen name="radioButton_width_height">60px</dimen>
-
+    <dimen name="activity_margin">30px</dimen>
+    <dimen name="home_community_text">50px</dimen>
+    <dimen name="more_margin">20px</dimen>
 </resources>

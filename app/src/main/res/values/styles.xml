@@ -15,11 +15,8 @@
     </style>
     <!--专供启动界面-->
     <style name="LaunchActivity" parent="TransParentTheme">
-        <item name="android:windowBackground">@drawable/startup_xhdpi</item>
+        <!--<item name="android:windowBackground">@drawable/startup_xhdpi</item>-->
     </style>
-
-
-
     <!--圆形imageView需要的-->
     <declare-styleable name="CircleImageView">
         <attr name="civ_border_width" format="dimension" />

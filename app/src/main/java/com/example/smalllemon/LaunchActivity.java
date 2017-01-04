@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.bumptech.glide.Glide;
 import com.example.base.BaseActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -60,14 +59,7 @@ public class LaunchActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                for (int i = 0; i < launch_radioGroup.getChildCount(); i++) {
-                    RadioButton childAt = (RadioButton) launch_radioGroup.getChildAt(i);
-                    if (i == position) {
-                        childAt.setChecked(true);
-                    } else {
-                        childAt.setChecked(false);
-                    }
-                }
+                setCurrentPosition(position);
             }
 
             @Override
@@ -76,10 +68,10 @@ public class LaunchActivity extends BaseActivity {
         });
         launch_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                for (int j = 0; j < radioGroup.getChildCount(); j++) {
-                    if (i == radioGroup.getChildAt(j).getId()) {
-                        viewPager.setCurrentItem(j);
+            public void onCheckedChanged(RadioGroup radioGroup, int id) {
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    if (id == radioGroup.getChildAt(i).getId()) {
+                        setCurrentPosition(i);
                     }
                 }
             }
@@ -88,11 +80,16 @@ public class LaunchActivity extends BaseActivity {
 
     }
 
+    private void setCurrentPosition(int position) {
+        ((RadioButton) launch_radioGroup.getChildAt(position)).setChecked(true);
+        viewPager.setCurrentItem(position);
+    }
+
     /**
      * 跳转登陆界面
      */
     private void jump() {
-        Intent in = new Intent(LaunchActivity.this, MainActivity.class);
+        Intent in = new Intent(LaunchActivity.this, LoginActivity.class);
         startActivity(in);
         finish();
     }
@@ -119,19 +116,18 @@ public class LaunchActivity extends BaseActivity {
         public Object instantiateItem(ViewGroup container, int position) {
             View inflate = View.inflate(LaunchActivity.this, R.layout.launch_item, null);
             ImageView launch_iv = (ImageView) inflate.findViewById(R.id.launch_iv);
-            ImageView launch_iv2 = (ImageView) inflate.findViewById(R.id.launch_iv2);
-            Glide.with(LaunchActivity.this).load(pages[position]).into(launch_iv);
-            for (int i = 0; i < pages.length; i++) {
-                if (position == pages.length - 1) {
-                    launch_iv2.setVisibility(View.VISIBLE);
-                    launch_iv2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            setNotFirstUse();
-                            jump();
-                        }
-                    });
-                }
+            launch_iv.setImageResource(pages[position]);
+//            Glide.with(LaunchActivity.this).load(pages[position]).into(launch_iv);
+            if (position == pages.length - 1) {
+                ImageView launch_iv2 = (ImageView) inflate.findViewById(R.id.launch_iv2);
+                launch_iv2.setVisibility(View.VISIBLE);
+                launch_iv2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setNotFirstUse();
+                        jump();
+                    }
+                });
             }
             container.addView(inflate);
             return inflate;

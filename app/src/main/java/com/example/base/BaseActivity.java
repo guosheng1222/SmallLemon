@@ -73,7 +73,7 @@ public class BaseActivity extends AutoLayoutActivity {
                 String[] strings = prepareRequestPermission.toArray(new String[prepareRequestPermission.size()]);
                 //申请权限
                 ActivityCompat.requestPermissions(mContext, strings, permissionCode);
-                permissionMap.put(permissionCode,runnable);
+                permissionMap.put(permissionCode, runnable);
             }
         } else {
             //无需授权，执行动作
@@ -131,13 +131,22 @@ public class BaseActivity extends AutoLayoutActivity {
         LogUtils.i(TAG, "onRequestPermissionsResult: 没有对应的请求");
     }
 
+    protected Activity getActivity() {
+        return mContext;
+    }
+
     /**
      * 适配MIUI的statusBar颜色
      */
     private void initMIUIStatusTextColor() {
-        //字体
-        if (MiUIUtls.isMIUI()) {
-            MiUIUtls.setStatusBarDarkMode(this, true);
-        }
+        new Thread() {
+            @Override
+            public void run() {
+                //字体
+                if (MiUIUtls.isMIUI()) {
+                    MiUIUtls.setStatusBarDarkMode(mContext, true);
+                }
+            }
+        }.start();
     }
 }

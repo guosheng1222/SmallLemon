@@ -13,8 +13,8 @@
 
     <ImageView
         android:id="@+id/launch_iv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="340px"
+        android:layout_height="140px"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/launch_margin_bottom"

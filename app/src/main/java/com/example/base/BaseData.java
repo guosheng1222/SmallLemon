@@ -2,9 +2,11 @@ package com.example.base;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.text.TextUtils;
 
 import com.android.volley.RequestQueue;
@@ -13,17 +15,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bean.NetData;
+import com.example.utils.CommonUtils;
 import com.example.utils.DBUtils;
-import com.example.utils.LogUtils;
 import com.example.utils.NetUtils;
 
 import org.xutils.ex.DbException;
 
-import static com.example.utils.NetUtils.NET_WORK_TYPE_2G;
-import static com.example.utils.NetUtils.NET_WORK_TYPE_3G;
 import static com.example.utils.NetUtils.NET_WORK_TYPE_INVALID;
-import static com.example.utils.NetUtils.NET_WORK_TYPE_WAP;
-import static com.example.utils.NetUtils.NET_WORK_TYPE_WIFI;
 
 /**
  * @author :   郗琛
@@ -39,6 +37,15 @@ public abstract class BaseData {
     private Context mContext;
     private String mUrl;
     private int mValidTime;
+    /**
+     * 网络状态改变监听
+     */
+    private BroadcastReceiver netReceiver;
+    private AlertDialog.Builder builder;
+
+    public void getDataForGet(Context context, String url) {
+        getDataForGet(context, url, 0);
+    }
 
 
     /**
@@ -49,36 +56,55 @@ public abstract class BaseData {
         this.mContext = context;
         this.mUrl = url;
         this.mValidTime = validTime;
-        //判断当前的网络状态
-        switch (NetUtils.getNetWorkType(mContext)) {
-            case NET_WORK_TYPE_INVALID:             //没有网络
-                jumpSettingNet();
-                break;
-            case NET_WORK_TYPE_WAP:
-            case NET_WORK_TYPE_2G:
-            case NET_WORK_TYPE_3G:
-            case NET_WORK_TYPE_WIFI:
-                //先判断有效时间
-                if (validTime == NO_TIME) {
-                    //直接请求网络，要最新数据
+//        startReceiver();
+        if (getIsNoNet()) {         //有网络
+            //先判断有效时间
+            if (validTime == NO_TIME) {
+                //直接请求网络，要最新数据
+                getDataFromNet();
+            } else {
+                //从本地获取
+                final String data = getDataFromLocal(url);
+                if (TextUtils.isEmpty(data)) {
+                    //如果为空，请求网络
                     getDataFromNet();
                 } else {
-                    //从本地获取
-                    String data = getDataFromLocal(url);
-                    if (TextUtils.isEmpty(data)) {
-                        //如果为空，请求网络
-                        getDataFromNet();
-                    } else {
-                        //拿到了数据，返回数据
-                        onSuccessData(data);
-                    }
+                    //拿到了数据，返回数据
+                    CommonUtils.runOnMainThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            onSuccessData(data);
+                        }
+                    });
                 }
-                break;
-            default:
-                break;
+            }
+        } else {            //没有网络
+//            jumpSettingNet();
+            afreshGetData();
         }
 
     }
+
+    /**
+     * 开启网络广播监听
+     */
+    private void startReceiver() {
+        //如果无网络连接activeInfo为null
+        //Toast.makeText(context, intent.getAction(), 1).show();
+        netReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                getDataFromNet();
+            }
+        };
+        IntentFilter filter = new IntentFilter();
+        //网络改变过滤
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        filter.setPriority(Integer.MAX_VALUE);
+        mContext.registerReceiver(netReceiver, filter);
+//        mContext.unregisterReceiver(netReceiver);
+    }
+
 
     /**
      * 成功的操作
@@ -91,22 +117,22 @@ public abstract class BaseData {
      * 失败的操作
      */
     public void onFailData(Exception data) {
-        LogUtils.i(TAG, "onFailData: " + data);
-        //判断当前的网络状态
-        switch (NetUtils.getNetWorkType(mContext)) {
-            case NET_WORK_TYPE_INVALID:             //没有网络
-                jumpSettingNet();
-                break;
-            case NET_WORK_TYPE_WAP:
-            case NET_WORK_TYPE_2G:
-            case NET_WORK_TYPE_3G:
-            case NET_WORK_TYPE_WIFI:
-                afreshGetData();
-                break;
-            default:
-                break;
-        }
+//        if (getIsNoNet()) {
+        afreshGetData();
+//        } else {
+//            jumpSettingNet();
+//        }
+    }
 
+
+    /**
+     * 是否有网
+     */
+    private boolean getIsNoNet() {
+        //判断当前的网络状态
+        if (NET_WORK_TYPE_INVALID != NetUtils.getNetWorkType(mContext))
+            return true;
+        return false;
     }
 
     /**
@@ -114,6 +140,7 @@ public abstract class BaseData {
      */
     protected void jumpSettingNet() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setCancelable(false);
         builder.setTitle("当前无网络，是否去进行设置").setPositiveButton("去设置", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -133,14 +160,18 @@ public abstract class BaseData {
      * 再次获取
      */
     private void afreshGetData() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setPositiveButton("刷新", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //重新获取
-                getDataFromNet();
-            }
-        }).show();
+        if (builder == null) {
+            builder = new AlertDialog.Builder(mContext);
+            builder.setCancelable(false);
+            builder.setTitle("网络出错，请刷新重试").setPositiveButton("刷新", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //重新获取
+                    builder = null;
+                    getDataFromNet();
+                }
+            }).show();
+        }
     }
 
     /**
@@ -163,6 +194,8 @@ public abstract class BaseData {
     /**
      * 从网络获取数据
      */
+    int i;
+
     private void getDataFromNet() {
         //创建volley对象
         RequestQueue mQueue = Volley.newRequestQueue(mContext);
@@ -171,14 +204,22 @@ public abstract class BaseData {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(final String response) {
-                        onSuccessData(response);
+                        //拿到了数据，返回数据
+                        CommonUtils.runOnMainThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                onSuccessData(response);
+                            }
+                        });
                         if (mValidTime != NO_TIME)
                             writeDataToLocal(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                onFailData(error);
+                if (null == error || null == error.networkResponse || error.networkResponse.statusCode >= 400) {
+                    onFailData(error);
+                }
             }
         });
         //加入请求队列
@@ -201,4 +242,5 @@ public abstract class BaseData {
             e.printStackTrace();
         }
     }
+
 }
