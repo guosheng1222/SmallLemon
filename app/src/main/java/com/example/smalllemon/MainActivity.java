@@ -1,11 +1,16 @@
 package com.example.smalllemon;
 
 import android.Manifest;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -19,7 +24,10 @@ import com.example.utils.CommonUtils;
 import com.example.view.NoScrollViewPager;
 import com.zhy.autolayout.utils.AutoUtils;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
+import static android.R.attr.bitmap;
 
 public class MainActivity extends BaseActivity {
 
@@ -184,4 +192,50 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+
+    /**
+     * 相册回调
+     */
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i("TAG", "------");
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case 100:
+                    /*Uri uri = data.getData();
+                    Cursor cursor = this.getContentResolver().query(uri, null,
+                            null, null, null);
+                    cursor.moveToFirst();
+                    String imgNo = cursor.getString(0); // 图片编号
+                    String imgPath = cursor.getString(1); // 图片文件路径
+                    String imgSize = cursor.getString(2); // 图片大小
+                    String imgName = cursor.getString(3); // 图片文件名
+                    cursor.close();
+                    Bitmap bitmap = BitmapFactory.decodeFile(imgPath);
+                    Log.i("TAG", "------" + imgPath);*/
+
+                    ContentResolver contentResolver = getContentResolver();
+                    try {
+
+                        Bitmap bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(data.getData()));
+                        Log.i("TAG", "从相册回传bitmap："+bitmap);
+
+
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    Toast.makeText(MainActivity.this, "---" + bitmap, Toast.LENGTH_SHORT).show();
+                    break;
+
+                default:
+                    return;
+            }
+
+        }
+    }
 }
