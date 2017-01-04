@@ -1,6 +1,7 @@
 package com.example.smalllemon;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
@@ -14,11 +15,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.app.MyApplication;
 import com.example.base.BaseActivity;
 import com.example.base.BaseData;
+import com.example.bean.LoginBean;
 import com.example.bean.RegisterMessage;
+import com.example.utils.DBUtils;
 import com.google.gson.Gson;
 import com.zhy.autolayout.utils.AutoUtils;
+
+import org.xutils.db.DbModelSelector;
+import org.xutils.ex.DbException;
+
+import java.util.List;
+
+import static android.media.CamcorderProfile.get;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -35,9 +46,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            List<LoginBean.DataBean> select = DBUtils.getDb().selector(LoginBean.DataBean.class).where("isLogin", "=", "true").findAll();
+            if (select != null && select.size() > 0) {
+                //设置当前登陆用户
+                MyApplication.CURRENT_USER = select.get(0);
+                jumpMainActivity();
+            }
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
         setContentView(R.layout.activity_login);
         initView();
-
     }
 
     /**
@@ -55,7 +75,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         look_password.setOnClickListener(this);
         AutoUtils.auto(findViewById(R.id.auto_1));
         AutoUtils.auto(weiXin_iv);
-
         findViewById(R.id.user_login).setOnClickListener(this);
         findViewById(R.id.tv_forget_password).setOnClickListener(this);
         findViewById(R.id.weiXin_iv).setOnClickListener(this);
@@ -114,7 +133,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             tv_password_null.setVisibility(View.VISIBLE);
         } else {
             //核实用户信息
-            new BaseData() {
+           /* new BaseData() {
                 @Override
                 public void onSuccessData(String data) {
                     RegisterMessage registerMessage = new Gson().fromJson(data, RegisterMessage.class);
@@ -130,8 +149,40 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             break;
                     }
                 }
-            }.getDataForGet(LoginActivity.this, "http://114.112.104.151:8203/LvScore_Service/visit/user_login.do?telNum=" + phone + "&password=" + password, BaseData.NO_TIME);
+            }.getDataForGet(LoginActivity.this, "http://114.112.104.151:8203/LvScore_Service/visit/user_login.do?telNum=" + phone + "&password=" + password, BaseData.NO_TIME);*/
+
+            new BaseData() {
+                @Override
+                public void onSuccessData(String data) {
+                    LoginBean loginBean = new Gson().fromJson(data, LoginBean.class);
+                    //判断2
+                    if (loginBean.isSuccess()) {
+                        //登陆成功
+                        jumpMainActivity();
+                        //保存到数据库
+                        try {
+                            //退出的时候必须删除
+                            loginBean.getData().setLogin(true);
+                            DBUtils.getDb().saveOrUpdate(loginBean.getData());
+                            MyApplication.CURRENT_USER = loginBean.getData();
+                        } catch (DbException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        //登陆不成功
+                        Toast.makeText(LoginActivity.this, loginBean.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }.getNetForPost(this, login_et_phone.getText().toString().trim(), login_et_password.getText().toString().trim());
         }
+    }
+
+    /**
+     * 进入主界面
+     */
+    private void jumpMainActivity() {
+        intentActivity(MainActivity.class);
+        finish();
     }
 
     /**

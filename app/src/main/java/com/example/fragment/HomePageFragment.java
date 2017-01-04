@@ -1,5 +1,6 @@
 package com.example.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.base.BaseData;
 import com.example.bean.BeanHoliday;
 import com.example.bean.HomeRadioStation;
+import com.example.smalllemon.NoteActivity;
 import com.example.smalllemon.R;
 import com.example.utils.LogUtils;
 import com.example.utils.UrlUtils;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
  * Created by lenovo on 2016/12/28.
  */
 
-public class HomePageFragment extends Fragment {
+public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     private InfoView infoView;
     int[] dotArray1 = new int[]{R.mipmap.recipes_select_true, R.mipmap.recipes_select_false};
@@ -41,6 +43,7 @@ public class HomePageFragment extends Fragment {
     private TextView home_holiday_time;
     private TextView home_holiday_name;
     private TextView home_holiday_date;
+    private ImageView noteLogo;
 
     @Nullable
     @Override
@@ -94,6 +97,9 @@ public class HomePageFragment extends Fragment {
         home_holiday_time = (TextView) view.findViewById(R.id.home_holiday_time);
         home_community_vp = (ViewPager) view.findViewById(R.id.home_community_vp);
         home_community_dot_lin = (LinearLayout) view.findViewById(R.id.home_community_dot_lin);
+        noteLogo = (ImageView) view.findViewById(R.id.imageView2);
+
+        noteLogo.setOnClickListener(this);
 
         return view;
     }
@@ -158,6 +164,29 @@ public class HomePageFragment extends Fragment {
                 });
             }
         }.getDataForGet(getActivity(), UrlUtils.main_viewager, BaseData.NO_TIME);
+
+    }
+
+    /**
+     * 点击事件
+     *
+     * @param view
+     */
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+            case R.id.imageView2:
+
+                Intent intent = new Intent(getActivity(), NoteActivity.class);
+
+                startActivity(intent);
+
+
+                break;
+
+        }
+
 
     }
 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="130px"
+            android:layout_height="130px"
+            android:layout_marginBottom="30px"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="60px"
+            android:layout_marginTop="30px"
+            android:src="@mipmap/home_msg_stranger2x" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未关注人消息"
+            android:textColor="@color/colorBlackText"
+            android:textSize="50px" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#22000000" />
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="130px"
+            android:layout_height="130px"
+            android:layout_marginBottom="30px"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="60px"
+            android:layout_marginTop="30px"
+            android:src="@mipmap/home_msg_system2x" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="系统消息"
+            android:textColor="@color/colorBlackText"
+            android:textSize="50px" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#22000000" />
+
+</com.zhy.autolayout.AutoLinearLayout>
