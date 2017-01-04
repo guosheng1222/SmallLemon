@@ -26,6 +26,7 @@ import com.example.bean.LoginBean;
 import com.example.smalllemon.R;
 import com.example.utils.CommonUtils;
 import com.zhy.autolayout.AutoLinearLayout;
+import com.zhy.autolayout.utils.AutoUtils;
 
 import java.io.FileNotFoundException;
 
@@ -55,14 +56,18 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = View.inflate(getActivity(), R.layout.fragment_mine, null);
+        view = inflater.inflate(R.layout.fragment_mine, null);
         //动态设置状态栏
         if (21 > android.os.Build.VERSION.SDK_INT) {
             view.setPadding(0, 0, 0, 0);
         }
         //初始化控件
         initView();
+        autoView();
         return view;
+    }
+
+    private void autoView() {
     }
 
     /**
@@ -103,8 +108,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.iv_user_head:
                 initPopView();
-
-
                 //创建PopupWindow,宽高为包裹内容
                 popupWindow = new PopupWindow(pop_camera, LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -129,10 +132,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void initPopView() {
+    private synchronized void initPopView() {
         //创建PopupWindow布局
         if (pop_camera == null) {
             pop_camera = CommonUtils.inflate(R.layout.pop_camera_layout);
+            AutoUtils.auto(pop_camera.findViewById(R.id.cardView1));
             take_picture = (TextView) pop_camera.findViewById(R.id.take_picture);
             photo_album = (TextView) pop_camera.findViewById(R.id.photo_album);
         }

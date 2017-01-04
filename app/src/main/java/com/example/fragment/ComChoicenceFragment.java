@@ -27,6 +27,7 @@ import com.example.utils.CommonUtils;
 import com.example.utils.UrlUtils;
 import com.google.gson.Gson;
 import com.melnykov.fab.FloatingActionButton;
+import com.zhy.autolayout.utils.AutoUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
