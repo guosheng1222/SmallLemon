@@ -1,5 +1,6 @@
 package com.example.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.example.base.BaseData;
 import com.example.bean.HomeRadioStation;
+import com.example.smalllemon.NoteActivity;
 import com.example.smalllemon.R;
 import com.example.utils.UrlUtils;
 import com.example.view.InfoView;
@@ -24,7 +26,7 @@ import java.util.ArrayList;
  * Created by lenovo on 2016/12/28.
  */
 
-public class HomePageFragment extends Fragment {
+public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     private InfoView infoView;
     int[] dotArray = new int[]{R.mipmap.navpoint_selected2x, R.mipmap.navpoint_unselected2x};
@@ -32,6 +34,7 @@ public class HomePageFragment extends Fragment {
     private LinearLayout main_dot_lin;
     private ViewPager home_community_vp;
     private LinearLayout home_community_dot_lin;
+    private ImageView noteLogo;
 
     @Nullable
     @Override
@@ -50,6 +53,10 @@ public class HomePageFragment extends Fragment {
         main_dot_lin = (LinearLayout) view.findViewById(R.id.main_dot_lin);
         home_community_vp = (ViewPager) view.findViewById(R.id.home_community_vp);
         home_community_dot_lin = (LinearLayout) view.findViewById(R.id.home_community_dot_lin);
+        noteLogo = (ImageView) view.findViewById(R.id.imageView2);
+
+        noteLogo.setOnClickListener(this);
+
         return view;
     }
 
@@ -114,6 +121,29 @@ public class HomePageFragment extends Fragment {
                 });
             }
         }.getDataForGet(getActivity(), UrlUtils.main_viewager, BaseData.NO_TIME);
+
+    }
+
+    /**
+     * 点击事件
+     *
+     * @param view
+     */
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+            case R.id.imageView2:
+
+                Intent intent = new Intent(getActivity(), NoteActivity.class);
+
+                startActivity(intent);
+
+
+                break;
+
+        }
+
 
     }
 }

@@ -75,7 +75,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         look_password.setOnClickListener(this);
         AutoUtils.auto(findViewById(R.id.auto_1));
         AutoUtils.auto(weiXin_iv);
-
         findViewById(R.id.user_login).setOnClickListener(this);
         findViewById(R.id.tv_forget_password).setOnClickListener(this);
         findViewById(R.id.weiXin_iv).setOnClickListener(this);
