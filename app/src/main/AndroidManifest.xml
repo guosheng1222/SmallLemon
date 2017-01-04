@@ -26,14 +26,14 @@
         <!--启动界面-->
         <activity
             android:name=".LaunchActivity"
-            android:theme="@style/LaunchActivity"></activity>
-        <!-- 登陆界面 -->
-        <activity
-            android:name=".LoginActivity"
-            android:launchMode="singleTask">
+            android:theme="@style/LaunchActivity">
+        </activity>
+        <!--登录界面-->
         <activity
             android:name=".LoginActivity"
             android:launchMode="singleTask" />
+        <!-- 注册界面 -->
+        <activity android:name=".RegisterActivity" />
         <!-- 主界面 -->
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -41,23 +41,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <!-- 主界面 -->
-        <activity android:name=".MainActivity"></activity>
 
-        <activity android:name=".LoginForgetActivity" />
+
+
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".InviteFriendActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".FeedBackActivity" />
-        <!-- 注册界面 -->
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".NoteActivity"></activity>
+        <activity android:name=".NoteActivity"/>
         <activity android:name=".FeedBackActivity" />
-        <!--注册界面-->
-        <activity android:name=".RegisterActivity" />
     </application>
 
 </manifest>

@@ -35,7 +35,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by lenovo on 2016/12/28.
  */
 
-public class MineFragment extends Fragment {
+public class MineFragment extends Fragment implements View.OnClickListener {
     private LoginBean.DataBean current_user;
     private View view;
     private ImageView iv_user_head;
@@ -87,7 +87,7 @@ public class MineFragment extends Fragment {
             current_user = MyApplication.CURRENT_USER;
             Glide.with(getActivity()).load(current_user.getImg()).into(iv_user_head);
             tv_user_name.setText(current_user.getUserName());
-            tv_guanzhu_count.setText(current_user.getFansCount()+"");
+            tv_guanzhu_count.setText(current_user.getFansCount() + "");
             if (current_user.getGender() == 1) {
                 //设置男
             } else {
@@ -144,7 +144,7 @@ public class MineFragment extends Fragment {
                 Intent intent = new Intent();
                 intent.setAction("android.media.action.IMAGE_CAPTURE");
                 intent.addCategory("android.intent.category.DEFAULT");
-                startActivityForResult(intent,101);
+                startActivityForResult(intent, 101);
                 popupWindow.dismiss();
             }
         });
@@ -183,8 +183,6 @@ public class MineFragment extends Fragment {
     }
 
 
-
-
     /**
      * 相册回调
      */
@@ -214,11 +212,10 @@ public class MineFragment extends Fragment {
 
                         Bundle bundle = data.getExtras();   //获取data数据集合
                         Bitmap bitmap = (Bitmap) bundle.get("data");        //获得data数据
-                        Log.i("TAG", "拍照回传bitmap："+bitmap);
+                        Log.i("TAG", "拍照回传bitmap：" + bitmap);
                         iv_user_head.setImageBitmap(bitmap);
 
                     }
-
 
 
                     break;
