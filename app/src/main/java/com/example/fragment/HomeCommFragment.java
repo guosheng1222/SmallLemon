@@ -21,4 +21,13 @@ public class HomeCommFragment extends Fragment {
         View view= CommonUtils.inflate(R.layout.home_community_fragment);
         return view;
     }
+    public static Fragment getFragment(String state,int page)
+    {
+        Fragment f1=new HomeCommFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString("state",state);
+        bundle.putInt("page",page);
+        f1.setArguments(bundle);
+        return f1;
+    }
 }

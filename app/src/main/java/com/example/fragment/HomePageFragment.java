@@ -1,24 +1,32 @@
 package com.example.fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.app.MyApplication;
 import com.example.base.BaseData;
 import com.example.bean.BeanHoliday;
 import com.example.bean.HomeRadioStation;
 import com.example.smalllemon.NoteActivity;
 import com.example.smalllemon.R;
-import com.example.utils.LogUtils;
+import com.example.utils.CommonUtils;
 import com.example.utils.UrlUtils;
 import com.example.view.InfoView;
 import com.example.view.RotateDownPageTransformer;
@@ -44,6 +52,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private TextView home_holiday_name;
     private TextView home_holiday_date;
     private ImageView noteLogo;
+    private TextView main_title_text;
+    private CheckBox home_cb_left;
+    private CheckBox home_cb_right;
+    private TextView home_popup_sure_tv;
+    private PopupWindow pop;
 
     @Nullable
     @Override
@@ -53,6 +66,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         if (21 > android.os.Build.VERSION.SDK_INT) {
             view.setPadding(0, 0, 0, 0);
         }
+        //开启五个任务
         initInfoView(view);
         initHoliday();
         //initCommunityVp();
@@ -61,10 +75,23 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
 
     private void initCommunityVp() {
+        home_community_vp.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                Fragment f1 = HomeCommFragment.getFragment(MyApplication.CURRENT_USER.getGender() == 1 ? "恋爱期" : "单身期", position);
+                return f1;
+            }
 
+            @Override
+            public int getCount() {
+                return 4;
+            }
+        });
     }
 
-    //助攻节日
+    /**
+     * 助攻节日
+     */
     private void initHoliday() {
         new BaseData() {
             @Override
@@ -83,14 +110,19 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 } else {
                     home_holiday_time.setText(l2 + "");
                 }
-                LogUtils.d("AAA", "*********" + l1 / 1000 / 60 / 60 / 24);
             }
         }.getDataForGet(getActivity(), UrlUtils.holiday1);
     }
 
+    /**
+     * 初始化view
+     *
+     * @return
+     */
     private View initView() {
         View view = View.inflate(getActivity(), R.layout.fragment_home_page, null);
         main_dot_lin = (LinearLayout) view.findViewById(R.id.main_dot_lin);
+        main_title_text = (TextView) view.findViewById(R.id.main_title_text);
         home_holiday_image = (ImageView) view.findViewById(R.id.home_holiday_image);
         home_holiday_name = (TextView) view.findViewById(R.id.home_holiday_name);
         home_holiday_date = (TextView) view.findViewById(R.id.home_holiday_date);
@@ -98,9 +130,9 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         home_community_vp = (ViewPager) view.findViewById(R.id.home_community_vp);
         home_community_dot_lin = (LinearLayout) view.findViewById(R.id.home_community_dot_lin);
         noteLogo = (ImageView) view.findViewById(R.id.imageView2);
-
+        main_title_text.setText(MyApplication.CURRENT_USER.getGender() == 1 ? "恋爱期" : "单身期");
         noteLogo.setOnClickListener(this);
-
+        main_title_text.setOnClickListener(this);
         return view;
     }
 
@@ -122,6 +154,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * 初始化轮播图
+     *
+     * @param view
+     */
     private void initInfoView(View view) {
         infoView = (InfoView) view.findViewById(R.id.home_vp);
         new BaseData() {
@@ -180,7 +217,62 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), NoteActivity.class);
                 startActivity(intent);
                 break;
-
+            case R.id.main_title_text:
+                View pop_view = CommonUtils.inflate(R.layout.home_fragment_popupwindow);
+                home_cb_left = (CheckBox) pop_view.findViewById(R.id.home_cb_left);
+                home_cb_right = (CheckBox) pop_view.findViewById(R.id.home_cb_right);
+                home_popup_sure_tv = (TextView) pop_view.findViewById(R.id.home_popup_sure_tv);
+                if (MyApplication.CURRENT_USER.getGender()==1) {
+                    //恋爱期
+                    home_cb_left.setChecked(true);
+                } else {
+                   home_cb_right.setChecked(true);
+                }
+                pop = new PopupWindow(pop_view, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                pop.setBackgroundDrawable(new BitmapDrawable());
+                pop.setOutsideTouchable(true);
+                pop.setFocusable(true);
+                backgroundAlpha(100);
+                pop.showAtLocation(view, Gravity.CENTER, 0, 0);
+                pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        backgroundAlpha(10);
+                    }
+                });
+                home_cb_left.setOnClickListener(this);
+                home_cb_right.setOnClickListener(this);
+                home_popup_sure_tv.setOnClickListener(this);
+                break;
+            case R.id.home_popup_sure_tv:
+                if (home_cb_left.isChecked()) {
+                    MyApplication.CURRENT_USER.setGender(1);
+                } else if (home_cb_right.isChecked()) {
+                    MyApplication.CURRENT_USER.setGender(0);
+                }
+                main_title_text.setText(MyApplication.CURRENT_USER.getGender() == 1 ? "恋爱期" : "单身期");
+                pop.dismiss();
+                break;
+            case R.id.home_cb_left:
+                home_cb_right.setChecked(false);
+                home_cb_left.setChecked(true);
+                break;
+            case R.id.home_cb_right:
+                home_cb_left.setChecked(false);
+                home_cb_right.setChecked(true);
+                break;
         }
+    }
+
+    /**
+     * 背景变暗
+     *
+     * @param bgAlpha 变暗程度
+     */
+    public void backgroundAlpha(float bgAlpha) {
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getActivity().getWindow().setAttributes(lp);
     }
 }

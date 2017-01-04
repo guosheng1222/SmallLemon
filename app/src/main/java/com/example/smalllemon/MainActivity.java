@@ -15,14 +15,18 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.app.MyApplication;
 import com.example.base.BaseActivity;
 import com.example.base.BaseData;
 import com.example.fragment.CommunityFragment;
 import com.example.fragment.HomePageFragment;
 import com.example.fragment.MineFragment;
 import com.example.utils.CommonUtils;
+import com.example.utils.DBUtils;
 import com.example.view.NoScrollViewPager;
 import com.zhy.autolayout.utils.AutoUtils;
+
+import org.xutils.ex.DbException;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -46,7 +50,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         blackColor = CommonUtils.getResourseColor(R.color.colorBlackText);
         grayColor = CommonUtils.getResourseColor(R.color.colorGrayText);
-
         setContentView(R.layout.activity_main);
         //初始化控件
         initView();
@@ -236,6 +239,16 @@ public class MainActivity extends BaseActivity {
                     return;
             }
 
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            DBUtils.getDb().saveOrUpdate(MyApplication.CURRENT_USER);
+        } catch (DbException e) {
+            e.printStackTrace();
         }
     }
 }
