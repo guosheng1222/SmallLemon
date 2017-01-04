@@ -2,6 +2,8 @@ package com.example.smalllemon;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.InputType;
@@ -9,6 +11,8 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,7 +34,28 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private TextView tv_password_null;
     private CheckBox look_password;
     private ImageView weiXin_iv;
+    private View login_anim;
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    //成功
+                    login_anim.findViewById(R.id.loadView).setVisibility(View.GONE);
+                    login_anim.findViewById(R.id.login_Successful).setVisibility(View.VISIBLE);
+                    intentActivity(MainActivity.class);
+                    finish();
+                    break;
+                case 1:
+                    //失败
+                    String message = (String) msg.obj;
+                    login_anim.setVisibility(View.GONE);
+                    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +67,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     /**
+     * 开始登录的缩放动画
+     */
+    public void startAnim() {
+        //动画隐藏
+        login_anim.setVisibility(View.VISIBLE);
+        ScaleAnimation scaleAnimation = new ScaleAnimation(0.5f, 1.0f, 0.5f, 1.0f, Animation.RELATIVE_TO_PARENT, 0.5f, Animation.RELATIVE_TO_PARENT, 0.5f);
+        scaleAnimation.setDuration(500);
+        login_anim.startAnimation(scaleAnimation);
+    }
+
+    /**
      * 初始化控件
      */
     private void initView() {
+        //动画的一些控件
+        login_anim = findViewById(R.id.login_anim);
+        login_anim.setVisibility(View.GONE);
+
         login_et_phone = (AppCompatEditText) findViewById(R.id.login_et_phone);
         login_et_phone.addTextChangedListener(new Watcher(login_et_phone));
         tv_phone_null = (TextView) findViewById(R.id.tv_phone_null);
@@ -56,6 +96,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         look_password.setOnClickListener(this);
         AutoUtils.auto(findViewById(R.id.auto_1));
         AutoUtils.auto(weiXin_iv);
+
 
         findViewById(R.id.user_login).setOnClickListener(this);
         findViewById(R.id.tv_forget_password).setOnClickListener(this);
@@ -114,7 +155,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else if (TextUtils.isEmpty(password)) {
             tv_password_null.setVisibility(View.VISIBLE);
         } else {
-            //核实用户信息
+            //动画显示登录界面隐藏
+            startAnim();
             new BaseData() {
                 @Override
                 public void onSuccessData(String data) {
@@ -122,12 +164,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     switch (registerMessage.getStatus()) {
                         //成功
                         case "ok":
-//                            Toast.makeText(LoginActivity.this, registerMessage.getData().toString(), Toast.LENGTH_SHORT).show();
-                            intentActivity(MainActivity.class);
+                            //登录成功
+                            handler.sendEmptyMessageDelayed(0, 3000);
                             break;
                         //失败
                         case "error":
-                            Toast.makeText(LoginActivity.this, registerMessage.getData().getMessage(), Toast.LENGTH_SHORT).show();
+                            Message message = handler.obtainMessage();
+                            message.what = 1;
+                            message.obj = registerMessage.getData().getMessage();
+                            handler.sendMessageDelayed(message, 2000);
                             break;
                     }
                 }
