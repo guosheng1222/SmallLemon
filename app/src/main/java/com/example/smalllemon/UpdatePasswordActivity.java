@@ -33,8 +33,6 @@ public class UpdatePasswordActivity extends BaseActivity implements View.OnClick
         new_password = (EditText) findViewById(R.id.new_password);
         //点击事件
         hide.setOnClickListener(this);
-        return_back.setOnClickListener(this);
-
 
     }
 

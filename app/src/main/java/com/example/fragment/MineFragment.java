@@ -1,5 +1,6 @@
 package com.example.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,14 +11,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.smalllemon.BasicDocumentActivity;
+import com.example.smalllemon.FeedBackActivity;
 import com.example.smalllemon.R;
+import com.example.smalllemon.SettingActivity;
 import com.zhy.autolayout.AutoLinearLayout;
 
 /**
  * Created by lenovo on 2016/12/28.
  */
 
-public class MineFragment extends Fragment {
+public class MineFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private ImageView iv_user_head;
@@ -57,5 +61,41 @@ public class MineFragment extends Fragment {
         setting = (AutoLinearLayout) view.findViewById(R.id.setting);
         mine_recyclerView = (RecyclerView) view.findViewById(R.id.mine_recyclerView);
 
+        tv_guanzhu.setOnClickListener(this);
+        base_info.setOnClickListener(this);
+        mine_card.setOnClickListener(this);
+        suggest_back.setOnClickListener(this);
+        setting.setOnClickListener(this);
     }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_guanzhu:
+
+                break;
+            case R.id.base_info:
+                enterActivity(BasicDocumentActivity.class);
+                break;
+            case R.id.mine_card:
+                break;
+            case R.id.suggest_back:
+                enterActivity(FeedBackActivity.class);
+                break;
+            case R.id.setting:
+                enterActivity(SettingActivity.class);
+                break;
+        }
+
+    }
+
+    /**
+     * 跳转界面
+     */
+    private void enterActivity(Class c) {
+        Intent intent = new Intent(getActivity(), c);
+        getActivity().startActivity(intent);
+    }
+
 }

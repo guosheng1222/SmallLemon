@@ -1,11 +1,11 @@
 package com.example.fragment;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,6 +46,7 @@ public class ComChoicenceFragment extends Fragment {
     private FloatingActionButton fab;
     private ArrayList<CommunityBean.DataBean> dataList = new ArrayList<>();
     private RecyclerAdapter<CommunityBean.DataBean> recyclerAdapter;
+    private int lastPosition=-1;
 
     @Nullable
     @Override
@@ -100,6 +101,15 @@ public class ComChoicenceFragment extends Fragment {
 
             @Override
             public void convert(RecyclerHolder holder, final CommunityBean.DataBean data, int position) {
+
+                if(position>lastPosition){
+                    View itemView = holder.getItemView();
+                    ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(itemView, View.TRANSLATION_Y, 300, 200, 100, 0);
+                    objectAnimator.setDuration(500);
+                    objectAnimator.start();
+                    lastPosition=position;
+                }
+
                 //标题
                 holder.setText(R.id.title_tv, data.getTitle());
                 //内容

@@ -1,5 +1,6 @@
 package com.example.smalllemon;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,9 +12,9 @@ import android.widget.TextView;
 import com.example.adapter.RecyclerAdapter;
 import com.example.base.BaseData;
 import com.example.bean.Job;
-import com.example.utils.LogUtils;
 import com.example.utils.UrlUtils;
 import com.google.gson.Gson;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.List;
 
@@ -46,30 +47,40 @@ public class JobActivity extends AppCompatActivity {
         new BaseData() {
             @Override
             public void onSuccessData(String data) {
-                Gson gson=new Gson();
+                Gson gson = new Gson();
                 final Job job = gson.fromJson(data, Job.class);
                 List<Job.DataBean> dataBeen = job.getData();
                 RecyclerAdapter<Job.DataBean> recyclerAdapter = new RecyclerAdapter<Job.DataBean>(JobActivity.this, dataBeen, R.layout.job_layout) {
                     @Override
                     public void convert(RecyclerHolder holder, Job.DataBean data, int position) {
-                        TextView job_title = holder.findView(R.id.job_title);
+                        final TextView job_title = holder.findView(R.id.job_title);
                         job_title.setText(data.getTitle());
-                        RecyclerView recycler = holder.findView(R.id.recycler);
+                        final RecyclerView recycler = holder.findView(R.id.recycler);
                         recycler.setLayoutManager(new LinearLayoutManager(JobActivity.this));
                         List<Job.DataBean.ChildrenBean> children = data.getChildren();
-                        LogUtils.d("AAAAAA","*****"+children.size());
-                        recycler.setAdapter(new RecyclerAdapter<Job.DataBean.ChildrenBean>(JobActivity.this,children,R.layout.job_item_layout) {
+                        recycler.setAdapter(new RecyclerAdapter<Job.DataBean.ChildrenBean>(JobActivity.this, children, R.layout.job_item_layout) {
+
                             @Override
                             public void convert(RecyclerHolder holder, Job.DataBean.ChildrenBean data, int position) {
                                 TextView job_name = holder.findView(R.id.job_name);
+                                AutoLinearLayout recycler_line = holder.findView(R.id.recycler_line);
                                 job_name.setText(data.getShowName());
+                                startAnimation(holder.getItemView());
                             }
                         });
 
                     }
                 };
-                   show_lv.setAdapter(recyclerAdapter);
+                show_lv.setAdapter(recyclerAdapter);
             }
-        }.getDataForGet(JobActivity.this, UrlUtils.JobUrl,BaseData.NO_TIME);
+        }.getDataForGet(JobActivity.this, UrlUtils.JobUrl, BaseData.NO_TIME);
     }
+
+    public void startAnimation(View view) {
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 400, 300,  0);
+        objectAnimator.setDuration(500);
+        objectAnimator.start();
+    }
+
+
 }

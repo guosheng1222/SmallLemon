@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="100px"
     >
 
-    <TextView
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60px"
-        android:text="ShowTitle"
-        android:textSize="50px"
-        android:gravity="center_vertical"
-        android:id="@+id/job_name"
-        />
+        android:layout_height="100px"
+        android:orientation="vertical"
+        android:id="@+id/recycler_line"
+        >
+        <TextView
+            android:id="@+id/job_name"
+            android:layout_width="match_parent"
+            android:layout_height="98px"
+            android:gravity="center_vertical"
+            android:paddingLeft="30px"
+            android:text="ShowTitle"
+            android:textSize="50px" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#ccc" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
 
 
 </com.zhy.autolayout.AutoLinearLayout>
