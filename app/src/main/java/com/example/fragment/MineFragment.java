@@ -52,6 +52,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView take_picture;
     private TextView photo_album;
     private PopupWindow popupWindow;
+    private ImageView gender;
 
     @Nullable
     @Override
@@ -83,6 +84,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         suggest_back = (AutoLinearLayout) view.findViewById(R.id.suggest_back);
         setting = (AutoLinearLayout) view.findViewById(R.id.setting);
         mine_recyclerView = (RecyclerView) view.findViewById(R.id.mine_recyclerView);
+        gender = (ImageView) view.findViewById(R.id.gender);
         iv_user_head.setOnClickListener(this);
 
         /**
@@ -95,8 +97,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             tv_guanzhu_count.setText(current_user.getFansCount() + "");
             if (current_user.getGender() == 1) {
                 //设置男
+                gender.setImageResource(R.drawable.profile_male);
             } else {
                 //设置女
+                gender.setImageResource(R.drawable.profile_female);
             }
         }
 
@@ -127,7 +131,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                         backgroundAlpha(10);
                     }
                 });
-
                 break;
         }
     }
@@ -157,18 +160,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 Log.i("TAG", "跳了跳了: ");
-
                 //图库意图
                 Intent intent = new Intent();
-
                 intent.setType("image/*");
-
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-
                 startActivityForResult(intent, 100);
-
                 popupWindow.dismiss();
-
             }
         });
 
@@ -198,32 +195,22 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 100:
-
                     ContentResolver contentResolver = getActivity().getContentResolver();
                     try {
-
                         Bitmap bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(data.getData()));
                         iv_user_head.setImageBitmap(bitmap);
-
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                     break;
-
-
                 case 101:
                     if (requestCode == 101) {    //拍照取图
-
                         Bundle bundle = data.getExtras();   //获取data数据集合
                         Bitmap bitmap = (Bitmap) bundle.get("data");        //获得data数据
                         Log.i("TAG", "拍照回传bitmap：" + bitmap);
                         iv_user_head.setImageBitmap(bitmap);
-
                     }
-
-
                     break;
-
                 default:
                     return;
             }
