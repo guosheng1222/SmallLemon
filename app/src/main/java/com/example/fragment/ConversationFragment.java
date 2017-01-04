@@ -11,23 +11,16 @@ import com.example.smalllemon.R;
 import com.example.utils.CommonUtils;
 
 /**
- * Created by PC on 2017/1/3.
+ * Created by lenovo on 2017/1/4.
  */
 
-public class HomeCommFragment extends Fragment {
+public class ConversationFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view= CommonUtils.inflate(R.layout.home_community_fragment);
+
+        View view = CommonUtils.inflate(R.layout.fragment_conversation);
+
         return view;
-    }
-    public static Fragment getFragment(String state,int page)
-    {
-        Fragment f1=new HomeCommFragment();
-        Bundle bundle=new Bundle();
-        bundle.putString("state",state);
-        bundle.putInt("page",page);
-        f1.setArguments(bundle);
-        return f1;
     }
 }

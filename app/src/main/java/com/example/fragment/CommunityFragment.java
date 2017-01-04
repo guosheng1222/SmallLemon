@@ -1,5 +1,6 @@
 package com.example.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.smalllemon.NoteActivity;
 import com.example.smalllemon.R;
 
 import java.util.ArrayList;
@@ -33,6 +35,15 @@ public class CommunityFragment extends Fragment {
         if (21 > android.os.Build.VERSION.SDK_INT) {
             view.setPadding(0, 0, 0, 0);
         }
+
+
+        view.findViewById(R.id.note_logo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NoteActivity.class);
+                startActivity(intent);
+            }
+        });
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
         community_viewPager = (ViewPager) view.findViewById(R.id.community_viewPager);
         addFragment();
@@ -65,6 +76,7 @@ public class CommunityFragment extends Fragment {
         });
         community_viewPager.setCurrentItem(1);
     }
+
 
     /**
      * 添加fragment
