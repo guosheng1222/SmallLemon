@@ -1,7 +1,6 @@
 package com.example.smalllemon;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
@@ -9,7 +8,6 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,17 +17,13 @@ import com.example.app.MyApplication;
 import com.example.base.BaseActivity;
 import com.example.base.BaseData;
 import com.example.bean.LoginBean;
-import com.example.bean.RegisterMessage;
 import com.example.utils.DBUtils;
 import com.google.gson.Gson;
 import com.zhy.autolayout.utils.AutoUtils;
 
-import org.xutils.db.DbModelSelector;
 import org.xutils.ex.DbException;
 
 import java.util.List;
-
-import static android.media.CamcorderProfile.get;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -47,7 +41,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            List<LoginBean.DataBean> select = DBUtils.getDb().selector(LoginBean.DataBean.class).where("isLogin", "=", "true").findAll();
+//            List<LoginBean.DataBean> select = DBUtils.getDb().selector(LoginBean.DataBean.class).where("IS_LOGIN", "=", "true").findAll();
+            List<LoginBean.DataBean> select = DBUtils.getDb().findAll(LoginBean.DataBean.class);
             if (select != null && select.size() > 0) {
                 //设置当前登陆用户
                 MyApplication.CURRENT_USER = select.get(0);
@@ -158,13 +153,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     //判断2
                     if (loginBean.isSuccess()) {
                         //登陆成功
-                        jumpMainActivity();
                         //保存到数据库
                         try {
                             //退出的时候必须删除
-                            loginBean.getData().setLogin(true);
+//                            loginBean.getData().setLogin(true);
                             DBUtils.getDb().saveOrUpdate(loginBean.getData());
                             MyApplication.CURRENT_USER = loginBean.getData();
+                            jumpMainActivity();
                         } catch (DbException e) {
                             e.printStackTrace();
                         }
