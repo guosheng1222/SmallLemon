@@ -177,17 +177,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
         switch (view.getId()) {
             case R.id.imageView2:
-
                 Intent intent = new Intent(getActivity(), NoteActivity.class);
-
                 startActivity(intent);
-
-
                 break;
 
         }
-
-
     }
-
 }
