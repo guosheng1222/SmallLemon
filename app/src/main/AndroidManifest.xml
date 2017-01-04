@@ -23,7 +23,7 @@
             android:name="design_height"
             android:value="1920" />
 
-        <!-- 启动界面 -->
+        <!--启动界面-->
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/LaunchActivity"></activity>

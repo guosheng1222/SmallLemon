@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingTop="69px">
 
@@ -21,7 +21,7 @@
             android:gravity="center"
             android:text="单身期"
             android:textColor="@color/colorBlackText"
-            android:textSize="50px" />
+            android:textSize="40px" />
 
 
         <ImageView
@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:layout_weight="3"
-            android:padding="20px"
+            android:padding="30px"
             android:src="@drawable/home_nvbar_logo" />
 
 
@@ -39,173 +39,185 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:padding="30px"
+            android:padding="45px"
             android:src="@drawable/home_notice" />
-
     </com.zhy.autolayout.AutoLinearLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ScrollView
             android:id="@+id/main_rg_scroll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-        <com.zhy.autolayout.AutoLinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!--轮播图-->
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="530px"
-                android:clipChildren="false">
-                <com.example.view.InfoView
-                    android:id="@+id/home_vp"
-                    android:layout_width="match_parent"
-                    android:layout_height="430px"
-                    android:layout_marginLeft="140px"
-                    android:layout_marginRight="140px"
-                    android:layout_marginTop="30px"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-                <com.zhy.autolayout.AutoLinearLayout
-                    android:id="@+id/main_dot_lin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/home_vp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20px"
-                    android:orientation="horizontal" />
-            </com.zhy.autolayout.AutoRelativeLayout>
-            <!--助攻节日-->
-            <com.zhy.autolayout.AutoLinearLayout
-                android:padding="20px"
-                android:background="@color/colorWhite"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="500px">
-               <com.zhy.autolayout.AutoLinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
-                   <LinearLayout
-                   android:layout_gravity="center_vertical"
-                   android:background="@mipmap/navpoint_selected2x"
-                   android:layout_width="10px"
-                   android:layout_height="30px"/>
-                   <TextView
-                       android:layout_marginLeft="20px"
-                       android:textColor="@color/colorBlackText"
-                       android:text="助攻节日"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content" />
-               </com.zhy.autolayout.AutoLinearLayout>
 
-                <com.zhy.autolayout.AutoLinearLayout
-                    android:orientation="horizontal"
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!--轮播图-->
+                <com.zhy.autolayout.AutoRelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                   <android.support.v7.widget.CardView
-                       android:layout_marginTop="20px"
-                       android:layout_width="350px"
-                       android:layout_height="match_parent"
-                       app:cardCornerRadius="20px"
-                       >
-                       <ImageView
-                           android:id="@+id/main_holiday_image"
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent" />
-                   </android.support.v7.widget.CardView>
+                    android:layout_height="530px"
+                    android:clipChildren="false">
+
+                    <com.example.view.InfoView
+                        android:id="@+id/home_vp"
+                        android:layout_width="match_parent"
+                        android:layout_height="430px"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="140px"
+                        android:layout_marginRight="140px"
+                        android:layout_marginTop="30px" />
+
+                    <!--小点-->
                     <com.zhy.autolayout.AutoLinearLayout
-                        android:orientation="vertical"
+                        android:id="@+id/main_dot_lin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/home_vp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal" />
+                </com.zhy.autolayout.AutoRelativeLayout>
+                <!--助攻节日-->
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="500px"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:padding="20px">
+
+                    <!--助攻节日标题-->
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="10px"
+                            android:layout_height="30px"
+                            android:layout_gravity="center_vertical"
+                            android:background="@mipmap/navpoint_selected2x" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20px"
+                            android:text="助攻节日"
+                            android:textColor="@color/colorBlackText" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+                    <!--助攻节日内容-->
+                    <com.zhy.autolayout.AutoLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                        <TextView
-                            android:layout_marginTop="20px"
-                            android:layout_gravity="center_horizontal"
-                            android:textColor="@color/colorGrayText"
-                            android:textSize="90px"
-                            android:text="倒计时"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <com.zhy.autolayout.AutoLinearLayout
-                            android:layout_gravity="center_horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="90px"
-                                android:text="25"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                            <TextView
-                                android:layout_marginLeft="20px"
-                                android:textColor="@color/colorBlackText"
-                                android:textSize="60px"
-                                android:text="天"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </com.zhy.autolayout.AutoLinearLayout>
-                        <android.support.v7.widget.CardView
-                            android:layout_gravity="center_horizontal"
-                            app:cardBackgroundColor="#FFD200"
-                            app:cardCornerRadius="50px"
-                            android:layout_marginTop="20px"
-                            android:layout_width="wrap_content"
-                            android:layout_height="100px">
 
-                            <Button
-                                android:textColor="@color/colorWhite"
-                                android:background="#00000000"
-                                android:text="礼物推荐"
+                        <!--助攻节日图片-->
+                        <ImageView
+                            android:layout_width="400px"
+                            android:layout_height="match_parent" />
+                        <!--助攻节日倒计时-->
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <!--倒计时-->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="20px"
+                                android:text="倒计时"
+                                android:textColor="@color/colorGrayText"
+                                android:textSize="90px" />
+
+                            <com.zhy.autolayout.AutoLinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal">
+
+                                <!--多少天-->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="25"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="90px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20px"
+                                    android:text="天"
+                                    android:textColor="@color/colorBlackText"
+                                    android:textSize="60px" />
+                            </com.zhy.autolayout.AutoLinearLayout>
+
+                            <!--礼物推荐按钮-->
+                            <android.support.v7.widget.CardView
                                 android:layout_width="wrap_content"
                                 android:layout_height="100px"
-                                android:id="@+id/button" />
-                        </android.support.v7.widget.CardView>
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="20px"
+                                app:cardBackgroundColor="#FFD200"
+                                app:cardCornerRadius="50px">
+
+                                <Button
+                                    android:id="@+id/button"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="100px"
+                                    android:background="#00000000"
+                                    android:text="礼物推荐"
+                                    android:textColor="@color/colorWhite" />
+                            </android.support.v7.widget.CardView>
+                        </com.zhy.autolayout.AutoLinearLayout>
                     </com.zhy.autolayout.AutoLinearLayout>
                 </com.zhy.autolayout.AutoLinearLayout>
-            </com.zhy.autolayout.AutoLinearLayout>
-            <!--恋乎社区-->
-            <com.zhy.autolayout.AutoLinearLayout
-                android:layout_marginTop="20px"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <!--标题-->
+
+                <!--恋乎社区-->
                 <com.zhy.autolayout.AutoLinearLayout
-                    android:padding="20px"
-                    android:background="@color/colorWhite"
                     android:layout_width="match_parent"
-                    android:layout_height="80px">
-                    <LinearLayout
-                        android:layout_gravity="center_vertical"
-                        android:background="@mipmap/navpoint_selected2x"
-                        android:layout_width="10px"
-                        android:layout_height="30px"/>
-                    <TextView
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20px"
-                        android:textColor="@color/colorBlackText"
-                        android:text="恋乎社区"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:orientation="vertical">
+                    <!--标题-->
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120px"
+                        android:background="@color/colorWhite"
+                        android:padding="20px">
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="10px"
+                            android:layout_height="30px"
+                            android:layout_gravity="center_vertical"
+                            android:background="@mipmap/navpoint_selected2x" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="20px"
+                            android:text="恋乎社区"
+                            android:textColor="@color/colorBlackText" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+                    <!--恋乎社区轮播-->
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/home_community_vp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px" />
+                    <!--小点-->
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:id="@+id/home_community_dot_lin"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20px" />
                 </com.zhy.autolayout.AutoLinearLayout>
-                <!--恋乎社区轮播-->
-                <android.support.v4.view.ViewPager
-                    android:layout_marginTop="20px"
-                    android:id="@+id/home_community_vp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <!--小点-->
-                <com.zhy.autolayout.AutoLinearLayout
-                    android:layout_marginTop="20px"
-                    android:layout_gravity="center_horizontal"
-                    android:id="@+id/home_community_dot_lin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
             </com.zhy.autolayout.AutoLinearLayout>
-        </com.zhy.autolayout.AutoLinearLayout>
         </ScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
+
 </com.zhy.autolayout.AutoLinearLayout>
