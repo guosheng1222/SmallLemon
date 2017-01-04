@@ -3,7 +3,9 @@ package com.example.fragment;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -106,7 +108,7 @@ public class ComWholeFragment extends Fragment {
                 else
                     content.setText(data.getContent());
                 //图片
-                List<CommunityBean.DataBean.ImgsBean> imgs = data.getImgs();
+                final List<CommunityBean.DataBean.ImgsBean> imgs = data.getImgs();
                 ViewGroup imageGroup = holder.findView(R.id.view_group);
                 if (imgs == null || imgs.size() == 0) {
                     imageGroup.setVisibility(View.GONE);
@@ -114,7 +116,16 @@ public class ComWholeFragment extends Fragment {
                     imageGroup.setVisibility(View.VISIBLE);
                     for (int i = 0; i < 3; i++) {
                         ImageView childAt = (ImageView) imageGroup.getChildAt(i);
-                        if (imgs.size() > (i + 1) && !TextUtils.isEmpty(imgs.get(i).getOriginalImg())) {
+                        if (imgs.size() > i && !TextUtils.isEmpty(imgs.get(i).getOriginalImg())) {
+                            childAt.setVisibility(View.VISIBLE);
+                            final int finalI = i;
+                            childAt.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    DialogFragment photoViewInstance = PhotoFragment.getPhotoViewInstance(imgs.get(finalI).getOriginalImg());
+                                    photoViewInstance.show(getActivity().getSupportFragmentManager(), "dialogFragment");
+                                }
+                            });
                             Glide.with(getActivity()).load(imgs.get(i).getOriginalImg()).into(childAt);
                         } else {
                             childAt.setVisibility(View.GONE);
