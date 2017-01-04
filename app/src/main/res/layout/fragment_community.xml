@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="@dimen/pad_top">
+    android:paddingTop="69px">
 
+    <!--title-->
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="140px">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorWhite">
 
         <ImageView
             android:layout_width="0px"
@@ -24,8 +26,8 @@
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            app:tabIndicatorColor="#ff0000"
-            app:tabSelectedTextColor="#00ff00"
+            app:tabIndicatorColor="#FFDA44"
+            app:tabSelectedTextColor="#FFDA44"
             app:tabTextColor="#000" />
 
         <ImageView
@@ -33,7 +35,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:padding="30px"
+            android:padding="45px"
             android:src="@drawable/home_notice" />
 
     </com.zhy.autolayout.AutoLinearLayout>

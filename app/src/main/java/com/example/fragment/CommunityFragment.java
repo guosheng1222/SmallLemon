@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.smalllemon.R;
-import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;
 
@@ -23,13 +22,17 @@ public class CommunityFragment extends Fragment {
 
     private TabLayout tabLayout;
     private ViewPager community_viewPager;
-    String[] tabArray = new String[]{"模板", "精选", "全部"};
+    String[] tabArray = new String[]{"版块", "精选", "全部"};
     private ArrayList<Fragment> fragmentList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), R.layout.fragment_community, null);
+        //动态设置状态栏
+        if (21 > android.os.Build.VERSION.SDK_INT) {
+            view.setPadding(0, 0, 0, 0);
+        }
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
         community_viewPager = (ViewPager) view.findViewById(R.id.community_viewPager);
         addFragment();
@@ -42,6 +45,7 @@ public class CommunityFragment extends Fragment {
      * 适配器
      */
     private void setAdapter() {
+        community_viewPager.setOffscreenPageLimit(2);
         community_viewPager.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -59,6 +63,7 @@ public class CommunityFragment extends Fragment {
                 return tabArray[position];
             }
         });
+        community_viewPager.setCurrentItem(1);
     }
 
     /**

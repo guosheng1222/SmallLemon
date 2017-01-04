@@ -56,11 +56,11 @@
                 android:paddingLeft="15px" />
         </com.zhy.autolayout.AutoLinearLayout>
 
-        <!--分割线-->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:background="#22000000" />
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#22000000" />
 
         <TextView
             android:id="@+id/tv_phone_null"
@@ -177,26 +177,41 @@
         </com.andexert.library.RippleView>
 
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:gravity="center">
+
+        <View
+            android:layout_width="0px"
+            android:layout_height="2px"
+            android:layout_weight="1"
+            android:background="#22000000" />
+
+        <TextView
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30px"
-            android:gravity="center">
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="使用其他社交账号登录"
+            android:textColor="#77000000" />
 
-            <View
-                android:layout_width="0px"
-                android:layout_height="2px"
-                android:layout_weight="1"
-                android:background="#22000000" />
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="使用其他社交账号登录"
-                android:textColor="#77000000" />
-
+        <View
+            android:layout_width="0px"
+            android:layout_height="2px"
+            android:layout_weight="1"
+            android:background="#22000000" />
+    </com.zhy.autolayout.AutoLinearLayout>
+    <!--微信-->
+    <com.andexert.library.RippleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50px"
+        app:rv_alpha="@android:integer/config_mediumAnimTime"
+        app:rv_color="#2CB144"
+        app:rv_type="doubleRipple">
             <View
                 android:layout_width="0px"
                 android:layout_height="2px"
@@ -214,52 +229,52 @@
             app:rv_color="#2CB144"
             app:rv_type="doubleRipple">
 
-            <ImageView
-                android:id="@+id/weiXin_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/login_wechat_btn2" />
-        </com.andexert.library.RippleView>
-
-
-        <TextView
+        <ImageView
+            android:id="@+id/weiXin_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10px"
-            android:text="微信" />
+            android:src="@mipmap/login_wechat_btn2" />
+    </com.andexert.library.RippleView>
 
-        <com.zhy.autolayout.AutoRelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="100px"
-                android:gravity="center"
-                android:text="还没有账号,立即去"
-                android:textSize="12sp"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10px"
+        android:text="微信" />
 
-                />
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-            <!--注册-->
-            <TextView
-                android:id="@+id/tv_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/text"
-                android:layout_toRightOf="@+id/text"
-                android:gravity="center"
-                android:text="注册"
-                android:textColor="#FFD200"
-                android:textSize="15sp" />
-        </com.zhy.autolayout.AutoRelativeLayout>
-    </com.zhy.autolayout.AutoLinearLayout>
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100px"
+            android:gravity="center"
+            android:text="还没有账号,立即去"
+            android:textSize="12sp"
+
+            />
+
+        <!--注册-->
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/text"
+            android:layout_toRightOf="@+id/text"
+            android:gravity="center"
+            android:text="注册"
+            android:textColor="#FFD200"
+            android:textSize="15sp" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoLinearLayout>
 
     <include
         android:id="@+id/login_anim"

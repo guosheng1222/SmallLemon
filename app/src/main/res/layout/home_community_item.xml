@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="240px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:maxEms="13"
+            android:text="女生哪些行为最容易让男生兴奋"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/home_community_text" />
+
+        <ImageView
+            android:layout_width="250px"
+            android:layout_height="match_parent"
+            android:layout_gravity="right" />
+    </android.support.v7.widget.CardView>
+</com.zhy.autolayout.AutoLinearLayout>

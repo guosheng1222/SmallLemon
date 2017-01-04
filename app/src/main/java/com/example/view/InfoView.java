@@ -4,11 +4,14 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.smalllemon.R;
+import com.example.utils.CommonUtils;
 
 import java.util.ArrayList;
 
@@ -27,7 +30,6 @@ public class InfoView extends ViewPager {
     public void setInfoViewData(final ArrayList<String> imageList) {
         this.imageList = imageList;
         this.setAdapter(new MyPagerAdapter());
-        this.setCurrentItem(1024);
         super.addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -47,6 +49,11 @@ public class InfoView extends ViewPager {
         });
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return super.onTouchEvent(ev);
+    }
 
     @Override
     public void addOnPageChangeListener(OnPageChangeListener listener) {
@@ -67,10 +74,11 @@ public class InfoView extends ViewPager {
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            final ImageView imageView = new ImageView(getContext());
+            View view= CommonUtils.inflate(R.layout.home_vp_item);
+            ImageView imageView = (ImageView) view.findViewById(R.id.home_vp_item_image);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             Glide.with(getContext()).load(imageList.get(position % imageList.size())).into(imageView);
-            container.addView(imageView);
+            container.addView(view);
             imageView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -78,7 +86,7 @@ public class InfoView extends ViewPager {
                         onSingleItemListener.onSingleItemListener(position % imageList.size());
                 }
             });
-            return imageView;
+            return view;
         }
 
 
