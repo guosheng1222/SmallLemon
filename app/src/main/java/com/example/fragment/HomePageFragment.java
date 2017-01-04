@@ -15,6 +15,7 @@ import com.example.base.BaseData;
 import com.example.bean.HomeRadioStation;
 import com.example.smalllemon.NoteActivity;
 import com.example.smalllemon.R;
+import com.example.smalllemon.RadioStationActivity;
 import com.example.utils.UrlUtils;
 import com.example.view.InfoView;
 import com.example.view.RotateDownPageTransformer;
@@ -35,6 +36,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private ViewPager home_community_vp;
     private LinearLayout home_community_dot_lin;
     private ImageView noteLogo;
+    private HomeRadioStation homeRadioStation;
 
     @Nullable
     @Override
@@ -78,12 +80,17 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * 设置ViewPager
+     *
+     * @param view
+     */
     private void initInfoView(View view) {
         infoView = (InfoView) view.findViewById(R.id.home_vp);
         new BaseData() {
             @Override
             public void onSuccessData(String data) {
-                HomeRadioStation homeRadioStation = new Gson().fromJson(data, HomeRadioStation.class);
+                homeRadioStation = new Gson().fromJson(data, HomeRadioStation.class);
                 ArrayList<String> strings = new ArrayList<>();
                 for (int i = 0; i < homeRadioStation.getData().size(); i++) {
                     String substring = homeRadioStation.getData().get(i).getImg().substring(0, homeRadioStation.getData().get(i).getImg().indexOf("#"));
@@ -122,6 +129,24 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             }
         }.getDataForGet(getActivity(), UrlUtils.main_viewager, BaseData.NO_TIME);
 
+        /**
+         * 点击ViewPager的每一个条目
+         */
+        infoView.setOnSingleItemListener(new InfoView.OnSingleItemListener() {
+            @Override
+            public void onSingleItemListener(int position) {
+
+//                跳转电台的activity并传值
+                Intent intent = new Intent(getActivity(), RadioStationActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("radioInfo", homeRadioStation.getData().get(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+        });
+
+
     }
 
     /**
@@ -137,7 +162,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), NoteActivity.class);
                 startActivity(intent);
                 break;
-
         }
 
 

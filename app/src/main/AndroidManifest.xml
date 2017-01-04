@@ -23,12 +23,11 @@
             android:name="design_height"
             android:value="1920" />
 
-        <!--启动界面-->
+        <!-- 启动界面 -->
         <activity
             android:name=".LaunchActivity"
-            android:theme="@style/LaunchActivity">
-        </activity>
-        <!--登录界面-->
+            android:theme="@style/LaunchActivity"></activity>
+        <!-- 登录界面 -->
         <activity
             android:name=".LoginActivity"
             android:launchMode="singleTask" />
@@ -42,16 +41,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".InviteFriendActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".FeedBackActivity" />
-        <activity android:name=".NoteActivity"/>
+        <activity android:name=".NoteActivity" />
         <activity android:name=".FeedBackActivity" />
+        <activity android:name=".RadioStationActivity"></activity>
     </application>
 
 </manifest>
