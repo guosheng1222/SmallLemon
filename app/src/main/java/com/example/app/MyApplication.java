@@ -15,7 +15,9 @@ import org.xutils.x;
  */
 
 public class MyApplication extends Application {
-
+    public static boolean isPlaying = false;
+    public static boolean isFirst = true;
+    public static String radioName = "没有URL";
     private static Context context;
     private static Handler handler;
     public static LoginBean.DataBean CURRENT_USER;

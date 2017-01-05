@@ -26,16 +26,14 @@
         <!-- 启动界面 -->
         <activity
             android:name=".LaunchActivity"
-            android:theme="@style/LaunchActivity"></activity>
-        <!-- 登录界面 -->
             android:theme="@style/LaunchActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!--登录界面-->
         <activity
             android:name=".LoginActivity"
@@ -48,7 +46,6 @@
         </activity>
 
 
-
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".InviteFriendActivity" />
         <activity android:name=".SettingActivity" />
@@ -56,7 +53,9 @@
         <activity android:name=".FeedBackActivity" />
         <activity android:name=".NoteActivity" />
         <activity android:name=".FeedBackActivity" />
-        <activity android:name=".RadioStationActivity"></activity>
+        <activity android:name=".RadioStationActivity" />
+
+        <service android:name="com.example.mservice.RadioStationService" />
     </application>
 
 </manifest>

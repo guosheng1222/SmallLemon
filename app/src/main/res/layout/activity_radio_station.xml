@@ -9,19 +9,35 @@
         android:layout_width="match_parent"
         android:layout_height="750px">
 
-        <!--<ImageView-->
-            <!--android:id="@+id/frameAnimation_img"-->
-            <!--android:layout_width="150px"-->
-            <!--android:layout_height="70px"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:src="@drawable/ic_launcher" />-->
 
         <ImageView
-            android:id="@+id/playclick3x"
+            android:id="@+id/mediaplay_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+        <!--<ImageView-->
+        <!--android:id="@+id/frameAnimation_img"-->
+        <!--android:layout_width="150px"-->
+        <!--android:layout_height="70px"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:src="@drawable/ic_launcher" />-->
+
+        <ImageView
+            android:id="@+id/video"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/playclick3x" />
+            android:src="@drawable/playclick3x"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_animation"
+            android:layout_width="400px"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/framlayout_animation" />
 
 
         <com.zhy.autolayout.AutoLinearLayout
@@ -86,13 +102,6 @@
             </com.zhy.autolayout.AutoLinearLayout>
         </com.zhy.autolayout.AutoLinearLayout>
 
-        <ImageView
-            android:id="@+id/mediaplay_img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
     </com.zhy.autolayout.AutoRelativeLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>
