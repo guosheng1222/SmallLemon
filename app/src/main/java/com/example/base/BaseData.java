@@ -184,7 +184,10 @@ public abstract class BaseData {
         //读取文件信息
         try {
             NetData first = DBUtils.getDb().selector(NetData.class).where("URL", "=", url).and("EXPIRATION_TIME", "<=", System.currentTimeMillis()).findFirst();
-            return first.getContent();
+            if (first == null)
+                return null;
+            else
+                return first.getContent();
         } catch (DbException e) {
             e.printStackTrace();
         }
