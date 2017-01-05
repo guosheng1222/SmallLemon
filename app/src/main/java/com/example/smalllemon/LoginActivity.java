@@ -10,7 +10,6 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.CheckBox;
@@ -22,6 +21,7 @@ import com.example.app.MyApplication;
 import com.example.base.BaseActivity;
 import com.example.base.BaseData;
 import com.example.bean.LoginBean;
+import com.example.bean.RegisterMessage;
 import com.example.utils.DBUtils;
 import com.google.gson.Gson;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -191,7 +191,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             break;
                     }
                 }
-            }.getDataForGet(LoginActivity.this, "http://114.112.104.151:8203/LvScore_Service/visit/user_login.do?telNum=" + phone + "&password=" + password, BaseData.NO_TIME);*/
+            }.getDataForGet(LoginActivity.this, "http://114.112.104.151:8203/LvScore_Service/visit/user_login.do?telNum=" + phone + "&password=" + password, BaseData.NO_TIME);
 
             new BaseData() {
                 @Override
