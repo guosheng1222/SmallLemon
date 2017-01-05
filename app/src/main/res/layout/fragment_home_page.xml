@@ -114,9 +114,36 @@
                         android:layout_height="match_parent">
 
                         <!--助攻节日图片-->
-                        <ImageView
+                        <android.support.v7.widget.CardView
+                            app:cardCornerRadius="10dp"
                             android:layout_width="400px"
-                            android:layout_height="match_parent" />
+                            app:cardBackgroundColor="#AEBAE5"
+                            android:layout_height="match_parent">
+                            <ImageView
+                            android:layout_marginTop="30px"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/home_holiday_image"
+                            android:layout_width="170px"
+                            android:layout_height="170px" />
+                            <TextView
+                                android:layout_marginTop="60px"
+                                android:textSize="60px"
+                                android:textColor="@color/colorWhite"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:text="春节"
+                                android:id="@+id/home_holiday_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:textSize="@dimen/textSize_normal"
+                                android:layout_marginBottom="30px"
+                                android:textColor="@color/colorWhite"
+                                android:layout_gravity="center_horizontal|bottom"
+                                android:text="1.28"
+                                android:id="@+id/home_holiday_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </android.support.v7.widget.CardView>
                         <!--助攻节日倒计时-->
                         <com.zhy.autolayout.AutoLinearLayout
                             android:layout_width="match_parent"
@@ -139,6 +166,7 @@
 
                                 <!--多少天-->
                                 <TextView
+                                    android:id="@+id/home_holiday_time"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="25"
@@ -154,23 +182,16 @@
                                     android:textSize="60px" />
                             </com.zhy.autolayout.AutoLinearLayout>
 
-                            <!--礼物推荐按钮-->
-                            <android.support.v7.widget.CardView
-                                android:layout_width="wrap_content"
-                                android:layout_height="100px"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20px"
-                                app:cardBackgroundColor="#FFD200"
-                                app:cardCornerRadius="50px">
 
                                 <Button
+                                    android:layout_marginTop="60px"
+                                    android:layout_gravity="center_horizontal"
                                     android:id="@+id/button"
                                     android:layout_width="wrap_content"
                                     android:layout_height="100px"
-                                    android:background="#00000000"
+                                    android:background="@drawable/shape_surprise_bt"
                                     android:text="礼物推荐"
                                     android:textColor="@color/colorWhite" />
-                            </android.support.v7.widget.CardView>
                         </com.zhy.autolayout.AutoLinearLayout>
                     </com.zhy.autolayout.AutoLinearLayout>
                 </com.zhy.autolayout.AutoLinearLayout>

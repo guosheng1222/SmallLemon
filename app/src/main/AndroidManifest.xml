@@ -26,16 +26,33 @@
         <!-- 启动界面 -->
         <activity
             android:name=".LaunchActivity"
-            android:theme="@style/LaunchActivity" />
-        <!-- 登陆界面 -->
+            android:theme="@style/LaunchActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--登录界面-->
         <activity
             android:name=".LoginActivity"
             android:launchMode="singleTask" />
+        <!-- 注册界面 -->
+        <activity android:name=".RegisterActivity" />
         <!-- 主界面 -->
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".LoginForgetActivity" />
+        <activity android:name=".MainActivity">
+
+        </activity>
+
+
+        <activity android:name=".MainActivity"/>
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".InviteFriendActivity" />
+        <activity
+            android:name=".DialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".FeedBackActivity" />
@@ -49,6 +66,17 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.view.WebViewActivity"></activity>
+        <activity android:name=".FeedBackActivity" />
+        <activity android:name=".NoteActivity" />
+        <activity android:name=".FeedBackActivity" />
+        <activity android:name=".RadioStationActivity" />
+
+        <service android:name="com.example.mservice.RadioStationService" />
+        <activity android:name=".BasicDocumentActivity" />
+        <activity android:name=".UpdateNickNameActivity" />
+        <activity android:name=".JobActivity" />
+        <activity android:name=".EmotionActivity" />
+        <activity android:name=".DetailsActivity"/>
     </application>
 
 </manifest>
