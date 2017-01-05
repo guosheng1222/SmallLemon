@@ -28,7 +28,7 @@ public class UrlUtils {
     //恋爱氧气
     public static final String lovingCO2 = "http://www.yulin520.com/a2a/news/sd/list?sign=816863C6854591D9E607BE273A05CE65&ts=1482907765&pageSize=6&page=1";
     //点击查看更多
-    public static final String lookMore = "http://www.yulin520.com/a2a/news/sd/list?sign=4508DEDF231D4E571E987BBE7C6CAB28&ts=1145666944&pageSize=10&page=1";
+    public static final String lookMore = "http://www.yulin520.com/a2a/news/sd/list?sign=4508DEDF231D4E571E987BBE7C6CAB28&ts=1145666944&pageSize=10&page=";
 
     /**
      * 社区接口
