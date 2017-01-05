@@ -27,6 +27,7 @@
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/LaunchActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,8 +47,12 @@
         </activity>
 
 
+        <activity android:name=".MainActivity"/>
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".InviteFriendActivity" />
+        <activity
+            android:name=".DialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".FeedBackActivity" />
@@ -56,6 +61,11 @@
         <activity android:name=".RadioStationActivity" />
 
         <service android:name="com.example.mservice.RadioStationService" />
+        <activity android:name=".BasicDocumentActivity" />
+        <activity android:name=".UpdateNickNameActivity" />
+        <activity android:name=".JobActivity" />
+        <activity android:name=".EmotionActivity" />
+        <activity android:name=".DetailsActivity"/>
     </application>
 
 </manifest>

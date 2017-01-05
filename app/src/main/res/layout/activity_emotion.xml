@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_emotion"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:orientation="vertical"
+    android:background="#F1F1F1"
+    android:fitsSystemWindows="true"
+    >
+
+    <include layout="@layout/activity_title"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="#F1F1F1" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/fall_in_love"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/single"
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_with_shadow">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="单身期"
+                android:textColor="@color/colorBlackText"
+                android:textSize="50px" />
+
+            <ImageView
+                android:layout_width="100px"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingRight="50px"
+                android:src="@drawable/selected"
+                android:visibility="visible" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/love"
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_with_shadow">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="恋爱期"
+                android:textColor="@color/colorBlackText"
+                android:textSize="50px" />
+
+            <ImageView
+                android:layout_width="100px"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingRight="50px"
+                android:src="@drawable/selected"
+                android:visibility="invisible" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>

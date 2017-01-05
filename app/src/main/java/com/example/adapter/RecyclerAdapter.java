@@ -220,5 +220,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAd
             tv.setBackgroundColor(color);
             return this;
         }
+
+
     }
 }

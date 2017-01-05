@@ -6,6 +6,7 @@ package com.example.utils;
  */
 
 public class UrlUtils {
+    public static final String JobUrl = "http://www.yulin520.com/a2a/occupation/menu";
 
 
     public static final String getCode="http://114.112.104.151:8203/LvScore_Service/visit/user_getverificationcode.do?telNum=";

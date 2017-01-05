@@ -1,7 +1,6 @@
 package com.example.smalllemon;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -18,7 +17,6 @@ public class FeedBackActivity extends BaseActivity implements View.OnClickListen
     private TextView hide, title_name;
     private ImageView one;
     private AutoLinearLayout select_one, select_two, select_three, select_four, select_five;
-    private ImageView first_img, second_img, third_img, fourth_img, fifth_img;
     private EditText edit_text_contact;
 
     @Override
@@ -43,12 +41,6 @@ public class FeedBackActivity extends BaseActivity implements View.OnClickListen
         select_three = (AutoLinearLayout) findViewById(R.id.select_three);
         select_four = (AutoLinearLayout) findViewById(R.id.select_four);
         select_five = (AutoLinearLayout) findViewById(R.id.select_five);
-        //图片显示隐藏
-        first_img = (ImageView) findViewById(R.id.first_img);
-        second_img = (ImageView) findViewById(R.id.second_img);
-        third_img = (ImageView) findViewById(R.id.third_img);
-        fourth_img = (ImageView) findViewById(R.id.fourth_img);
-        fifth_img = (ImageView) findViewById(R.id.fifth_img);
 
         select_one.setOnClickListener(this);
         select_two.setOnClickListener(this);
