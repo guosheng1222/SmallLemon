@@ -8,7 +8,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.text.TextUtils;
+import android.util.Log;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -17,10 +19,16 @@ import com.android.volley.toolbox.Volley;
 import com.example.bean.NetData;
 import com.example.utils.CommonUtils;
 import com.example.utils.DBUtils;
+import com.example.utils.MD5Utils;
 import com.example.utils.NetUtils;
 
 import org.xutils.ex.DbException;
 
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 import static com.example.utils.NetUtils.NET_WORK_TYPE_INVALID;
 
 /**
@@ -244,6 +252,43 @@ public abstract class BaseData {
         } catch (DbException e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * 登陆post请求
+     */
+    public void getNetForPost(Context context, final String phone, final String password) {
+        mContext = context;
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.yulin520.com/a2a/home/login/index",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        onSuccessData(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (null != error || null == error.networkResponse || error.networkResponse.statusCode >= 400) {
+                    onFailData(error);
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                //在这里设置需要post的参数
+                Map<String, String> map = new HashMap<>();
+                long l = System.currentTimeMillis();
+                map.put("staffCode", phone);
+                map.put("password", MD5Utils.MD5(password));
+                map.put("ts", l + "");
+                map.put("sign", MD5Utils.MD5(phone + password + l + "GOyV3qmT)CR5!Gee'zAj@7W"));
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
 }

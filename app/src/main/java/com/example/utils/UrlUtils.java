@@ -6,6 +6,7 @@ package com.example.utils;
  */
 
 public class UrlUtils {
+    public static final String JobUrl = "http://www.yulin520.com/a2a/occupation/menu";
 
 
     public static final String getCode="http://114.112.104.151:8203/LvScore_Service/visit/user_getverificationcode.do?telNum=";
@@ -22,7 +23,7 @@ public class UrlUtils {
     //恋爱期 恋乎社区
     public static final String loving = "http://www.yulin520.com/a2a/forum/recommend/withIndexImg?sign=CFB612BCCC0E98F08157E01017F8AA49&pageSize=12&emotionStage=2&ts=1482908782&page=1";
     //单身期 恋乎社区
-    public static final String single = "http://www.yulin520.com/a2a/forum/recommend/withIndexImgsign=2ED307930C123871704A9C84C46CFC5F&pageSize=12&emotionStage=1&ts=1482907765&page=1";
+    public static final String single = "http://www.yulin520.com/a2a/forum/recommend/withIndexImg?sign=2ED307930C123871704A9C84C46CFC5F&pageSize=12&emotionStage=1&ts=1482907765&page=1";
     //冷暖共知
     public static final String cold = "http://www.yulin520.com/a2a/news/dissertation?sign=C49E4703030EB2FF11E0E7377FB88709&pageSize=1&queryData=&ts=1482907765&page=1";
     //恋爱氧气

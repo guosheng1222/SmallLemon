@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Process;
 
+import com.example.bean.LoginBean;
 import com.zhy.autolayout.config.AutoLayoutConifg;
 
 import org.xutils.x;
@@ -14,9 +15,12 @@ import org.xutils.x;
  */
 
 public class MyApplication extends Application {
-
+    public static boolean isPlaying = false;
+    public static boolean isFirst = true;
+    public static String radioName = "没有URL";
     private static Context context;
     private static Handler handler;
+    public static LoginBean.DataBean CURRENT_USER;
     private static int mainThreadId;
 
     @Override

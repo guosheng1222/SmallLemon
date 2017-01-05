@@ -1,7 +1,6 @@
 package com.example.smalllemon;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -13,7 +12,7 @@ import com.zhy.autolayout.AutoRelativeLayout;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
 
-    private AutoRelativeLayout update_password,invite_friend,about_us,version_update;
+    private AutoRelativeLayout update_password, invite_friend, about_us, version_update;
     private Button button_exist;
 
     @Override
@@ -36,43 +35,51 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         invite_friend.setOnClickListener(this);
         about_us.setOnClickListener(this);
         version_update.setOnClickListener(this);
-
+        button_exist.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            //返回
-            case R.id.return_back:
-                finish();
-                break;
+        switch (view.getId()) {
             //跳转修改密码界面
             case R.id.update_password:
-                enterActivity(SettingActivity.this,UpdatePasswordActivity.class);
+                enterActivity(SettingActivity.this, UpdatePasswordActivity.class);
                 break;
             //跳转邀请好友界面
             case R.id.invite_friend:
-                enterActivity(SettingActivity.this,InviteFriendActivity.class);
+                enterActivity(SettingActivity.this, InviteFriendActivity.class);
                 break;
             //跳转关于我们界面
             case R.id.about_us:
-                enterActivity(SettingActivity.this,AboutUsActivity.class);
+                enterActivity(SettingActivity.this, AboutUsActivity.class);
                 break;
             //跳转版本更新界面
             case R.id.version_update:
-                Toast.makeText(this,"当前已是最新版本",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "当前已是最新版本", Toast.LENGTH_SHORT).show();
                 break;
             //退出登录
             case R.id.button_exist:
+
+                Intent intent=new Intent(SettingActivity.this,DialogActivity.class);
+                startActivity(intent);
                 break;
 
         }
     }
 
+//    public void rotateyAnimRun(Class<DialogActivity> view) {
+//        ObjectAnimator
+//                .ofFloat(view, "rotationX", -50.f, -30f, -50.0f, -30.0f, 0.0f)
+//                .setDuration(1500)
+//                .start();
+//    }
+
     //跳转
     private void enterActivity(SettingActivity settingActivity, Class c) {
-        Intent intent=new Intent(settingActivity,c);
+        Intent intent = new Intent(settingActivity, c);
         startActivity(intent);
     }
+
+
 }

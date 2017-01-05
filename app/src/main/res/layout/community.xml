@@ -3,23 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15px"
-    android:layout_marginBottom="20px"
+    android:layout_margin="20px"
     app:cardCornerRadius="20px">
 
 
     <TextView
-        android:layout_width="10px"
-        android:layout_height="40px"
-        android:layout_marginTop="40px"
+        android:id="@+id/tv_line"
+        android:layout_width="5px"
+        android:layout_height="30px"
+        android:layout_marginTop="20px"
         android:background="#FF0"
-        android:lines="1" />
+        android:lines="1"
+        android:text=" "
+        android:textSize="16sp" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="20px">
+        android:paddingLeft="10px"
+        android:paddingTop="10px">
 
 
         <com.zhy.autolayout.AutoLinearLayout

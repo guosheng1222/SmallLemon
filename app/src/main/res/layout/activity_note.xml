@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_note"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_title" />
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/note_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:tabIndicatorColor="#FFDA44"
+        app:tabSelectedTextColor="#FFDA44"
+        app:tabTextColor="@color/colorGrayText" />
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/note_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</com.zhy.autolayout.AutoLinearLayout>

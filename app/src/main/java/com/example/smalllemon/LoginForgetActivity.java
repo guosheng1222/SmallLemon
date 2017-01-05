@@ -128,7 +128,6 @@ public class LoginForgetActivity extends AppCompatActivity implements View.OnCli
                     }
                 }.getDataForGet(LoginForgetActivity.this, UrlUtils.getCode + getPhone(), NO_TIME);
             }
-
         }
     }
 
