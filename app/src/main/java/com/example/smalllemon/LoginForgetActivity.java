@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -13,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.example.base.BaseActivity;
 import com.example.base.BaseData;
 import com.example.bean.RegisterMessage;
 import com.example.bean.VerificationCode;
@@ -23,9 +23,8 @@ import com.zhy.autolayout.utils.AutoUtils;
 
 import static com.example.base.BaseData.NO_TIME;
 import static com.example.smalllemon.R.id.activity_rigister_verification_bt;
-import static com.example.smalllemon.R.id.user_commit;
 
-public class LoginForgetActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginForgetActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int ZERO = 0;
     private AppCompatEditText userPhone;
@@ -73,7 +72,7 @@ public class LoginForgetActivity extends AppCompatActivity implements View.OnCli
         look_password = (CheckBox) findViewById(R.id.look_password);
         //提交登录
         commit = findViewById(R.id.user_commit);
-
+        commit.setOnClickListener(this);
         autoView();
         btCode.setOnClickListener(this);
         look_password.setOnClickListener(this);
@@ -91,11 +90,11 @@ public class LoginForgetActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
             //提交
-            case user_commit:
+            case R.id.user_commit:
                 getCommitMessage();
                 break;
             //获取验证码
-            case activity_rigister_verification_bt:
+            case R.id.activity_rigister_verification_bt:
                 getCode();
                 break;
             case R.id.look_password:

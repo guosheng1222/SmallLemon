@@ -113,19 +113,35 @@ public class CommonUtils {
 
     public static boolean getBooleanSP(String key) {
         if (sharedPreferences == null) {
-            sharedPreferences = getContext().getSharedPreferences("YNF", Context.MODE_PRIVATE);
+            sharedPreferences = getContext().getSharedPreferences("XNL", Context.MODE_PRIVATE);
         }
         return sharedPreferences.getBoolean(key, false);
     }
 
     public static void setBooleanSP(String key, Boolean value) {
         if (sharedPreferences == null) {
-            sharedPreferences = getContext().getSharedPreferences("YNF", Context.MODE_PRIVATE);
+            sharedPreferences = getContext().getSharedPreferences("XNL", Context.MODE_PRIVATE);
         }
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putBoolean(key, value);
+        edit.apply();
     }
 
+    public static String getStringSP(String key) {
+        if (sharedPreferences == null) {
+            sharedPreferences = getContext().getSharedPreferences("XNL", Context.MODE_PRIVATE);
+        }
+        return sharedPreferences.getString(key, "");
+    }
+
+    public static void setStringSP(String key, String value) {
+        if (sharedPreferences == null) {
+            sharedPreferences = getContext().getSharedPreferences("XNL", Context.MODE_PRIVATE);
+        }
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString(key, value);
+        edit.apply();
+    }
 
     /**
      * 获取Color中的属性

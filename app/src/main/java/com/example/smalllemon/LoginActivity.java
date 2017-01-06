@@ -2,12 +2,16 @@ package com.example.smalllemon;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,13 +21,22 @@ import com.example.app.MyApplication;
 import com.example.base.BaseActivity;
 import com.example.base.BaseData;
 import com.example.bean.LoginBean;
+import com.example.bean.RegisterMessage;
+import com.example.utils.CommonUtils;
 import com.example.utils.DBUtils;
 import com.google.gson.Gson;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import org.xutils.ex.DbException;
 
 import java.util.List;
+import java.util.Map;
+
+import static android.R.attr.data;
+import static android.R.attr.password;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -35,7 +48,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private TextView tv_password_null;
     private CheckBox look_password;
     private ImageView weiXin_iv;
+    private View login_anim;
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    //成功
+                    login_anim.findViewById(R.id.loadView).setVisibility(View.GONE);
+                    login_anim.findViewById(R.id.login_Successful).setVisibility(View.VISIBLE);
+                    intentActivity(MainActivity.class);
+                    finish();
+                    break;
+                case 1:
+                    //失败
+                    String message = (String) msg.obj;
+                    login_anim.setVisibility(View.GONE);
+                    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
+    private UMShareAPI mShareAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +81,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             if (select != null && select.size() > 0) {
                 //设置当前登陆用户
                 MyApplication.CURRENT_USER = select.get(0);
-                jumpMainActivity();
+                handler.sendEmptyMessage(0);
             }
         } catch (DbException e) {
             e.printStackTrace();
@@ -56,9 +91,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     /**
+     * 开始登录的缩放动画
+     */
+    public void startAnim() {
+        //动画隐藏
+        login_anim.setVisibility(View.VISIBLE);
+        ScaleAnimation scaleAnimation = new ScaleAnimation(0.5f, 1.0f, 0.5f, 1.0f, Animation.RELATIVE_TO_PARENT, 0.5f, Animation.RELATIVE_TO_PARENT, 0.5f);
+        scaleAnimation.setDuration(500);
+        login_anim.startAnimation(scaleAnimation);
+    }
+
+    /**
      * 初始化控件
      */
     private void initView() {
+        //动画的一些控件
+        login_anim = findViewById(R.id.login_anim);
+        login_anim.setVisibility(View.GONE);
+
         login_et_phone = (AppCompatEditText) findViewById(R.id.login_et_phone);
         login_et_phone.addTextChangedListener(new Watcher(login_et_phone));
         tv_phone_null = (TextView) findViewById(R.id.tv_phone_null);
@@ -70,6 +120,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         look_password.setOnClickListener(this);
         AutoUtils.auto(findViewById(R.id.auto_1));
         AutoUtils.auto(weiXin_iv);
+
         findViewById(R.id.user_login).setOnClickListener(this);
         findViewById(R.id.tv_forget_password).setOnClickListener(this);
         findViewById(R.id.weiXin_iv).setOnClickListener(this);
@@ -88,6 +139,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
             //微信登录
             case R.id.weiXin_iv:
+                getWXUserInfo();
                 break;
             //可见密码
             case R.id.look_password:
@@ -106,6 +158,32 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 intentActivity(RegisterActivity.class);
                 break;
         }
+    }
+
+
+    /**
+     * 获取微信用户信息
+     */
+    private void getWXUserInfo() {
+        mShareAPI = UMShareAPI.get(this);
+        UMAuthListener umAuthListener = new UMAuthListener() {
+            @Override
+            public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+                Toast.makeText(LoginActivity.this, "map:" + map, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+                Toast.makeText(LoginActivity.this, "throwable:" + throwable, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA share_media, int i) {
+                Toast.makeText(LoginActivity.this, "i:" + i, Toast.LENGTH_SHORT).show();
+            }
+        };
+        mShareAPI.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.WEIXIN, umAuthListener);
+
     }
 
     /**
@@ -127,24 +205,32 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else if (TextUtils.isEmpty(password)) {
             tv_password_null.setVisibility(View.VISIBLE);
         } else {
+            //动画显示登录界面隐藏
+            startAnim();
             //核实用户信息
-           /* new BaseData() {
-                @Override
-                public void onSuccessData(String data) {
-                    RegisterMessage registerMessage = new Gson().fromJson(data, RegisterMessage.class);
-                    switch (registerMessage.getStatus()) {
-                        //成功
-                        case "ok":
-//                            Toast.makeText(LoginActivity.this, registerMessage.getData().toString(), Toast.LENGTH_SHORT).show();
-                            intentActivity(MainActivity.class);
-                            break;
-                        //失败
-                        case "error":
-                            Toast.makeText(LoginActivity.this, registerMessage.getData().getMessage(), Toast.LENGTH_SHORT).show();
-                            break;
-                    }
-                }
-            }.getDataForGet(LoginActivity.this, "http://114.112.104.151:8203/LvScore_Service/visit/user_login.do?telNum=" + phone + "&password=" + password, BaseData.NO_TIME);*/
+//            new BaseData() {
+//                @Override
+//                public void onSuccessData(String data) {
+//                    RegisterMessage registerMessage = new Gson().fromJson(data, RegisterMessage.class);
+//                    switch (registerMessage.getStatus()) {
+//                        成功
+//                        case "ok":
+//                            登录成功
+//                            token
+//                            String token = registerMessage.getData().getMessage();
+//                            CommonUtils.setStringSP("token", token);
+//                            handler.sendEmptyMessageDelayed(0, 3000);
+//                            break;
+//                        失败
+//                        case "error":
+//                            Message message = handler.obtainMessage();
+//                            message.what = 1;
+//                            message.obj = registerMessage.getData().getMessage();
+//                            handler.sendMessageDelayed(message, 2000);
+//                            break;
+//                    }
+//                }
+//            }.getDataForGet(LoginActivity.this, "http://114.112.104.151:8203/LvScore_Service/visit/user_login.do?telNum=" + phone + "&password=" + password, BaseData.NO_TIME);
 
             new BaseData() {
                 @Override
@@ -158,8 +244,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             //退出的时候必须删除
 //                            loginBean.getData().setLogin(true);
                             DBUtils.getDb().saveOrUpdate(loginBean.getData());
+                            CommonUtils.setStringSP("token", loginBean.getMessage());
                             MyApplication.CURRENT_USER = loginBean.getData();
-                            jumpMainActivity();
+                            MyApplication.TOKEN = loginBean.getMessage();
+                            handler.sendEmptyMessageDelayed(0, 3000);
                         } catch (DbException e) {
                             e.printStackTrace();
                         }

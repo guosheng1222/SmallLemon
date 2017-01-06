@@ -6,6 +6,7 @@ package com.example.utils;
  */
 
 public class UrlUtils {
+    public static final String JobUrl = "http://www.yulin520.com/a2a/occupation/menu";
 
 
     public static final String getCode="http://114.112.104.151:8203/LvScore_Service/visit/user_getverificationcode.do?telNum=";
@@ -50,41 +51,8 @@ public class UrlUtils {
      * 你的月亮我的心
      */
     // 置顶
-    public static final String moonTop = "http://www.yulin520.com/a2a/forum/typeTop?sign=565F990AE10D44353542163CF14F024F&pageSize=10&sort=1&ts=1482920713&page=1&forumType=10";
+    public static final String moonTop = "http://www.yulin520.com/a2a/forum/typeTop?sign=565F990AE10D44353542163CF14F024F&pageSize=10&sort=1&ts=1482920713&page=1&forumType=";
     //内容
-    public static final String moonContent = "http://www.yulin520.com/a2a/forum/typeList?sign=565F990AE10D44353542163CF14F024F&pageSize=10&sort=1&ts=1482920713&page=1&forumType=10";
-
-    /**
-     * 恋爱羞羞事
-     */
-    //置顶
-    public static final String shyTop = "http://www.yulin520.com/a2a/forum/typeTop?sign=1848F133C16B5BAFF96E04D2509D45F7&pageSize=10&sort=1&ts=1482921038&page=1&forumType=11";
-    //内容
-    public static final String shyContent = "http://www.yulin520.com/a2a/forum/typeList?sign=1848F133C16B5BAFF96E04D2509D45F7&pageSize=10&sort=1&ts=1482921038&page=1&forumType=11";
-
-    /**
-     * 约会必杀技
-     */
-    //置顶
-    public static final String killTop = "";
-    //内容
-    public static final String killContent = "";
-
-    /**
-     * 主要看颜值
-     */
-
-    //置顶
-    public static final String faceTop = "http://www.yulin520.com/a2a/forum/typeTop?sign=65F663FA05628041064BEAED02C320E1&pageSize=10&sort=1&ts=1482921283&page=1&forumType=13";
-    //内容
-    public static final String faceContent = "http://www.yulin520.com/a2a/forum/typeList?sign=65F663FA05628041064BEAED02C320E1&pageSize=10&sort=1&ts=1482921283&page=1&forumType=13";
-
-    /**
-     * 恋爱直播间
-     */
-    //置顶
-    public static final String showTop = "http://www.yulin520.com/a2a/forum/typeTop?sign=F7F111B1646C746D12A5120396D2A952&pageSize=10&sort=1&ts=1482921362&page=1&forumType=14";
-    //内容
-    public static final String showContent = "http://www.yulin520.com/a2a/forum/typeList?sign=F7F111B1646C746D12A5120396D2A952&pageSize=10&sort=1&ts=1482921362&page=1&forumType=14";
+    public static final String moonContent = "http://www.yulin520.com/a2a/forum/typeList?sign=565F990AE10D44353542163CF14F024F&pageSize=10&sort=1&ts=1482920713";
 
 }

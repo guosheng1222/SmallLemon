@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_basic_document"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="#F1F1F1" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/head_click"
+        android:layout_width="match_parent"
+        android:layout_height="250px"
+        android:background="@drawable/background_with_shadow"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="头像"
+            android:textColor="@color/colorBlackText"
+            android:textSize="50px" />
+
+        <com.example.view.CircleImageView
+            android:id="@+id/head"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:layout_gravity="center"
+            android:layout_marginRight="20px"
+            android:src="@drawable/header_photo" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="50px"
+            android:src="@mipmap/next_indicator" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/nickname_click"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_centerVertical="true"
+        android:background="@drawable/background_with_shadow">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="昵称"
+            android:textColor="@color/colorBlackText"
+            android:textSize="50px" />
+
+        <TextView
+            android:id="@+id/nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20px"
+            android:text="名字"
+            android:textSize="45px" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="50px"
+            android:src="@mipmap/next_indicator" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="#F1F1F1" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/date_click"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_centerVertical="true"
+        android:background="@drawable/background_with_shadow">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="生日"
+            android:textColor="@color/colorBlackText"
+            android:textSize="50px" />
+
+        <TextView
+            android:id="@+id/birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20px"
+            android:text="date"
+            android:textSize="45px" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="50px"
+            android:src="@mipmap/next_indicator" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_centerVertical="true"
+        android:background="@drawable/background_with_shadow">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="星座"
+            android:textColor="@color/colorBlackText"
+            android:textSize="50px" />
+
+        <TextView
+            android:id="@+id/constellation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20px"
+            android:text="constellation"
+            android:textSize="45px" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="50px"
+            android:src="@mipmap/next_indicator" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/job_click"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_centerVertical="true"
+        android:background="@drawable/background_with_shadow">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="职业"
+            android:textColor="@color/colorBlackText"
+            android:textSize="50px" />
+
+        <TextView
+            android:id="@+id/job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20px"
+            android:text="job"
+            android:textSize="45px" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="50px"
+            android:src="@mipmap/next_indicator" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/emotion_click"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_centerVertical="true"
+        android:background="@drawable/background_with_shadow">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30px"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="情感状况"
+            android:textColor="@color/colorBlackText"
+            android:textSize="50px" />
+
+        <TextView
+            android:id="@+id/emotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20px"
+            android:text="emotion"
+            android:textSize="45px" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="50px"
+            android:src="@mipmap/next_indicator" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

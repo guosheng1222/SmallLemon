@@ -5,7 +5,6 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.adapter.RecyclerAdapter;
 import com.example.base.BaseData;
 import com.example.bean.CommunityBean;
+import com.example.loadanim.LoadAnim;
 import com.example.smalllemon.R;
 import com.example.utils.CommonUtils;
 import com.example.utils.UrlUtils;
@@ -31,8 +31,6 @@ import com.melnykov.fab.FloatingActionButton;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.smalllemon.R.id.fab;
 
 /**
  * 全部帖子
@@ -47,6 +45,7 @@ public class ComWholeFragment extends Fragment {
     private SwipeRefreshLayout refresh_sr;
     private ArrayList<CommunityBean.DataBean> dataList = new ArrayList<>();
     private RecyclerAdapter<CommunityBean.DataBean> recyclerAdapter;
+    private int lastPosition=-1;
 
     @Nullable
     @Override
@@ -99,6 +98,11 @@ public class ComWholeFragment extends Fragment {
 
             @Override
             public void convert(RecyclerHolder holder, final CommunityBean.DataBean data, int position) {
+
+                if(position>lastPosition){
+                    new LoadAnim().loadingAnim(holder.getItemView());
+                    lastPosition=position;
+                }
                 //标题
                 holder.setText(R.id.title_tv, data.getTitle());
                 //内容

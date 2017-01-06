@@ -2,12 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smalllemon">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!--微信-->
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
 
     <application
         android:name="com.example.app.MyApplication"
@@ -16,6 +32,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/TransParentTheme">
+        <!--umeng-->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="561cae6ae0f55abd990035bf" >
+        </meta-data>
+
+        <!-- 屏幕宽度与高度 -->
         <meta-data
             android:name="design_width"
             android:value="1080" />
@@ -23,37 +46,57 @@
             android:name="design_height"
             android:value="1920" />
 
-        <!--启动界面-->
+        <!-- 启动界面 -->
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/LaunchActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--登录界面-->
+        <!-- 登陆界面 -->
         <activity
             android:name=".LoginActivity"
             android:launchMode="singleTask" />
         <!-- 注册界面 -->
         <activity android:name=".RegisterActivity" />
+        <!--找回密码界面-->
+        <activity android:name=".LoginForgetActivity" />
         <!-- 主界面 -->
         <activity android:name=".MainActivity">
 
         </activity>
-
-
-
-        <activity android:name=".UpdatePasswordActivity" />
-        <activity android:name=".InviteFriendActivity" />
-        <activity android:name=".SettingActivity" />
+        <!--以下Activity以字母顺序排序-->
         <activity android:name=".AboutUsActivity" />
+        <activity android:name=".BasicDocumentActivity" />
+        <activity android:name=".ComBoardActivity" />
+        <activity android:name=".DetailsActivity" />
+        <activity
+            android:name=".DialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity android:name=".EmotionActivity" />
         <activity android:name=".FeedBackActivity" />
-        <activity android:name=".NoteActivity"/>
-        <activity android:name=".FeedBackActivity" />
+        <activity android:name=".InviteFriendActivity" />
+        <activity android:name=".JobActivity" />
+        <activity android:name=".NoteActivity" />
+        <activity android:name=".RadioStationActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".UpdatePasswordActivity" />
+        <activity android:name=".UpdateNickNameActivity" />
+
+        <!--以下为Service-->
+        <service android:name="com.example.services.RadioStationService" />
+
+        <!--以下为第三方Activity-->
+        <!--微信-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 
 </manifest>

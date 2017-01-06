@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_update_nick_name"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:orientation="vertical"
+    android:background="#F1F1F1"
+    android:fitsSystemWindows="true"
+    >
+
+    <include layout="@layout/activity_title"/>
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="    一个好的昵称能吸引异性的注意哦~"
+         android:layout_margin="15px"
+         />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="180px"
+        android:background="@color/colorWhite"
+        android:hint="请输入昵称"
+        android:textSize="45px"
+        android:gravity="start"
+        android:padding="50px"
+        android:id="@+id/nickname_edit_text"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:gravity="right"
+        android:hint="10"
+        />
+
+</com.zhy.autolayout.AutoLinearLayout>
