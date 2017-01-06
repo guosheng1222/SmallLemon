@@ -37,13 +37,13 @@ public class JobActivity extends AppCompatActivity {
         hide.setVisibility(View.VISIBLE);
         hide.setText("取消");
         //解析数据
-        indata();
+        inData();
 
         show_lv = (RecyclerView) findViewById(R.id.show_lv);
         show_lv.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private void indata() {
+    private void inData() {
         new BaseData() {
             @Override
             public void onSuccessData(String data) {
@@ -77,7 +77,7 @@ public class JobActivity extends AppCompatActivity {
     }
 
     public void startAnimation(View view) {
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 400, 300,  0);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 400, 300, 0);
         objectAnimator.setDuration(500);
         objectAnimator.start();
     }

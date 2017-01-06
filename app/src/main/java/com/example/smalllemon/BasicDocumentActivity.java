@@ -4,27 +4,30 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.app.MyApplication;
+import com.example.base.BaseActivity;
 import com.example.view.CircleImageView;
 import com.zhy.autolayout.AutoLinearLayout;
 
 import org.feezu.liuli.timeselector.TimeSelector;
 
-public class BasicDocumentActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class BasicDocumentActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView title_name;
     private CircleImageView head;
     private AutoLinearLayout head_click;
-    private View new_password;
+    private TextView nickname;
     private AutoLinearLayout nickname_click;
     private TextView birthday;
     private AutoLinearLayout date_click;
@@ -38,28 +41,35 @@ public class BasicDocumentActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_basic_document);
         //设置标题
         title_name = (TextView) findViewById(R.id.title_name);
         title_name.setText("基本信息");
         //设置头像
         head = (CircleImageView) findViewById(R.id.head);
+        Glide.with(this).load(MyApplication.CURRENT_USER.getImg()).into(head);
         head_click = (AutoLinearLayout) findViewById(R.id.head_click);
         //修改昵称
-        new_password = findViewById(R.id.new_password);
+        nickname = (TextView) findViewById(R.id.nickname);
         nickname_click = (AutoLinearLayout) findViewById(R.id.nickname_click);
+        nickname.setText(MyApplication.CURRENT_USER.getUserName());
         //生日
         birthday = (TextView) findViewById(R.id.birthday);
         date_click = (AutoLinearLayout) findViewById(R.id.date_click);
+        birthday.setText(MyApplication.CURRENT_USER.getBirthday());
         //星座
         constellation = (TextView) findViewById(R.id.constellation);
+        constellation.setText(MyApplication.CURRENT_USER.getConstellation());
         //职业
         job = (TextView) findViewById(R.id.job);
         job_click = (AutoLinearLayout) findViewById(R.id.job_click);
+        if (!TextUtils.isEmpty(MyApplication.CURRENT_USER.getOccupation())) {
+            job.setText(MyApplication.CURRENT_USER.getOccupation());
+        }
         //情感
         emotion = (TextView) findViewById(R.id.emotion);
         emotion_click = (AutoLinearLayout) findViewById(R.id.emotion_click);
+        emotion.setText(MyApplication.CURRENT_USER.getEmotionStage() == 1 ? "恋爱期" : "单身期");
 
         nickname_click.setOnClickListener(this);
         head_click.setOnClickListener(this);
@@ -71,7 +81,7 @@ public class BasicDocumentActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.head_click:
                 HeadPopupWindow(head);
                 break;
@@ -103,30 +113,31 @@ public class BasicDocumentActivity extends AppCompatActivity implements View.OnC
     }
 
     private void jump(Class c) {
-        Intent intent=new Intent(this,c);
+        Intent intent = new Intent(this, c);
         startActivity(intent);
     }
 
     //基本资料的PopUpWindow
     private void HeadPopupWindow(CircleImageView head) {
         View view = View.inflate(this, R.layout.head_pop_layout, null);
-        final PopupWindow popupWindow=new PopupWindow(view, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,true);
+        final PopupWindow popupWindow = new PopupWindow(view, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popupWindow.setAnimationStyle(R.style.anim_popup_centerbar);
-        popupWindow.showAtLocation(head, Gravity.CENTER,0,0);
+        popupWindow.showAtLocation(head, Gravity.CENTER, 0, 0);
         popupWindow.setOutsideTouchable(true);
         backgroundAlpha(0.5f);
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-               backgroundAlpha(1.0f);
+                backgroundAlpha(1.0f);
             }
         });
     }
+
     public void backgroundAlpha(float bgAlpha) {
         WindowManager.LayoutParams lp = this.getWindow().getAttributes();
         lp.alpha = bgAlpha; //0.0-1.0
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         getWindow().setAttributes(lp);
     }
 

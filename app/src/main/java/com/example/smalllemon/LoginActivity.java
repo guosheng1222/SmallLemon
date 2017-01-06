@@ -24,11 +24,15 @@ import com.example.bean.LoginBean;
 import com.example.bean.RegisterMessage;
 import com.example.utils.DBUtils;
 import com.google.gson.Gson;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import org.xutils.ex.DbException;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -62,6 +66,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
         }
     };
+    private UMShareAPI mShareAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +135,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
             //微信登录
             case R.id.weiXin_iv:
+                getWXUserInfo();
                 break;
             //可见密码
             case R.id.look_password:
@@ -148,6 +154,32 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 intentActivity(RegisterActivity.class);
                 break;
         }
+    }
+
+
+    /**
+     * 获取微信用户信息
+     */
+    private void getWXUserInfo() {
+        mShareAPI = UMShareAPI.get(this);
+        UMAuthListener umAuthListener = new UMAuthListener() {
+            @Override
+            public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+                Toast.makeText(LoginActivity.this, "map:" + map, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+                Toast.makeText(LoginActivity.this, "throwable:" + throwable, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA share_media, int i) {
+                Toast.makeText(LoginActivity.this, "i:" + i, Toast.LENGTH_SHORT).show();
+            }
+        };
+        mShareAPI.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.WEIXIN, umAuthListener);
+
     }
 
     /**

@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.Process;
 
 import com.example.bean.LoginBean;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 import com.zhy.autolayout.config.AutoLayoutConifg;
 
 import org.xutils.x;
@@ -26,7 +28,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        UMShareAPI.get(this);
+        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
         //autoLayout
         AutoLayoutConifg.getInstance().useDeviceSize();
         //获取当前应用的上下文
@@ -38,6 +41,8 @@ public class MyApplication extends Application {
         x.Ext.init(this);
         //设置是debug模式
         x.Ext.setDebug(false);
+
+
     }
 
 
