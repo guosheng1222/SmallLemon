@@ -28,6 +28,11 @@
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/LaunchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <!-- 登陆界面 -->
         <activity
@@ -39,11 +44,7 @@
         <activity android:name=".LoginForgetActivity" />
         <!-- 主界面 -->
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--以下Activity以字母顺序排序-->
         <activity android:name=".AboutUsActivity" />
@@ -66,15 +67,6 @@
         <!--以下为Service-->
         <service android:name="com.example.services.RadioStationService" />
 
-        <activity android:name=".JobActivity" />
-        <activity android:name=".EmotionActivity" />
-        <activity android:name=".DetailsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

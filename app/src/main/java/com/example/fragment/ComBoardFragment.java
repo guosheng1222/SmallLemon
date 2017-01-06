@@ -106,19 +106,19 @@ public class ComBoardFragment extends Fragment implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.first_card:
-                jump(0);
+                jump(10);
                 break;
             case R.id.second_card:
-                jump(1);
+                jump(11);
                 break;
             case R.id.third_card:
-                jump(2);
+                jump(12);
                 break;
             case R.id.four_card:
-                jump(3);
+                jump(13);
                 break;
             case R.id.five_card:
-                jump(4);
+                jump(14);
                 break;
         }
     }
