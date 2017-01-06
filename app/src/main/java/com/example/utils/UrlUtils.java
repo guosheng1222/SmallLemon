@@ -53,6 +53,6 @@ public class UrlUtils {
     // 置顶
     public static final String moonTop = "http://www.yulin520.com/a2a/forum/typeTop?sign=565F990AE10D44353542163CF14F024F&pageSize=10&sort=1&ts=1482920713&page=1&forumType=";
     //内容
-    public static final String moonContent = "http://www.yulin520.com/a2a/forum/typeList?sign=565F990AE10D44353542163CF14F024F&pageSize=10&sort=1&ts=1482920713&page=1&forumType=";
+    public static final String moonContent = "http://www.yulin520.com/a2a/forum/typeList?sign=565F990AE10D44353542163CF14F024F&pageSize=10&sort=1&ts=1482920713";
 
 }

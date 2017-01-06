@@ -62,13 +62,13 @@
             android:launchMode="singleTask" />
         <!-- 注册界面 -->
         <activity android:name=".RegisterActivity" />
-        <!-- 找回密码界面 -->
+        <!--找回密码界面-->
         <activity android:name=".LoginForgetActivity" />
         <!-- 主界面 -->
         <activity android:name=".MainActivity">
 
         </activity>
-        <!-- 以下Activity以字母顺序排序 -->
+        <!--以下Activity以字母顺序排序-->
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".BasicDocumentActivity" />
         <activity android:name=".ComBoardActivity" />
@@ -86,7 +86,7 @@
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".UpdateNickNameActivity" />
 
-        <!-- 以下为Service -->
+        <!--以下为Service-->
         <service android:name="com.example.services.RadioStationService" />
 
         <!--以下为第三方Activity-->

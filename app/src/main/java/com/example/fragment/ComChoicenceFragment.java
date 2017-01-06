@@ -1,6 +1,5 @@
 package com.example.fragment;
 
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
@@ -22,12 +21,12 @@ import com.bumptech.glide.Glide;
 import com.example.adapter.RecyclerAdapter;
 import com.example.base.BaseData;
 import com.example.bean.CommunityBean;
+import com.example.loadanim.LoadAnim;
 import com.example.smalllemon.R;
 import com.example.utils.CommonUtils;
 import com.example.utils.UrlUtils;
 import com.google.gson.Gson;
 import com.melnykov.fab.FloatingActionButton;
-import com.zhy.autolayout.utils.AutoUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class ComChoicenceFragment extends Fragment {
     private FloatingActionButton fab;
     private ArrayList<CommunityBean.DataBean> dataList = new ArrayList<>();
     private RecyclerAdapter<CommunityBean.DataBean> recyclerAdapter;
-    private int lastPosition=-1;
+    private int lastPosition = -1;
 
     @Nullable
     @Override
@@ -103,12 +102,9 @@ public class ComChoicenceFragment extends Fragment {
             @Override
             public void convert(RecyclerHolder holder, final CommunityBean.DataBean data, int position) {
 
-                if(position>lastPosition){
-                    View itemView = holder.getItemView();
-                    ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(itemView, View.TRANSLATION_Y, 300, 200, 100, 0);
-                    objectAnimator.setDuration(500);
-                    objectAnimator.start();
-                    lastPosition=position;
+                if (position > lastPosition) {
+                    new LoadAnim().loadingAnim(holder.getItemView());
+                    lastPosition = position;
                 }
 
                 //标题
