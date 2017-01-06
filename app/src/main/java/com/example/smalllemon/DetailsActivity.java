@@ -16,6 +16,7 @@ public class DetailsActivity extends AppCompatActivity {
     private View commit_time;
     private View landlord_title;
     private View landlord_content;
+    private View back_landlord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,5 +47,7 @@ public class DetailsActivity extends AppCompatActivity {
         landlord_title = findViewById(R.id.landlord_title);
         //帖子内容
         landlord_content = findViewById(R.id.landlord_content);
+        //回帖
+        back_landlord = findViewById(R.id.back_landlord);
     }
 }

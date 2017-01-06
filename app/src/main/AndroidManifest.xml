@@ -28,6 +28,7 @@
         <activity
             android:name=".LaunchActivity"
             android:theme="@style/LaunchActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
