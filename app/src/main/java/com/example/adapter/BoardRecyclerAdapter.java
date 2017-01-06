@@ -1,6 +1,5 @@
 package com.example.adapter;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +17,8 @@ import com.example.bean.CommunityBean;
 import com.example.fragment.PhotoFragment;
 import com.example.holder.BoardContentHolder;
 import com.example.holder.BoardTopHolder;
+import com.example.holder.LoadMoreHolder;
+import com.example.loadanim.LoadAnim;
 import com.example.smalllemon.ComBoardActivity;
 import com.example.smalllemon.R;
 
@@ -37,6 +38,7 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
     private Context context;
     private static final int TOP = 0;
     private static final int NOMAL = 1;
+    private static final int LAST_POSITION = 2;
     private static int lastPosition = -1;
 
     public BoardRecyclerAdapter(List<CommunityBean.DataBean> topList, List<CommunityBean.DataBean> contentList, Context context) {
@@ -58,6 +60,11 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
                 view = LayoutInflater.from(context).inflate(R.layout.community, parent, false);
                 baseHolder = new BoardContentHolder(view);
                 break;
+            case LAST_POSITION:
+                view = View.inflate(context, R.layout.layout_loadmore, null);
+                baseHolder = new LoadMoreHolder(view);
+                break;
+
         }
         return baseHolder;
     }
@@ -68,6 +75,9 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
     public void onBindViewHolder(BaseHolder holder, int position) {
         switch (getItemViewType(position)) {
             case TOP:
+
+
+
                 BoardTopHolder holder1 = (BoardTopHolder) holder;
                 holder1.top_recycleView.setLayoutManager(new LinearLayoutManager(context));
                 holder1.top_recycleView.setAdapter(new RecyclerAdapter<CommunityBean.DataBean>(context, topList, R.layout.layout_top_firstitem) {
@@ -80,10 +90,8 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
             case NOMAL:
                 BoardContentHolder contentHolder = (BoardContentHolder) holder;
                 View itemView = contentHolder.itemView;
-                if (position > lastPosition) {
-                    ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(itemView, View.TRANSLATION_Y, 300, 200, 100, 0);
-                    objectAnimator.setDuration(500);
-                    objectAnimator.start();
+                if (lastPosition < position) {
+                    new LoadAnim().loadingAnim(itemView);
                     lastPosition = position;
                 }
                 contentHolder.title_tv.setText(contentList.get(position - 1).getTitle());
@@ -96,8 +104,6 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
                 }
                 //图片
                 final List<CommunityBean.DataBean.ImgsBean> imgs = (List<CommunityBean.DataBean.ImgsBean>) contentList.get(position - 1).getImgs();
-
-
                 if (imgs == null || imgs.size() == 0) {
                     contentHolder.view_group.setVisibility(View.GONE);
                 } else {
@@ -137,6 +143,8 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
                 //评论数
                 contentHolder.comment_number_tv.setText(contentList.get(position - 1).getReplyTimes() + "");
                 break;
+
+
         }
 
 
@@ -145,13 +153,16 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
 
     @Override
     public int getItemCount() {
-        return contentList.size() + 1;
+        return contentList.size() + 2;
     }
 
     @Override
     public int getItemViewType(int position) {
         if (position == TOP) {
             return TOP;
+        }
+        if (position == contentList.size() + 1) {
+            return LAST_POSITION;
         }
         return NOMAL;
     }
