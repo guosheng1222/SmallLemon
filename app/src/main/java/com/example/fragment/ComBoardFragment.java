@@ -1,5 +1,6 @@
 package com.example.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.base.BaseData;
 import com.example.bean.BoardBean;
+import com.example.smalllemon.ComBoardActivity;
 import com.example.smalllemon.R;
 import com.example.utils.CommonUtils;
 import com.example.utils.UrlUtils;
@@ -33,6 +35,7 @@ public class ComBoardFragment extends Fragment implements View.OnClickListener {
     private TextView third_number;
     private TextView four_number;
     private TextView five_number;
+    private Intent intent;
 
     @Nullable
     @Override
@@ -99,17 +102,32 @@ public class ComBoardFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+
         switch (v.getId()) {
             case R.id.first_card:
+                jump(0);
                 break;
             case R.id.second_card:
+                jump(1);
                 break;
             case R.id.third_card:
+                jump(2);
                 break;
             case R.id.four_card:
+                jump(3);
                 break;
             case R.id.five_card:
+                jump(4);
                 break;
         }
+    }
+
+    public void jump(int i) {
+        if (intent == null) {
+            intent = new Intent(getActivity(), ComBoardActivity.class);
+        }
+        intent.putExtra("tag", i);
+        startActivity(intent);
     }
 }

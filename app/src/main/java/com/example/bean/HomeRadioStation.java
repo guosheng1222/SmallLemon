@@ -1,5 +1,6 @@
 package com.example.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @date :   2017/1/1
  */
 
-public class HomeRadioStation {
+public class HomeRadioStation implements Serializable{
 
     /**
      * code : 1
@@ -73,7 +74,7 @@ public class HomeRadioStation {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * title : 当女朋友想要口红，她其实是想要.....
          * remark :
