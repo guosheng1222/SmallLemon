@@ -28,11 +28,7 @@
             android:name=".LaunchActivity"
             android:theme="@style/LaunchActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--登录界面-->
         <activity
@@ -56,7 +52,13 @@
         <activity android:name=".UpdateNickNameActivity" />
         <activity android:name=".JobActivity" />
         <activity android:name=".EmotionActivity" />
-        <activity android:name=".DetailsActivity"/>
+        <activity android:name=".DetailsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
