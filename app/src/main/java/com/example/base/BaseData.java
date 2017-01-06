@@ -178,7 +178,7 @@ public abstract class BaseData {
                     builder = null;
                     getDataFromNet();
                 }
-            }).show();
+            }).setNegativeButton("取消", null).show();
         }
     }
 

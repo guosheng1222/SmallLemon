@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Process;
 
 import com.example.bean.LoginBean;
+import com.example.utils.CommonUtils;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 import com.zhy.autolayout.config.AutoLayoutConifg;
@@ -23,6 +24,7 @@ public class MyApplication extends Application {
     private static Context context;
     private static Handler handler;
     public static LoginBean.DataBean CURRENT_USER;
+    public static String TOKEN;
     private static int mainThreadId;
 
     @Override
@@ -42,6 +44,7 @@ public class MyApplication extends Application {
         //设置是debug模式
         x.Ext.setDebug(false);
 
+        TOKEN = CommonUtils.getStringSP("token");
 
     }
 
