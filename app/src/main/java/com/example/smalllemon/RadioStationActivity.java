@@ -41,6 +41,15 @@ public class RadioStationActivity extends BaseActivity implements View.OnClickLi
     private TextView tv_dutation;
     private SeekBar seekBar;
     private HomeRadioStation.DataBean radioInfo;
+    private RadioStationService.MyBind myBind;
+    private SimpleDateFormat formatter;
+    private ImageView video;
+    private ImageView iv_animation;
+    private AnimationDrawable animation;
+    private AutoRelativeLayout radioStationGroup;
+    private MyScrollView activity_media_play;
+    private AutoLinearLayout title;
+    private TextView title_name;
     private ServiceConnection conn = new ServiceConnection() {
 
         @Override
@@ -48,7 +57,6 @@ public class RadioStationActivity extends BaseActivity implements View.OnClickLi
             myBind = (RadioStationService.MyBind) iBinder;
             myBind.helpGetMdTime(RadioStationActivity.this);
             myBind.helpPlay(radioInfo.getUrl());
-            Log.i("TAG", "isPlayer1" + MyApplication.isPlaying);
             if (MyApplication.isPlaying) {
                 animation.start();
                 iv_animation.setVisibility(View.VISIBLE);
@@ -70,14 +78,6 @@ public class RadioStationActivity extends BaseActivity implements View.OnClickLi
 
         }
     };
-    private RadioStationService.MyBind myBind;
-    private SimpleDateFormat formatter;
-    private ImageView video;
-    private ImageView iv_animation;
-    private AnimationDrawable animation;
-    private AutoRelativeLayout radioStationGroup;
-    private MyScrollView activity_media_play;
-    private AutoLinearLayout title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +100,9 @@ public class RadioStationActivity extends BaseActivity implements View.OnClickLi
 
     }
 
+    /**
+     * 设置播放进度
+     */
     private void setMediaPlayerProgress() {
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -129,13 +132,22 @@ public class RadioStationActivity extends BaseActivity implements View.OnClickLi
         Intent intent = new Intent(this, RadioStationService.class);
         startService(intent);
         bindService(intent, conn, Service.BIND_AUTO_CREATE);
-
     }
 
     /**
      * 初始化控件
      */
     private void initView() {
+        title = (AutoLinearLayout) findViewById(R.id.title);
+        title_name = (TextView) findViewById(R.id.title_name);
+
+        //动态设置状态栏
+        if (21 > android.os.Build.VERSION.SDK_INT) {
+            title.setPadding(0, 0, 0, 0);
+        }
+        title_name.setText(radioInfo.getTitle());
+        title.setBackgroundColor(0x00FFFFFF);
+
 
         mediaPlayer_img = (ImageView) findViewById(R.id.mediaplay_img);
         iv_pause = (ImageView) findViewById(R.id.iv_pause);
@@ -152,24 +164,16 @@ public class RadioStationActivity extends BaseActivity implements View.OnClickLi
         mediaPlayer_img.setScaleType(ImageView.ScaleType.FIT_XY);
         animation = (AnimationDrawable) iv_animation.getDrawable();
 
-        title = (AutoLinearLayout) findViewById(R.id.title);
         activity_media_play = (MyScrollView) findViewById(R.id.activity_media_play);
         radioStationGroup = (AutoRelativeLayout) findViewById(R.id.radioStationGroup);
-        title.setBackgroundColor(0x00FFFFFF);
-
-        //动态设置状态栏
-        if (21 > android.os.Build.VERSION.SDK_INT) {
-            title.setPadding(0, 0, 0, 0);
-        }
 
 
         activity_media_play.setScrollViewListener(new ScrollViewListener() {
             @Override
             public void onScrollChanged(MyScrollView myScrollView, int x, int y, int oldx, int oldy) {
-                int v = y * 300 / radioStationGroup.getHeight();
-                LogUtils.i(TAG, "onScrollChanged: " + v);
-                title.setBackgroundColor(Color.argb(v > 255 ? 255 : v, 255, 255, 255));
-//                title.setBackgroundColor(0xffffffff);
+                int v = y * 280 / radioStationGroup.getHeight();
+                title.setBackgroundColor(Color.argb(v > 255 ? 255 : (v >= 0 ? v : 0), 255, 255, 255));
+                title_name.setTextColor(Color.argb(v > 255 ? 255 : (v >= 0 ? v : 0), 0, 0, 0));
             }
         });
 
@@ -220,7 +224,7 @@ public class RadioStationActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //接触绑定
+        //解除绑定
         unbindService(conn);
     }
 
