@@ -1,5 +1,6 @@
 package com.example.fragment;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.app.MyApplication;
+import com.example.base.BaseActivity;
 import com.example.bean.LoginBean;
 import com.example.smalllemon.BasicDocumentActivity;
 import com.example.smalllemon.FeedBackActivity;
@@ -55,6 +57,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView take_picture;
     private TextView photo_album;
     private PopupWindow popupWindow;
+    private ImageView gender;
 
     @Nullable
     @Override
@@ -86,6 +89,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         suggest_back = (AutoLinearLayout) view.findViewById(R.id.suggest_back);
         setting = (AutoLinearLayout) view.findViewById(R.id.setting);
         mine_recyclerView = (RecyclerView) view.findViewById(R.id.mine_recyclerView);
+        gender = (ImageView) view.findViewById(R.id.gender);
         iv_user_head.setOnClickListener(this);
 
         tv_guanzhu.setOnClickListener(this);
@@ -103,8 +107,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             tv_guanzhu_count.setText(current_user.getFansCount() + "");
             if (current_user.getGender() == 1) {
                 //设置男
+                gender.setImageResource(R.drawable.profile_male);
             } else {
                 //设置女
+                gender.setImageResource(R.drawable.profile_female);
             }
         }
 
@@ -127,12 +133,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 //让PopupWindow显示在屏幕中央
                 popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
                 //弹出是背景变暗
-                backgroundAlpha(100);
+                backgroundAlpha(0.6f);
                 popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
                         //消失后背景变浅
-                        backgroundAlpha(10);
+                        backgroundAlpha(1.0f);
                     }
                 });
                 break;
@@ -165,31 +171,29 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         take_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //相机意图
-                Intent intent = new Intent();
-                intent.setAction("android.media.action.IMAGE_CAPTURE");
-                intent.addCategory("android.intent.category.DEFAULT");
-                startActivityForResult(intent, 101);
-                popupWindow.dismiss();
+                ((BaseActivity) getActivity()).requestPermission(20, new String[]{Manifest.permission.CAMERA}, new Runnable() {
+                    @Override
+                    public void run() {
+                        //相机意图
+                        Intent intent = new Intent();
+                        intent.setAction("android.media.action.IMAGE_CAPTURE");
+                        intent.addCategory("android.intent.category.DEFAULT");
+                        startActivityForResult(intent, 101);
+                        popupWindow.dismiss();
+                    }
+                });
             }
         });
 
         photo_album.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("TAG", "跳了跳了: ");
-
                 //图库意图
                 Intent intent = new Intent();
-
                 intent.setType("image/*");
-
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-
                 startActivityForResult(intent, 100);
-
                 popupWindow.dismiss();
-
             }
         });
 
@@ -219,39 +223,28 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 100:
-
                     ContentResolver contentResolver = getActivity().getContentResolver();
                     try {
-
                         Bitmap bitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(data.getData()));
                         iv_user_head.setImageBitmap(bitmap);
-
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                     break;
-
-
                 case 101:
                     if (requestCode == 101) {    //拍照取图
-
                         Bundle bundle = data.getExtras();   //获取data数据集合
                         Bitmap bitmap = (Bitmap) bundle.get("data");        //获得data数据
-                        Log.i("TAG", "拍照回传bitmap：" + bitmap);
                         iv_user_head.setImageBitmap(bitmap);
-
+                        //上传服务器
                     }
-
-
                     break;
-
                 default:
                     return;
             }
 
         }
     }
-
 
 
     /**

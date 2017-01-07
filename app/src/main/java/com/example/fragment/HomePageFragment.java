@@ -7,7 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +22,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.adapter.HomeCO2Adapter;
 import com.example.app.MyApplication;
 import com.example.base.BaseData;
+import com.example.bean.BeanCO2;
+import com.example.bean.BeanCold;
 import com.example.bean.BeanHoliday;
 import com.example.bean.HomeRadioStation;
 import com.example.smalllemon.NoteActivity;
@@ -60,8 +64,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private TextView home_popup_sure_tv;
     private PopupWindow pop;
     private HomeRadioStation homeRadioStation;
-    private CardView home_holiday_cardview;
-    private BeanHoliday beanHoliday;
 
     @Nullable
     @Override
@@ -102,7 +104,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onSuccessData(String data) {
                 Gson gson = new Gson();
-                beanHoliday = gson.fromJson(data, BeanHoliday.class);
+                BeanHoliday beanHoliday = gson.fromJson(data, BeanHoliday.class);
                 Glide.with(getActivity()).load(beanHoliday.getData().getImg()).into(home_holiday_image);
                 home_holiday_name.setText(beanHoliday.getData().getName().substring(0, 2));
                 home_holiday_date.setText(beanHoliday.getData().getName().substring(3));
@@ -128,7 +130,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         View view = View.inflate(getActivity(), R.layout.fragment_home_page, null);
         main_dot_lin = (LinearLayout) view.findViewById(R.id.main_dot_lin);
         main_title_text = (TextView) view.findViewById(R.id.main_title_text);
-        home_holiday_cardview = (CardView) view.findViewById(R.id.home_holiday_cardview);
         home_holiday_image = (ImageView) view.findViewById(R.id.home_holiday_image);
         home_holiday_name = (TextView) view.findViewById(R.id.home_holiday_name);
         home_holiday_date = (TextView) view.findViewById(R.id.home_holiday_date);
@@ -139,7 +140,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         main_title_text.setText(MyApplication.CURRENT_USER.getGender() == 1 ? "恋爱期" : "单身期");
         noteLogo.setOnClickListener(this);
         main_title_text.setOnClickListener(this);
-        home_holiday_cardview.setOnClickListener(this);
         return view;
     }
 
@@ -247,11 +247,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 home_cb_left = (CheckBox) pop_view.findViewById(R.id.home_cb_left);
                 home_cb_right = (CheckBox) pop_view.findViewById(R.id.home_cb_right);
                 home_popup_sure_tv = (TextView) pop_view.findViewById(R.id.home_popup_sure_tv);
-                if (MyApplication.CURRENT_USER.getGender() == 1) {
+                if (MyApplication.CURRENT_USER.getGender()==1) {
                     //恋爱期
                     home_cb_left.setChecked(true);
                 } else {
-                    home_cb_right.setChecked(true);
+                   home_cb_right.setChecked(true);
                 }
                 pop = new PopupWindow(pop_view, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 pop.setBackgroundDrawable(new BitmapDrawable());
@@ -285,10 +285,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             case R.id.home_cb_right:
                 home_cb_left.setChecked(false);
                 home_cb_right.setChecked(true);
-                break;
-            case R.id.home_holiday_cardview:
-
-
                 break;
         }
     }

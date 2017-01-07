@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,11 +23,9 @@ import com.example.utils.NetUtils;
 
 import org.xutils.ex.DbException;
 
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.content.ContentValues.TAG;
 import static com.example.utils.NetUtils.NET_WORK_TYPE_INVALID;
 
 /**
@@ -178,7 +175,7 @@ public abstract class BaseData {
                     builder = null;
                     getDataFromNet();
                 }
-            }).show();
+            }).setNegativeButton("取消", null).show();
         }
     }
 
@@ -192,7 +189,10 @@ public abstract class BaseData {
         //读取文件信息
         try {
             NetData first = DBUtils.getDb().selector(NetData.class).where("URL", "=", url).and("EXPIRATION_TIME", "<=", System.currentTimeMillis()).findFirst();
-            return first.getContent();
+            if (first == null)
+                return null;
+            else
+                return first.getContent();
         } catch (DbException e) {
             e.printStackTrace();
         }
@@ -287,5 +287,6 @@ public abstract class BaseData {
         };
         requestQueue.add(stringRequest);
     }
+
 
 }
