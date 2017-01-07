@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loveactivity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -8,6 +9,7 @@
         android:id="@+id/ripView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:rv_zoomDuration="@android:integer/config_mediumAnimTime"
         app:rv_type="rectangle">
 
         <ImageView

@@ -87,18 +87,26 @@ public class LoveActivity extends BaseActivity {
                 //点赞
                 holder.setText(R.id.love_recycler_praise, dataList.get(position).getStar() + "点赞");
 
-               /* holder.getItemView().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(LoveActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-                    }
-                });*/
+
                 holder.findView(R.id.ripView).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                        intent.putExtra("url", dataList.get(position).getUrl());
-                        startActivity(intent);
+                        new Thread(){
+                            @Override
+                            public void run() {
+                                super.run();
+                                try {
+                                    sleep(500);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                                intent.putExtra("url", dataList.get(position).getUrl());
+                                intent.putExtra("comments",dataList.get(position).getReplyTimes());
+                                intent.putExtra("praise",dataList.get(position).getStar());
+                                startActivity(intent);
+                            }
+                        }.start();
                     }
                 });
             }
