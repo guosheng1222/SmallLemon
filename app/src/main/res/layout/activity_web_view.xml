@@ -2,14 +2,15 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_web_view"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <com.zhy.autolayout.AutoLinearLayout
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50px"
+        android:layout_height="?attr/actionBarSize"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -42,7 +43,7 @@
         android:id="@+id/web"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="1"></WebView>
+        android:layout_weight="1" />
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"

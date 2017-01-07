@@ -31,13 +31,13 @@ import java.util.ArrayList;
 public class HomeCommFragment extends Fragment {
 
     private RecyclerView myrecycler;
-    ArrayList<BeanEmotionState.DataBean> list=new ArrayList<>();
+    ArrayList<BeanEmotionState.DataBean> list = new ArrayList<>();
     public static CommonAdapter<BeanEmotionState.DataBean> commonAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view= CommonUtils.inflate(R.layout.home_community_fragment);
+        View view = CommonUtils.inflate(R.layout.home_community_fragment);
         myrecycler = (RecyclerView) view.findViewById(R.id.home_community_recyclerView);
         return view;
     }
@@ -45,33 +45,30 @@ public class HomeCommFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-         int page = getArguments().getInt("page");
-        if(MyApplication.CURRENT_USER.getEmotionStage() == 0 )
-        {
-            onload("http://"+ UrlUtils.single+"page="+page);
-        }
-        else
-        {
-            onload("http://"+UrlUtils.loving+"page="+page);
+        int page = getArguments().getInt("page");
+        if (MyApplication.CURRENT_USER.getEmotionStage() == 0) {
+            onload("http://" + UrlUtils.single + "page=" + page);
+        } else {
+            onload("http://" + UrlUtils.loving + "page=" + page);
         }
     }
-    public static Fragment getFragment(int page)
-    {
-        Fragment f1=new HomeCommFragment();
-        Bundle bundle=new Bundle();
-        bundle.putInt("page",page+1);
+
+    public static Fragment getFragment(int page) {
+        Fragment f1 = new HomeCommFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("page", page + 1);
         f1.setArguments(bundle);
         return f1;
     }
-    public void onload(String url)
-    {
+
+    public void onload(String url) {
         new BaseData() {
             @Override
             public void onSuccessData(String data) {
-                Gson gson=new Gson();
+                Gson gson = new Gson();
                 BeanEmotionState beanEmotionState = gson.fromJson(data, BeanEmotionState.class);
-                list= (ArrayList<BeanEmotionState.DataBean>) beanEmotionState.getData();
-                myrecycler.setLayoutManager(new LinearLayoutManager(getActivity()){
+                list = (ArrayList<BeanEmotionState.DataBean>) beanEmotionState.getData();
+                myrecycler.setLayoutManager(new LinearLayoutManager(getActivity()) {
                     @Override
                     public boolean canScrollVertically() {
                         return false;
@@ -88,6 +85,6 @@ public class HomeCommFragment extends Fragment {
                 };
                 myrecycler.setAdapter(commonAdapter);
             }
-        }.getDataForGet(getActivity(),url);
+        }.getDataForGet(getActivity(), url);
     }
 }

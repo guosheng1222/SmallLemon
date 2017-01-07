@@ -16,7 +16,6 @@ import com.example.base.BaseData;
 import com.example.bean.LoveBean;
 import com.example.utils.CommonUtils;
 import com.example.utils.UrlUtils;
-import com.example.view.WebViewActivity;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

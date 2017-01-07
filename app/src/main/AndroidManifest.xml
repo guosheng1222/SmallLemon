@@ -3,8 +3,6 @@
     package="com.example.smalllemon">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -15,9 +13,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -84,12 +80,14 @@
         <activity android:name=".EmotionActivity" />
         <activity android:name=".FeedBackActivity" />
         <activity android:name=".InviteFriendActivity" />
+        <activity android:name=".LoveActivity" />
         <activity android:name=".JobActivity" />
         <activity android:name=".NoteActivity" />
         <activity android:name=".RadioStationActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".UpdateNickNameActivity" />
+        <activity android:name=".WebViewActivity" />
 
         <!--以下为Service-->
         <service android:name="com.example.services.RadioStationService" />

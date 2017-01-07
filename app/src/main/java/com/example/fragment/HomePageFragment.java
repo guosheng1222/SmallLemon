@@ -30,7 +30,7 @@ import com.example.bean.BeanCO2;
 import com.example.bean.BeanCold;
 import com.example.bean.BeanHoliday;
 import com.example.bean.HomeRadioStation;
-import com.example.smalllemon.MainActivity;
+import com.example.smalllemon.LoveActivity;
 import com.example.smalllemon.NoteActivity;
 import com.example.smalllemon.R;
 import com.example.smalllemon.RadioStationActivity;
@@ -350,12 +350,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 pop.setBackgroundDrawable(new BitmapDrawable());
                 pop.setOutsideTouchable(true);
                 pop.setFocusable(true);
-                backgroundAlpha(100);
+                backgroundAlpha(0.6f);
                 pop.showAtLocation(view, Gravity.CENTER, 0, 0);
                 pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
-                        backgroundAlpha(10);
+                        backgroundAlpha(1.0f);
                     }
                 });
                 home_cb_left.setOnClickListener(this);
@@ -382,8 +382,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 home_cb_right.setChecked(true);
                 break;
             case R.id.more:
-                // TODO: 2017/1/7   跳转更多
-                enterActivity(MainActivity.class);
+                enterActivity(LoveActivity.class);
                 break;
         }
     }

@@ -1,4 +1,4 @@
-package com.example.view;
+package com.example.smalllemon;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.example.base.BaseActivity;
-import com.example.smalllemon.R;
 
 public class WebViewActivity extends BaseActivity implements View.OnClickListener {
 
