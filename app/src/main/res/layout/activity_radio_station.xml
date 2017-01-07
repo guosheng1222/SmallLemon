@@ -123,20 +123,20 @@
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="200px"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingTop="69px">
 
         <com.example.view.BackImageView
             android:id="@+id/return_back"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="?attr/actionBarSize"
             android:layout_centerVertical="true" />
 
         <TextView
             android:id="@+id/title_name"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="?attr/actionBarSize"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_weight="1"
@@ -147,7 +147,7 @@
 
         <com.example.view.BackImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="?attr/actionBarSize"
             android:layout_centerVertical="true"
             android:visibility="invisible" />
 

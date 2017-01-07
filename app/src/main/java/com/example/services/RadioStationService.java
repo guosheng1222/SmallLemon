@@ -35,22 +35,27 @@ public class RadioStationService extends Service {
     /**
      * 开始播放
      */
-    private void play(String path) {
+    private void play(final String path) {
         if (!MyApplication.radioName.equals(path)) {
-            try {
-                if (!MyApplication.isFirst) {
-                    mediaPlayer.reset();
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        if (!MyApplication.isFirst) {
+                            mediaPlayer.reset();
+                        } else {
+                            MyApplication.isFirst = false;
+                        }
+                        MyApplication.isPlaying = true;
+                        MyApplication.radioName = path;
+                        mediaPlayer.setDataSource(path);
+                        mediaPlayer.prepare();
+                        mediaPlayer.start();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                MyApplication.isPlaying = true;
-                MyApplication.radioName = path;
-                mediaPlayer.setDataSource(path);
-                mediaPlayer.prepare();
-                mediaPlayer.start();
-                MyApplication.isFirst = false;
-                Log.i("TAG", "isPlayer2" + MyApplication.isPlaying);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            }.start();
         }
 
 
@@ -73,7 +78,6 @@ public class RadioStationService extends Service {
                     currentPosition = mediaPlayer.getCurrentPosition();
                     onChangeSeekBarListener.setCurrentPosition(currentPosition);
                 }
-
             }
         }.start();
 
@@ -85,7 +89,6 @@ public class RadioStationService extends Service {
     private void pause() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             MyApplication.isPlaying = false;
-            Log.i("TAG", "isPlayer3" + MyApplication.isPlaying);
             mediaPlayer.pause();
         }
     }
@@ -94,7 +97,6 @@ public class RadioStationService extends Service {
         if (!mediaPlayer.isPlaying() && mediaPlayer != null) {
             mediaPlayer.start();
             MyApplication.isPlaying = true;
-            Log.i("TAG", "isPlayer4" + MyApplication.isPlaying);
         }
     }
 
