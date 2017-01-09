@@ -21,7 +21,7 @@ import java.util.List;
  * Created by PC on 2017/1/6.
  */
 
-public class HomeCO2Adapter extends RecyclerView.Adapter<HomeCO2Adapter.ViewHolder> {
+public class HomeCO2Adapter extends RecyclerView.Adapter<HomeCO2Adapter.ViewHolder>{
     ArrayList<BeanCO2.DataBean> list;
     Context context;
 
@@ -54,14 +54,9 @@ public class HomeCO2Adapter extends RecyclerView.Adapter<HomeCO2Adapter.ViewHold
                 ImageView image = holder.getView(R.id.home_loving_item_image);
                 image.setScaleType(ImageView.ScaleType.FIT_XY);
                 Glide.with(context).load(beanList.get(p).getImg()).into(image);
-                holder.setText(R.id.home_loving_item_title, beanList.get(p).getTitle());
-                String contentIntr = beanList.get(p).getContentIntr();
-                if (contentIntr.length() > 23) {
-                    holder.setText(R.id.home_loving_item_contentIntr, beanList.get(p).getContentIntr().substring(0, 23) + "...");
-                } else {
-                    holder.setText(R.id.home_loving_item_contentIntr, beanList.get(p).getContentIntr());
-                }
-                holder.setText(R.id.home_loving_item_reportName, "作者:" + beanList.get(p).getReporterName());
+                holder.setText(R.id.home_loving_item_title,beanList.get(p).getTitle());
+                holder.setText(R.id.home_loving_item_contentIntr,beanList.get(p).getContentIntr().substring(0,16)+"...");
+                holder.setText(R.id.home_loving_item_reportName,"作者:"+beanList.get(p).getReporterName());
             }
         });
     }

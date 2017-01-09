@@ -235,6 +235,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="760px"
                         android:layout_marginTop="20px" />
+                    <LinearLayout
+                        android:background="#f1f1f1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
                     <!--小点-->
                     <com.zhy.autolayout.AutoLinearLayout
                         android:id="@+id/home_community_dot_lin"

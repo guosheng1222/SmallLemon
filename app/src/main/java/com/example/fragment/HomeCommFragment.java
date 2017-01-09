@@ -1,5 +1,6 @@
 package com.example.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,10 +17,13 @@ import com.example.app.MyApplication;
 import com.example.base.BaseData;
 import com.example.bean.BeanEmotionState;
 import com.example.smalllemon.R;
+import com.example.smalllemon.WebViewActivity;
 import com.example.utils.CommonUtils;
+import com.example.utils.DividerItemDecoration;
 import com.example.utils.UrlUtils;
 import com.google.gson.Gson;
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
@@ -74,6 +78,8 @@ public class HomeCommFragment extends Fragment {
                         return false;
                     }
                 });
+                myrecycler.addItemDecoration(new DividerItemDecoration(getActivity(),
+                        DividerItemDecoration.VERTICAL_LIST));
                 myrecycler.setItemAnimator(new DefaultItemAnimator());
                 commonAdapter = new CommonAdapter<BeanEmotionState.DataBean>(getActivity(), R.layout.home_community_item, list) {
                     @Override
@@ -84,6 +90,20 @@ public class HomeCommFragment extends Fragment {
                     }
                 };
                 myrecycler.setAdapter(commonAdapter);
+                commonAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        Intent in=new Intent(getActivity(), WebViewActivity.class);
+                        in.putExtra("url",list.get(position).getUrl());
+                        in.putExtra("praise",list.get(position).getClick());
+                        startActivity(in);
+                    }
+
+                    @Override
+                    public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                        return false;
+                    }
+                });
             }
         }.getDataForGet(getActivity(), url);
     }
