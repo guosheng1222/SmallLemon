@@ -1,188 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:clipToPadding="true"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="#F1F1F1"
+
     >
-    <com.zhy.autolayout.AutoRelativeLayout
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="135px"
-        android:background="@drawable/background_with_shadow">
-        <com.example.view.BackImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:id="@+id/back_image"
-            />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#fff">
 
         <TextView
-            android:id="@+id/title_name"
+            android:id="@+id/return_back"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/back_image"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/return_back"
             android:gravity="center"
             android:text="帖子详情"
-            android:textColor="@color/colorBlackText"
-            android:textSize="50px" />
-
-
-        <ImageView
-            android:layout_width="125px"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/selector_navbar"
-            />
-
-    </com.zhy.autolayout.AutoRelativeLayout>
+            android:textColor="#000"
+            android:textSize="45px" />
+    </android.support.v7.widget.Toolbar>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5px"
-        android:background="#ccc" />
+        android:layout_height="2px"
+        android:background="#99000000" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:scrollbars="none">
 
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <com.zhy.autolayout.AutoRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_with_shadow">
+                android:background="@drawable/background_with_shadow"
+                android:paddingLeft="10px"
+                android:paddingTop="40px">
+
                 <com.example.view.CircleImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_margin="10px"
                     android:id="@+id/landlord_image"
-                    />
+                    android:layout_width="150px"
+                    android:layout_height="150px"
+                    android:layout_margin="10px"
+                    android:src="@mipmap/ic_launcher" />
+
                 <TextView
                     android:id="@+id/landlord_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10px"
+                    android:layout_toRightOf="@id/landlord_image"
                     android:text="楼主的名字"
                     android:textColor="@color/colorBlackText"
-                    android:textSize="50px"
-                    android:layout_toRightOf="@id/landlord_image"
-                    android:layout_margin="10px"
-                    />
+                    android:textSize="45px" />
 
                 <ImageView
                     android:layout_width="80px"
                     android:layout_height="70px"
-                    android:src="@drawable/community_detail_navbar_drop_icon2_selected"
                     android:layout_toRightOf="@id/landlord_name"
-                    />
+                    android:src="@drawable/community_detail_navbar_drop_icon2_selected" />
 
                 <ImageView
                     android:layout_width="60px"
                     android:layout_height="60px"
-                    android:src="@drawable/article_comment_selected"
                     android:layout_alignParentRight="true"
                     android:layout_margin="10px"
-                    />
+                    android:src="@drawable/article_comment_selected"
+                    android:visibility="invisible" />
 
                 <TextView
+                    android:id="@+id/commit_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="时间"
                     android:layout_below="@id/landlord_name"
-                    android:layout_toRightOf="@id/landlord_image"
                     android:layout_margin="15px"
-                    android:id="@+id/commit_time"
-                    />
+                    android:layout_toRightOf="@id/landlord_image"
+                    android:text="时间" />
             </com.zhy.autolayout.AutoRelativeLayout>
 
             <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:background="#fff"
-                >
+                android:orientation="horizontal">
+
                 <View
                     android:layout_width="20px"
                     android:layout_height="35px"
-                    android:background="#F7E389"
-                    android:layout_margin="15px"
                     android:layout_gravity="center_vertical"
-                    />
+                    android:layout_margin="15px"
+                    android:background="#F7E389" />
+
                 <TextView
+                    android:id="@+id/landlord_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="标题名"
                     android:layout_margin="15px"
-                    android:textSize="50px"
+                    android:text="标题名"
                     android:textColor="#000"
-                    android:id="@+id/landlord_title"
-                    />
+                    android:textSize="40px" />
 
             </com.zhy.autolayout.AutoLinearLayout>
 
             <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:background="#fff"
-                >
+                android:orientation="vertical"
+                android:paddingBottom="50px">
+
                 <TextView
+                    android:id="@+id/landlord_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="标题内容"
-                    android:textSize="50px"
-                    android:layout_marginTop="40px"
                     android:layout_marginLeft="15px"
-                    android:id="@+id/landlord_content"
-                    />
+                    android:layout_marginTop="40px"
+                    android:text="标题内容"
+                    android:textSize="30px" />
+
 
                 <CheckBox
-                    android:layout_width="195px"
-                    android:layout_height="190px"
-                    android:drawableTop="@drawable/selector_like"
-                    android:button="@null"
-                    android:background="@drawable/circle_background"
+                    android:id="@+id/detail_image"
+                    android:layout_width="200px"
+                    android:layout_height="200px"
                     android:layout_gravity="center"
                     android:layout_marginTop="50px"
-                    android:id="@+id/detail_image"
-                    android:text="点赞"
-                    android:gravity="center"
-                    />
+                    android:background="@drawable/circle_background"
+                    android:button="@null"
+                    android:drawableTop="@drawable/selector_like"
+                    android:gravity="center_horizontal"
+                    android:text="点赞" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+            <!--回帖-->
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EEEEEE"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/back_landlord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20px"
+                    android:text="回帖" />
 
             </com.zhy.autolayout.AutoLinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="回帖（）"
-                android:layout_margin="15px"
-                android:id="@+id/back_landlord"
-                />
 
             <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:id="@+id/landlord_recycler"
-                />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
         </com.zhy.autolayout.AutoLinearLayout>
 
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-    </LinearLayout>
 </com.zhy.autolayout.AutoLinearLayout>

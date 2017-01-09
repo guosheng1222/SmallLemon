@@ -1,6 +1,7 @@
 package com.example.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,8 +19,10 @@ import com.example.fragment.PhotoFragment;
 import com.example.holder.BoardContentHolder;
 import com.example.holder.BoardTopHolder;
 import com.example.holder.LoadMoreHolder;
+import com.example.interfaces.OnItemClickListener;
 import com.example.loadanim.LoadAnim;
 import com.example.smalllemon.ComBoardActivity;
+import com.example.smalllemon.DetailsActivity;
 import com.example.smalllemon.R;
 
 import java.text.SimpleDateFormat;
@@ -40,6 +43,8 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
     private static final int NOMAL = 1;
     private static final int LAST_POSITION = 2;
     private static int lastPosition = -1;
+    private OnItemClickListener onItemClickListener;
+    private Intent intent;
 
     public BoardRecyclerAdapter(List<CommunityBean.DataBean> topList, List<CommunityBean.DataBean> contentList, Context context) {
         this.topList = topList;
@@ -72,23 +77,50 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
     private SimpleDateFormat formatter = new SimpleDateFormat("MM月dd日 HH:mm:ss");
 
     @Override
-    public void onBindViewHolder(BaseHolder holder, int position) {
+    public void onBindViewHolder(BaseHolder holder, final int position) {
         switch (getItemViewType(position)) {
             case TOP:
-
-
-
                 BoardTopHolder holder1 = (BoardTopHolder) holder;
                 holder1.top_recycleView.setLayoutManager(new LinearLayoutManager(context));
-                holder1.top_recycleView.setAdapter(new RecyclerAdapter<CommunityBean.DataBean>(context, topList, R.layout.layout_top_firstitem) {
+                RecyclerAdapter<CommunityBean.DataBean> recyclerAdapter = new RecyclerAdapter<CommunityBean.DataBean>(context, topList, R.layout.layout_top_firstitem) {
                     @Override
                     public void convert(RecyclerHolder holder, CommunityBean.DataBean data, int position) {
                         holder.setText(R.id.tv_topTitle, data.getTitle());
                     }
+                };
+                holder1.top_recycleView.setAdapter(recyclerAdapter);
+                holder1.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (onItemClickListener != null) {
+                            onItemClickListener.onItemClick(view, position);
+                        }
+                    }
                 });
+                /**
+                 * 跳转到详情
+                 */
+                recyclerAdapter.setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, final int position) {
+
+                                    CommunityBean.DataBean dataBean = topList.get(position);
+                                    intentActivity(dataBean);
+
+                    }
+                });
+
                 break;
             case NOMAL:
                 BoardContentHolder contentHolder = (BoardContentHolder) holder;
+                contentHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CommunityBean.DataBean dataBean = contentList.get(position);
+                        intentActivity(dataBean);
+
+                    }
+                });
                 View itemView = contentHolder.itemView;
                 if (lastPosition < position) {
                     new LoadAnim().loadingAnim(itemView);
@@ -147,6 +179,26 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
 
         }
 
+
+    }
+
+    private void intentActivity(final CommunityBean.DataBean dataBean) {
+
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    sleep(600);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (intent == null) {
+                    intent = new Intent(context, DetailsActivity.class);
+                }
+                intent.putExtra("communityBean", dataBean);
+                context.startActivity(intent);
+            }
+        }.start();
 
     }
 
