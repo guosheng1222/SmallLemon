@@ -1,5 +1,6 @@
 package com.example.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @date :   2017/1/1
  */
 
-public class CommunityBean {
+public class CommunityBean implements Serializable{
 
     /**
      * code : 1
@@ -73,7 +74,7 @@ public class CommunityBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * frList : null
          * recommend : 0
@@ -378,7 +379,7 @@ public class CommunityBean {
             this.imgs = imgs;
         }
 
-        public static class ImgsBean {
+        public static class ImgsBean implements Serializable{
             /**
              * originalImg : http://img1.yulin520.com/yulinEvents/7VYQMKYMBIK0OH7G4U8S.jpeg
              * miniImg : http://img1.yulin520.com/yulinEvents/7VYQMKYMBIK0OH7G4U8S.jpeg@250w_250h_100Q_1o
