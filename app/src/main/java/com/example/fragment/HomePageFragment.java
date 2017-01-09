@@ -7,11 +7,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,10 +23,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.adapter.HomeCO2Adapter;
 import com.example.app.MyApplication;
 import com.example.base.BaseData;
+import com.example.bean.BeanCO2;
+import com.example.bean.BeanCold;
 import com.example.bean.BeanHoliday;
 import com.example.bean.HomeRadioStation;
+import com.example.smalllemon.LoveActivity;
 import com.example.smalllemon.NoteActivity;
 import com.example.smalllemon.R;
 import com.example.smalllemon.RadioStationActivity;
@@ -58,7 +65,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private CheckBox home_cb_right;
     private TextView home_popup_sure_tv;
     private PopupWindow pop;
+    private FragmentPagerAdapter fragmentPagerAdapter;
+    private ImageView home_cold_image;
+    private RecyclerView home_co2_recycle;
+    private ArrayList<BeanCO2.DataBean> CO2List = new ArrayList<>();
     private HomeRadioStation homeRadioStation;
+    private Button more;
 
     @Nullable
     @Override
@@ -71,16 +83,93 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         //开启五个任务
         initInfoView(view);
         initHoliday();
-        //initCommunityVp();
+        initCommunityVp();
+        initColdImg();
+        initCO2();
         return view;
     }
 
+    /**
+     * 初始化恋爱氧气
+     */
+    private void initCO2() {
+        new BaseData() {
+            @Override
+            public void onSuccessData(String data) {
+                Gson gson = new Gson();
+                BeanCO2 beanCO2 = gson.fromJson(data, BeanCO2.class);
+                CO2List = (ArrayList<BeanCO2.DataBean>) beanCO2.getData();
+                home_co2_recycle.setLayoutManager(new LinearLayoutManager(getActivity()) {
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                });
+                home_co2_recycle.setAdapter(new HomeCO2Adapter(CO2List, getActivity()));
+            }
+        }.getDataForGet(getActivity(), UrlUtils.lovingCO2);
+    }
+
+    private void initColdImg() {
+        new BaseData() {
+            @Override
+            public void onSuccessData(String data) {
+                Gson gson = new Gson();
+                BeanCold beanCold = gson.fromJson(data, BeanCold.class);
+                Glide.with(getActivity()).load(beanCold.getData().get(0).getImg()).into(home_cold_image);
+            }
+        }.getDataForGet(getActivity(), UrlUtils.cold);
+    }
+
+    //初始化小点
+    private void initCircle(int p) {
+        home_community_vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int i = 0; i < home_community_dot_lin.getChildCount(); i++) {
+                    ImageView image = (ImageView) home_community_dot_lin.getChildAt(i);
+                    if (position == i) {
+                        image.setImageResource(dotArray1[0]);
+                    } else {
+                        image.setImageResource(dotArray1[1]);
+                    }
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        home_community_dot_lin.removeAllViews();
+        for (int i = 0; i < 4; i++) {
+            ImageView imageView = new ImageView(getActivity());
+            if (i == p) {
+                imageView.setImageResource(dotArray1[0]);
+            } else {
+                imageView.setImageResource(dotArray1[1]);
+            }
+            dotList.add(imageView);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(40, 40);
+            params.setMargins(10, 20, 10, 20);
+            home_community_dot_lin.addView(imageView, params);
+        }
+    }
+
+    /**
+     * 初始化恋乎社区
+     */
 
     private void initCommunityVp() {
-        home_community_vp.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
+        fragmentPagerAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                Fragment f1 = HomeCommFragment.getFragment(MyApplication.CURRENT_USER.getGender() == 1 ? "恋爱期" : "单身期", position);
+                Fragment f1 = HomeCommFragment.getFragment(position);
                 return f1;
             }
 
@@ -88,7 +177,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             public int getCount() {
                 return 4;
             }
-        });
+        };
+        home_community_vp.setAdapter(fragmentPagerAdapter);
+        home_community_vp.setCurrentItem(0);
+        initCircle(0);
     }
 
     /**
@@ -132,9 +224,15 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         home_community_vp = (ViewPager) view.findViewById(R.id.home_community_vp);
         home_community_dot_lin = (LinearLayout) view.findViewById(R.id.home_community_dot_lin);
         noteLogo = (ImageView) view.findViewById(R.id.imageView2);
+        home_cold_image = (ImageView) view.findViewById(R.id.home_cold_image);
+        home_co2_recycle = (RecyclerView) view.findViewById(R.id.home_CO2_recycle);
+        more = (Button) view.findViewById(R.id.more);
+
+        main_title_text.setText(MyApplication.CURRENT_USER.getEmotionStage() == 1 ? "恋爱期" : "单身期");
         main_title_text.setText(MyApplication.CURRENT_USER.getGender() == 1 ? "恋爱期" : "单身期");
         noteLogo.setOnClickListener(this);
         main_title_text.setOnClickListener(this);
+        more.setOnClickListener(this);
         return view;
     }
 
@@ -242,22 +340,22 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 home_cb_left = (CheckBox) pop_view.findViewById(R.id.home_cb_left);
                 home_cb_right = (CheckBox) pop_view.findViewById(R.id.home_cb_right);
                 home_popup_sure_tv = (TextView) pop_view.findViewById(R.id.home_popup_sure_tv);
-                if (MyApplication.CURRENT_USER.getGender()==1) {
+                if (MyApplication.CURRENT_USER.getEmotionStage() == 1) {
                     //恋爱期
                     home_cb_left.setChecked(true);
                 } else {
-                   home_cb_right.setChecked(true);
+                    home_cb_right.setChecked(true);
                 }
                 pop = new PopupWindow(pop_view, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 pop.setBackgroundDrawable(new BitmapDrawable());
                 pop.setOutsideTouchable(true);
                 pop.setFocusable(true);
-                backgroundAlpha(100);
+                backgroundAlpha(0.6f);
                 pop.showAtLocation(view, Gravity.CENTER, 0, 0);
                 pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
-                        backgroundAlpha(10);
+                        backgroundAlpha(1.0f);
                     }
                 });
                 home_cb_left.setOnClickListener(this);
@@ -266,22 +364,32 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.home_popup_sure_tv:
                 if (home_cb_left.isChecked()) {
-                    MyApplication.CURRENT_USER.setGender(1);
+                    MyApplication.CURRENT_USER.setEmotionStage(1);
                 } else if (home_cb_right.isChecked()) {
-                    MyApplication.CURRENT_USER.setGender(0);
+                    MyApplication.CURRENT_USER.setEmotionStage(0);
                 }
-                main_title_text.setText(MyApplication.CURRENT_USER.getGender() == 1 ? "恋爱期" : "单身期");
+                main_title_text.setText(MyApplication.CURRENT_USER.getEmotionStage() == 1 ? "恋爱期" : "单身期");
                 pop.dismiss();
+                initCommunityVp();
                 break;
             case R.id.home_cb_left:
                 home_cb_right.setChecked(false);
                 home_cb_left.setChecked(true);
+
                 break;
             case R.id.home_cb_right:
                 home_cb_left.setChecked(false);
                 home_cb_right.setChecked(true);
                 break;
+            case R.id.more:
+                enterActivity(LoveActivity.class);
+                break;
         }
+    }
+
+    void enterActivity(Class c) {
+        Intent intent = new Intent(getActivity(), c);
+        getActivity().startActivity(intent);
     }
 
     /**

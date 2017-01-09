@@ -111,10 +111,14 @@ public class ComChoicenceFragment extends Fragment {
                 holder.setText(R.id.title_tv, data.getTitle());
                 //内容
                 TextView content = holder.findView(R.id.content_tv);
-                if (TextUtils.isEmpty(data.getContent()))
+                if (TextUtils.isEmpty(data.getContent())) {
                     content.setVisibility(View.GONE);
-                else
-                    content.setText(data.getContent());
+                } else {
+                    if (data.getContent().length() > 30)
+                        content.setText(data.getContent().substring(0, 30) + "...");
+                    else
+                        content.setText(data.getContent());
+                }
                 //加载图片
                 final List<CommunityBean.DataBean.ImgsBean> imgs = data.getImgs();
                 ViewGroup imageGroup = holder.findView(R.id.view_group);

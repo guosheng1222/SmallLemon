@@ -21,15 +21,15 @@ public class UrlUtils {
     //点击助攻节日
     public static final String clickholiday = "http://www.yulin520.com/a2a/h/i/app/next_festival";
     //恋爱期 恋乎社区
-    public static final String loving = "http://www.yulin520.com/a2a/forum/recommend/withIndexImg?sign=CFB612BCCC0E98F08157E01017F8AA49&pageSize=12&emotionStage=2&ts=1482908782&page=1";
+    public static final String loving = "www.yulin520.com/a2a/forum/recommend/withIndexImg?sign=CFB612BCCC0E98F08157E01017F8AA49&pageSize=3&emotionStage=2&ts=1482908782&";
     //单身期 恋乎社区
-    public static final String single = "http://www.yulin520.com/a2a/forum/recommend/withIndexImg?sign=2ED307930C123871704A9C84C46CFC5F&pageSize=12&emotionStage=1&ts=1482907765&page=1";
+    public static final String single = "www.yulin520.com/a2a/forum/recommend/withIndexImg?sign=2ED307930C123871704A9C84C46CFC5F&pageSize=3&emotionStage=1&ts=1482907765&";
     //冷暖共知
     public static final String cold = "http://www.yulin520.com/a2a/news/dissertation?sign=C49E4703030EB2FF11E0E7377FB88709&pageSize=1&queryData=&ts=1482907765&page=1";
     //恋爱氧气
     public static final String lovingCO2 = "http://www.yulin520.com/a2a/news/sd/list?sign=816863C6854591D9E607BE273A05CE65&ts=1482907765&pageSize=6&page=1";
     //点击查看更多
-    public static final String lookMore = "http://www.yulin520.com/a2a/news/sd/list?sign=4508DEDF231D4E571E987BBE7C6CAB28&ts=1145666944&pageSize=10&page=1";
+    public static final String lookMore = "http://www.yulin520.com/a2a/news/sd/list?sign=4508DEDF231D4E571E987BBE7C6CAB28&ts=1145666944&pageSize=10&page=";
 
     /**
      * 社区接口

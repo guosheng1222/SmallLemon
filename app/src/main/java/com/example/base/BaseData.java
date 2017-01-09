@@ -46,7 +46,7 @@ public abstract class BaseData {
      * 网络状态改变监听
      */
     private BroadcastReceiver netReceiver;
-    private AlertDialog.Builder builder;
+    private static AlertDialog.Builder builder;
 
     public void getDataForGet(Context context, String url) {
         getDataForGet(context, url, 0);
@@ -175,7 +175,7 @@ public abstract class BaseData {
                     builder = null;
                     getDataFromNet();
                 }
-            }).show();
+            }).setNegativeButton("取消", null).show();
         }
     }
 
@@ -287,6 +287,7 @@ public abstract class BaseData {
         };
         requestQueue.add(stringRequest);
     }
+
 
 
 }

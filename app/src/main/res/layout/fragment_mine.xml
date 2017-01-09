@@ -38,6 +38,7 @@
                 android:textSize="@dimen/textSize_normal" />
 
             <ImageView
+                android:id="@+id/gender"
                 android:layout_width="50px"
                 android:layout_height="match_parent"
                 android:src="@drawable/profile_male" />

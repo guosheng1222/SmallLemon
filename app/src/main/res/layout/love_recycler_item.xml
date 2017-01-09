@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loveactivity"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.andexert.library.RippleView
+        android:id="@+id/ripView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:rv_zoomDuration="@android:integer/config_mediumAnimTime"
+        app:rv_type="rectangle">
+
+        <ImageView
+            android:id="@+id/love_recycler_img"
+            android:layout_width="match_parent"
+            android:layout_height="870px"
+            android:padding="20px"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/aaa" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px"
+            android:layout_marginTop="663px"
+            android:background="#7f000000"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/love_recycler_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30px"
+                android:text="长恨人心不如水"
+                android:textColor="#FFF"
+                android:textSize="16sp" />
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/love_recycler_reading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20px"
+                    android:text="阅读"
+                    android:textColor="#FFF" />
+
+                <TextView
+                    android:id="@+id/love_recycler_comments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20px"
+                    android:text="评论"
+                    android:textColor="#FFF" />
+
+                <TextView
+                    android:id="@+id/love_recycler_praise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20px"
+                    android:text="点赞"
+                    android:textColor="#FFF" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.andexert.library.RippleView>
+</com.zhy.autolayout.AutoRelativeLayout>
