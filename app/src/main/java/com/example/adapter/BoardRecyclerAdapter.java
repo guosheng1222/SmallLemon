@@ -102,9 +102,11 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
                  */
                 recyclerAdapter.setOnItemClickListener(new OnItemClickListener() {
                     @Override
-                    public void onItemClick(View view, int position) {
-                        CommunityBean.DataBean dataBean = topList.get(position);
-                        intentActivity(dataBean);
+                    public void onItemClick(View view, final int position) {
+
+                                    CommunityBean.DataBean dataBean = topList.get(position);
+                                    intentActivity(dataBean);
+
                     }
                 });
 
@@ -116,9 +118,7 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
                     public void onClick(View view) {
                         CommunityBean.DataBean dataBean = contentList.get(position);
                         intentActivity(dataBean);
-                        /*if (onItemClickListener != null) {
-                            onItemClickListener.onItemClick(view, position);
-                        }*/
+
                     }
                 });
                 View itemView = contentHolder.itemView;
@@ -182,12 +182,24 @@ public class BoardRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
 
     }
 
-    private void intentActivity(CommunityBean.DataBean dataBean) {
-        if (intent == null) {
-            intent = new Intent(context, DetailsActivity.class);
-        }
-        intent.putExtra("communityBean", dataBean);
-        context.startActivity(intent);
+    private void intentActivity(final CommunityBean.DataBean dataBean) {
+
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    sleep(600);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (intent == null) {
+                    intent = new Intent(context, DetailsActivity.class);
+                }
+                intent.putExtra("communityBean", dataBean);
+                context.startActivity(intent);
+            }
+        }.start();
+
     }
 
 
