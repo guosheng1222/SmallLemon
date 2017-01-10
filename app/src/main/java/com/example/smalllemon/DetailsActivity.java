@@ -77,6 +77,11 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                     setAdapter(data1);
                 }
             }
+
+            @Override
+            public void onErrorData(String data) {
+
+            }
         }.getDataForGet(DetailsActivity.this, topDetailUrl, BaseData.NO_TIME);
     }
 

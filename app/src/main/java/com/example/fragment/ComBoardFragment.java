@@ -97,6 +97,11 @@ public class ComBoardFragment extends Fragment implements View.OnClickListener {
                 five_number.setText(boardBean.getData().getType14Counts() + "条帖子");
 
             }
+
+            @Override
+            public void onErrorData(String data) {
+
+            }
         }.getDataForGet(getActivity(), UrlUtils.BOARD);
     }
 

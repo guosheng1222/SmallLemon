@@ -27,7 +27,7 @@
         android:textSize="45px"
         android:gravity="start"
         android:padding="50px"
-        android:id="@+id/nickname_edit_text"
+        android:id="@+id/et_nickName"
         />
 
     <TextView

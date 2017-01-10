@@ -21,7 +21,6 @@ import com.example.app.MyApplication;
 import com.example.base.BaseActivity;
 import com.example.base.BaseData;
 import com.example.bean.LoginBean;
-import com.example.bean.RegisterMessage;
 import com.example.utils.CommonUtils;
 import com.example.utils.DBUtils;
 import com.google.gson.Gson;
@@ -34,9 +33,6 @@ import org.xutils.ex.DbException;
 
 import java.util.List;
 import java.util.Map;
-
-import static android.R.attr.data;
-import static android.R.attr.password;
 
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -255,6 +251,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         //登陆不成功
                         Toast.makeText(LoginActivity.this, loginBean.getMessage(), Toast.LENGTH_SHORT).show();
                     }
+                }
+
+                @Override
+                public void onErrorData(String data) {
+
                 }
             }.getNetForPost(this, login_et_phone.getText().toString().trim(), login_et_password.getText().toString().trim());
         }

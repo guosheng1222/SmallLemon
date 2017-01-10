@@ -16,10 +16,19 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.app.MyApplication;
 import com.example.base.BaseActivity;
+import com.example.base.BaseData;
+import com.example.utils.DBUtils;
+import com.example.utils.MD5Utils;
 import com.example.view.CircleImageView;
 import com.zhy.autolayout.AutoLinearLayout;
 
 import org.feezu.liuli.timeselector.TimeSelector;
+import org.xutils.ex.DbException;
+
+import java.util.HashMap;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 
 
 public class BasicDocumentActivity extends BaseActivity implements View.OnClickListener {
@@ -76,8 +85,18 @@ public class BasicDocumentActivity extends BaseActivity implements View.OnClickL
         date_click.setOnClickListener(this);
         job_click.setOnClickListener(this);
         emotion_click.setOnClickListener(this);
+        //注册Register
+        EventBus.getDefault().register(this);
+
+
     }
 
+
+    @Subscribe
+    public void onEventMainThread(String data) {
+        nickname.setText(data);
+        Toast.makeText(this, "--" + data, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onClick(View v) {
@@ -90,10 +109,39 @@ public class BasicDocumentActivity extends BaseActivity implements View.OnClickL
                 break;
             case R.id.date_click:
 
+
                 timeSelector = new TimeSelector(this, new TimeSelector.ResultHandler() {
                     @Override
-                    public void handle(String time) {
-                        Toast.makeText(getApplicationContext(), time, Toast.LENGTH_LONG).show();
+                    public void handle(final String time) {
+                        String s = time.substring(0, time.indexOf(" "));
+                        final String[] split = s.split("-");
+                        int l = (int) System.currentTimeMillis();
+                        HashMap<String, String> requestMap = new HashMap<String, String>();
+                        requestMap.put("token", MyApplication.TOKEN);
+                        requestMap.put("birthday", time);
+                        requestMap.put("ts", l + "");
+                        requestMap.put("sign", MD5Utils.MD5(l + "GOyV3qmT)CR5!Gee'zAj@7W"));
+                        new BaseData() {
+                            @Override
+                            public void onSuccessData(String data) {
+
+                                Toast.makeText(BasicDocumentActivity.this, "修改数据成功", Toast.LENGTH_SHORT).show();
+                                MyApplication.CURRENT_USER.setBirthday(split[0] + "." + split[1] + "." + split[2]);
+                                try {
+                                    DBUtils.getDb().saveOrUpdate(MyApplication.CURRENT_USER);
+                                } catch (DbException e) {
+                                    e.printStackTrace();
+                                }
+                                birthday.setText(MyApplication.CURRENT_USER.getBirthday());
+                            }
+
+                            @Override
+                            public void onErrorData(String data) {
+                                Toast.makeText(BasicDocumentActivity.this, "错误请求", Toast.LENGTH_SHORT).show();
+                            }
+                        }.getDataByPost(BasicDocumentActivity.this, "http://www.yulin520.com/a2a/home/info/change/userInfo", requestMap);
+
+
                     }
                 }, "1989-01-30 00:00", "2018-12-31 00:00");
 //                有bug，不使用
@@ -142,4 +190,9 @@ public class BasicDocumentActivity extends BaseActivity implements View.OnClickL
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

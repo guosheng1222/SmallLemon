@@ -206,6 +206,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Log.i("A", "onSuccessData: 头像:" + image_url + " 用户手机:" + registerMessage.getData().getPhone());
                 toastMessage("注册成功");
             }
+
+            @Override
+            public void onErrorData(String data) {
+
+            }
         }.getDataForGet(RegisterActivity.this, "http://114.112.104.151:8203/LvScore_Service/visit/user_register.do?telNum=" + phone + "&name=godboy&password=" + password, NO_TIME);
     }
 
@@ -238,6 +243,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 toastMessage(verificationCode.getData().getMessage());
                                 break;
                         }
+                    }
+
+                    @Override
+                    public void onErrorData(String data) {
+
                     }
                 }.getDataForGet(RegisterActivity.this, UrlUtils.getCode + getPhone(), NO_TIME);
             } else {//收不到短信

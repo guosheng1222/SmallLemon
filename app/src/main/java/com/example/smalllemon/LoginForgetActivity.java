@@ -126,6 +126,11 @@ public class LoginForgetActivity extends BaseActivity implements View.OnClickLis
                             toastMessage("已发送至手机");
                         }
                     }
+
+                    @Override
+                    public void onErrorData(String data) {
+
+                    }
                 }.getDataForGet(LoginForgetActivity.this, UrlUtils.getCode + getPhone(), NO_TIME);
             }
         }
@@ -159,6 +164,11 @@ public class LoginForgetActivity extends BaseActivity implements View.OnClickLis
                             break;
                     }
                 }
+
+                @Override
+                public void onErrorData(String data) {
+
+                }
             }.getDataForGet(LoginForgetActivity.this, "http://114.112.104.151:8203/LvScore_Service/visit/user_checkVerificationCode.do?telNum=" + getPhone() + "&verCode=" + verification, BaseData.NO_TIME);
 
         }
@@ -178,6 +188,11 @@ public class LoginForgetActivity extends BaseActivity implements View.OnClickLis
                     toastMessage("修改成功");
                     finish();
                 }
+            }
+
+            @Override
+            public void onErrorData(String data) {
+
             }
         }.getDataForGet(LoginForgetActivity.this, "http://114.112.104.151:8203/LvScore_Service/visit/setUserLoginPassword.do?telNum=" + phone + "&password=" + password, NO_TIME);
     }

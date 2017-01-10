@@ -60,4 +60,8 @@ dependencies {
     compile files('libs/SocialSDK_WeiXin_Full.jar')
     compile files('libs/umeng_social_api.jar')
     compile files('libs/libammsdk.jar')
+    //EventBus
+    compile 'de.greenrobot:eventbus:3.0.0-beta1'
+
+
 }

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.app.MyApplication;
@@ -34,6 +34,9 @@ import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.io.FileNotFoundException;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -115,6 +118,21 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         }
 
 
+        EventBus.getDefault().register(this);
+
+    }
+
+    @Subscribe
+    public void onEventMainThread(String data){
+        tv_user_name.setText(current_user.getUserName());
+        Toast.makeText(getActivity(), "---88"+data, Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override

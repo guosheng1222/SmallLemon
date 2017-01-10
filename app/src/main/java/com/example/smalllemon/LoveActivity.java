@@ -150,6 +150,11 @@ public class LoveActivity extends BaseActivity {
                 dataList.addAll(loveBean.getData());
                 recyclerAdapter.notifyDataSetChanged();
             }
+
+            @Override
+            public void onErrorData(String data) {
+
+            }
         }.getDataForGet(getActivity(), UrlUtils.lookMore + (++currentPosition));
     }
 }

@@ -107,6 +107,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 });
                 home_co2_recycle.setAdapter(new HomeCO2Adapter(CO2List, getActivity()));
             }
+
+            @Override
+            public void onErrorData(String data) {
+
+            }
         }.getDataForGet(getActivity(), UrlUtils.lovingCO2);
     }
 
@@ -117,6 +122,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 Gson gson = new Gson();
                 BeanCold beanCold = gson.fromJson(data, BeanCold.class);
                 Glide.with(getActivity()).load(beanCold.getData().get(0).getImg()).into(home_cold_image);
+            }
+
+            @Override
+            public void onErrorData(String data) {
+
             }
         }.getDataForGet(getActivity(), UrlUtils.cold);
     }
@@ -204,6 +214,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 } else {
                     home_holiday_time.setText(l2 + "");
                 }
+            }
+
+            @Override
+            public void onErrorData(String data) {
+
             }
         }.getDataForGet(getActivity(), UrlUtils.holiday1);
     }
@@ -299,6 +314,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     public void onPageScrollStateChanged(int state) {
                     }
                 });
+            }
+
+            @Override
+            public void onErrorData(String data) {
+
             }
         }.getDataForGet(getActivity(), UrlUtils.main_viewager, BaseData.NO_TIME);
 

@@ -42,6 +42,7 @@ public abstract class BaseData {
     private Context mContext;
     private String mUrl;
     private int mValidTime;
+    private HashMap<String, String> postMap = new HashMap<>();
     /**
      * 网络状态改变监听
      */
@@ -51,7 +52,6 @@ public abstract class BaseData {
     public void getDataForGet(Context context, String url) {
         getDataForGet(context, url, 0);
     }
-
 
     /**
      * @param url       请求地址
@@ -117,6 +117,8 @@ public abstract class BaseData {
      * @param data
      */
     public abstract void onSuccessData(String data);
+
+    public abstract void onErrorData(String data);
 
     /**
      * 失败的操作
@@ -289,5 +291,49 @@ public abstract class BaseData {
     }
 
 
+    public BaseData() {
+    }
+
+    /**
+     * Post请求标准版
+     */
+    public void getDataByPost(Context context, String path, final Map<String, String> map) {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                onSuccessData(response);
+            }
+        };
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                onErrorData(error.getMessage());
+            }
+        };
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, path, listener, errorListener) {
+            @Override
+            protected Map<String, String> getParams() {
+                //在这里设置需要post的参数
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    /**
+     * 进行Map.put的操作
+     */
+
+    public void putPostMap(String key, String value) {
+        postMap.put(key, value);
+    }
+
+    /**
+     * 清除hostHap
+     */
+    public void clearPostMap() {
+        postMap.clear();
+    }
 
 }

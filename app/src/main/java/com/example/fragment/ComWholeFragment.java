@@ -196,6 +196,11 @@ public class ComWholeFragment extends Fragment {
                 dataList.addAll(selectBean.getData());
                 recyclerAdapter.notifyDataSetChanged();
             }
+
+            @Override
+            public void onErrorData(String data) {
+
+            }
         }.getDataForGet(getActivity(), UrlUtils.ALL + (++currentPage));
     }
 

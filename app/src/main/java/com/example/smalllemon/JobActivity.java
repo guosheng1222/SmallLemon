@@ -73,6 +73,11 @@ public class JobActivity extends AppCompatActivity {
                 };
                 show_lv.setAdapter(recyclerAdapter);
             }
+
+            @Override
+            public void onErrorData(String data) {
+
+            }
         }.getDataForGet(JobActivity.this, UrlUtils.JobUrl, BaseData.NO_TIME);
     }
 

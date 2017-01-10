@@ -72,6 +72,11 @@ public class MainActivity extends BaseActivity {
                 MainActivity.this.data = data;
                 Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onErrorData(String data) {
+
+            }
         }.getDataForGet(this, "https://www.baidu.com", BaseData.NO_TIME);
     }
 

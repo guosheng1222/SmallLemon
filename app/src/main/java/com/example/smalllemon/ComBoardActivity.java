@@ -103,6 +103,11 @@ public class ComBoardActivity extends BaseActivity implements SwipeRefreshLayout
                 handler.sendMessageDelayed(message, 2000);
 
             }
+
+            @Override
+            public void onErrorData(String data) {
+
+            }
         }.getDataForGet(this, UrlUtils.moonTop + topType, BaseData.NO_TIME);
         new BaseData() {
             @Override
@@ -113,6 +118,11 @@ public class ComBoardActivity extends BaseActivity implements SwipeRefreshLayout
                 message.obj = data2;
                 message.what = 1;
                 handler.sendMessageDelayed(message, 2000);
+
+            }
+
+            @Override
+            public void onErrorData(String data) {
 
             }
         }.getDataForGet(this, UrlUtils.moonContent + "&page=" + page + "&forumType=" + topType, BaseData.NO_TIME);

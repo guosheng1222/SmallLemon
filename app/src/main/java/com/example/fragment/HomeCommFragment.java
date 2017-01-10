@@ -85,6 +85,11 @@ public class HomeCommFragment extends Fragment {
                 };
                 myrecycler.setAdapter(commonAdapter);
             }
+
+            @Override
+            public void onErrorData(String data) {
+
+            }
         }.getDataForGet(getActivity(), url);
     }
 }
