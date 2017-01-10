@@ -34,6 +34,7 @@ import com.example.smalllemon.LoveActivity;
 import com.example.smalllemon.NoteActivity;
 import com.example.smalllemon.R;
 import com.example.smalllemon.RadioStationActivity;
+import com.example.smalllemon.WebViewActivity;
 import com.example.utils.CommonUtils;
 import com.example.utils.UrlUtils;
 import com.example.view.InfoView;
@@ -115,13 +116,25 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         }.getDataForGet(getActivity(), UrlUtils.lovingCO2);
     }
 
+    /**
+     * 初始化冷暖共知
+     */
     private void initColdImg() {
         new BaseData() {
             @Override
             public void onSuccessData(String data) {
                 Gson gson = new Gson();
-                BeanCold beanCold = gson.fromJson(data, BeanCold.class);
+                final BeanCold beanCold = gson.fromJson(data, BeanCold.class);
                 Glide.with(getActivity()).load(beanCold.getData().get(0).getImg()).into(home_cold_image);
+                home_cold_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent in=new Intent(getActivity(), WebViewActivity.class);
+                        in.putExtra("url",beanCold.getData().get(0).getUrl());
+                        in.putExtra("praise",beanCold.getData().get(0).getClick());
+                        startActivity(in);
+                    }
+                });
             }
 
             @Override
@@ -174,7 +187,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     /**
      * 初始化恋乎社区
      */
-
     private void initCommunityVp() {
         fragmentPagerAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
             @Override
@@ -244,7 +256,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         more = (Button) view.findViewById(R.id.more);
 
         main_title_text.setText(MyApplication.CURRENT_USER.getEmotionStage() == 1 ? "恋爱期" : "单身期");
-        main_title_text.setText(MyApplication.CURRENT_USER.getGender() == 1 ? "恋爱期" : "单身期");
         noteLogo.setOnClickListener(this);
         main_title_text.setOnClickListener(this);
         more.setOnClickListener(this);
